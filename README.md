@@ -1,3 +1,12 @@
+##### TLG attempt to mangle it into shape #####
+did my odd code formating
+
+
+compile with 'gradlew.bat build'  look in build/lib
+
+
+
+
 # Origins (NeoForge)
 
 **This mod is still under construction, some functions may not work properly.**

@@ -29,7 +29,8 @@ public record BonemealAction(boolean effect) implements BlockAction {
 		if (BoneMealItem.growCrop(ItemStack.EMPTY, level, pos)) { //Use the fake player version (Mostly because I'm lazy)
 			if (this.effect && !level.isClientSide)
 				level.globalLevelEvent(LevelEvent.PARTICLES_AND_SOUND_PLANT_GROWTH, pos, 0);
-		} else {
+		}
+		else {
 			BlockState blockState = level.getBlockState(pos);
 			boolean bl = blockState.isFaceSturdy(level, pos, direction);
 			if (bl && BoneMealItem.growWaterPlant(ItemStack.EMPTY, level, pos.relative(direction), direction) && this.effect && !level.isClientSide)

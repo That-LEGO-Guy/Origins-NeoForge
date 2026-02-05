@@ -31,7 +31,8 @@ public record SelectorApplyAction(String selector, BiEntityAction biEntityAction
 			for (Entity entity : new EntitySelectorParser(new StringReader(this.selector), true).getSelector().findEntities(source.createCommandSourceStack()))
 				if (this.biEntityCondition.test(source, entity))
 					this.biEntityAction.execute(source, entity);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			Origins.LOGGER.error("Failed to execute selector.", e);
 		}
 	}

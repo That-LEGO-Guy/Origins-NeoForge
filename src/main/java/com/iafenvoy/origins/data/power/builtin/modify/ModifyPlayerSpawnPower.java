@@ -176,7 +176,8 @@ public record ModifyPlayerSpawnPower(ResourceKey<Level> dimension, float distanc
 				tpPos = DismountHelper.findSafeDismountLocation(EntityType.PLAYER, world, mutable, true);
 				if (tpPos != null) {
 					return Optional.of(tpPos);
-				} else {
+				}
+				else {
 					mutable.setY(center + d);
 					tpPos = DismountHelper.findSafeDismountLocation(EntityType.PLAYER, world, mutable, true);
 					if (tpPos != null) {

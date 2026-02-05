@@ -32,8 +32,10 @@ public record AdvancementCondition(ResourceLocation advancement) implements Enti
 			if (advancementEntry == null) {
 				Origins.LOGGER.warn("Advancement \"{}\" did not exist, but was referenced in an \"advancement\" entity condition!", this.advancement);
 				return false;
-			} else return serverPlayer.getAdvancements().getOrStartProgress(advancementEntry).isDone();
-		} else if (player instanceof LocalPlayer clientPlayer) {
+			}
+			else return serverPlayer.getAdvancements().getOrStartProgress(advancementEntry).isDone();
+		}
+		else if (player instanceof LocalPlayer clientPlayer) {
 			ClientAdvancements advancementManager = clientPlayer.connection.getAdvancements();
 			AdvancementHolder advancement = advancementManager.get(this.advancement);
 			if (advancement == null) {
@@ -43,6 +45,7 @@ public record AdvancementCondition(ResourceLocation advancement) implements Enti
 			}
 			AdvancementProgress progress = advancementManager.progress.get(advancement);
 			return progress != null && progress.isDone();
-		} else return false;
+		}
+		else return false;
 	}
 }

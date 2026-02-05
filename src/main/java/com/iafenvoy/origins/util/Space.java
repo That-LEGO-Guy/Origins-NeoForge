@@ -37,7 +37,8 @@ public enum Space {
 			float xFactor = (float) (1 / Math.sqrt(xX * xX + xZ * xZ));
 			xX *= xFactor;
 			xZ *= xFactor;
-		} else {
+		}
+		else {
 			// If the orientation vector points straight up or straight down, use the yaw to determine the X vector (it's "on the left")
 			// The pitch doesn't affect the X vector as it's a rotation around that same vector
 			float trigonometricYaw = -yaw * 0.0174532925F; // pi / 180 = 0.0174532925
@@ -75,7 +76,8 @@ public enum Space {
 		double baseScaleD = baseForwardVector.length();
 		if (baseScaleD <= 0.007D) { // tweak value if too high, may be a bit too aggressive
 			vector.zero();
-		} else {
+		}
+		else {
 			float baseScale = (float) baseScaleD;
 
 			Vec3 normalizedBase = baseForwardVector.normalize(); // the function called below assumes the base is normalized to simplify calculations (Y calculated as cross product of Z and X guaranteed to be normalized if X and Z are normalized)

@@ -194,7 +194,8 @@ public class ChooseOriginScreen extends OriginDisplayScreen {
 			if (i >= this.origins.size()) {
 				boolean selected = this.getCurrentOrigin().equals(this.randomOrigin);
 				this.renderRandomOrigin(graphics, mouseX, mouseY, delta, actualX, actualY, selected);
-			} else {
+			}
+			else {
 				Holder<Origin> origin = this.origins.get(i);
 				boolean selected = Objects.equals(origin.getKey(), this.getCurrentOrigin().getKey());
 				this.renderOriginWidget(graphics, mouseX, mouseY, delta, actualX, actualY, selected, origin);

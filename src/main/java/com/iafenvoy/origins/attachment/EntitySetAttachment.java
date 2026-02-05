@@ -76,7 +76,8 @@ public final class EntitySetAttachment {
 					removal.add(e.getKey());
 					if (entity.level() instanceof ServerLevel serverLevel)
 						this.postRemove(entity, entry.getKey(), serverLevel.getEntity(e.getKey()));
-				} else if (value > 0) entry.getValue().computeIfPresent(e.getKey(), (u, i) -> i - 1);
+				}
+				else if (value > 0) entry.getValue().computeIfPresent(e.getKey(), (u, i) -> i - 1);
 			}
 			removal.forEach(entry.getValue()::remove);
 		}

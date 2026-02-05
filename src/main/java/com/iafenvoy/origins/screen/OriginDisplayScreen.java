@@ -301,7 +301,8 @@ public class OriginDisplayScreen extends Screen {
 				graphics.drawString(this.font, randomOriginLine, x + 2, y, 0xCCCCCC);
 			}
 			y += 14;
-		} else {
+		}
+		else {
 			for (Holder<Power> power : this.origin.value().powers()) {
 				if (power.value().hidden()) continue;
 				LinkedList<FormattedCharSequence> powerName = new LinkedList<>(this.font.split(power.value().getName(access).withStyle(ChatFormatting.UNDERLINE), textWidthLimit));

@@ -81,7 +81,8 @@ public class OriginsCommand {
 				int finalProcessedTargets = processedTargets;
 				source.sendSuccess(() -> Component.translatable("commands.origin.set.success.multiple", finalProcessedTargets, Layer.getName(layer), Origin.getName(origin)), true);
 			}
-		} else
+		}
+		else
 			source.sendFailure(Component.translatableEscape("commands.origin.unregistered_in_layer", RLHelper.string(origin), RLHelper.string(layer)));
 		return processedTargets;
 	}

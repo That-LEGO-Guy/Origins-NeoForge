@@ -29,11 +29,13 @@ public enum UsingEffectiveToolCondition implements EntityCondition {
 			ServerPlayerGameMode gameMode = serverPlayer.gameMode;
 			if (!gameMode.isDestroyingBlock) return false;
 			state = player.level().getBlockState(gameMode.destroyPos);
-		} else if (player instanceof LocalPlayer localPlayer) {
+		}
+		else if (player instanceof LocalPlayer localPlayer) {
 			MultiPlayerGameMode gameMode = localPlayer.minecraft.gameMode;
 			if (gameMode == null || !gameMode.isDestroying) return false;
 			state = player.level().getBlockState(gameMode.destroyBlockPos);
-		} else return false;
+		}
+		else return false;
 		return player.hasCorrectToolForDrops(state, player.level(), player.blockPosition());
 	}
 }

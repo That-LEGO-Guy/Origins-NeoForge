@@ -17,7 +17,8 @@ public final class CommandHelper {
 					if (success) successCount.addAndGet(count);
 				}), command);
 				return successCount.get();
-			} catch (Throwable throwable) {
+			}
+			catch (Throwable throwable) {
 				CrashReport crashreport = CrashReport.forThrowable(throwable, "Execute Command Action in Origins Mod");
 				CrashReportCategory crashreportcategory = crashreport.addCategory("Command to be executed");
 				crashreportcategory.setDetail("Command", command);

@@ -26,6 +26,7 @@ public record UsingItemCondition(ItemCondition itemCondition) implements EntityC
 			InteractionHand hand = living.getUsedItemHand();
 			ItemStack stack = living.getItemInHand(hand);
 			return this.itemCondition.test(living.level(), stack);
-		} else return false;
+		}
+		else return false;
 	}
 }
