@@ -14,12 +14,8 @@ public record TypeCondition(Holder<DamageType> damageType) implements DamageCond
 	).apply(i, TypeCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull DamageSource source, float amount) {
-		return this.damageType.unwrapKey().map(source::is).orElse(false);
-	}
+	public boolean test(@NotNull DamageSource source, float amount) { return this.damageType.unwrapKey().map(source::is).orElse(false); }
 }

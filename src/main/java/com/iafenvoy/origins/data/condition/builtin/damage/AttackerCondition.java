@@ -14,9 +14,7 @@ public record AttackerCondition(EntityCondition entityCondition) implements Dama
 	).apply(i, AttackerCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull DamageSource source, float amount) {

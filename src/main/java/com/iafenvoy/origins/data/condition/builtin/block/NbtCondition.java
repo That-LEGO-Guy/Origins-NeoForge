@@ -16,9 +16,7 @@ public record NbtCondition(CompoundTag nbt) implements BlockCondition {
 	).apply(i, NbtCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {

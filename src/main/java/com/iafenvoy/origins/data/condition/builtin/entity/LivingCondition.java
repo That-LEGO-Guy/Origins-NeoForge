@@ -11,12 +11,8 @@ public enum LivingCondition implements EntityCondition {
 	public static final MapCodec<LivingCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity instanceof LivingEntity;
-	}
+	public boolean test(@NotNull Entity entity) { return entity instanceof LivingEntity; }
 }

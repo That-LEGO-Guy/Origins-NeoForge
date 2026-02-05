@@ -60,25 +60,20 @@ public class ChooseOriginScreen extends OriginDisplayScreen {
 			currentLayer.collectOrigins(player.registryAccess()).forEach(holder -> {
 				if (holder.value().choosable()) {
 					ItemStack iconStack = holder.value().icon().orElse(ItemStack.EMPTY);
-					if (iconStack.is(Items.PLAYER_HEAD) && !iconStack.has(DataComponents.PROFILE))
-						iconStack.set(DataComponents.PROFILE, new ResolvableProfile(player.getGameProfile()));
+					if (iconStack.is(Items.PLAYER_HEAD) && !iconStack.has(DataComponents.PROFILE)) {iconStack.set(DataComponents.PROFILE, new ResolvableProfile(player.getGameProfile()));}
 					this.origins.add(holder);
 				}
 			});
 			this.origins.sort(Comparator.<Holder<Origin>>comparingInt(o -> o.value().impact().getImpactValue()).thenComparingInt(x -> x.value().order()));
 			this.maxSelection = currentLayer.getOriginOptionCount(player.registryAccess());
-			if (this.maxSelection == 0) {
-				this.openNextLayerScreen();
-			}
+			if (this.maxSelection == 0) { this.openNextLayerScreen(); }
 
 			Holder<Origin> newOrigin = this.getCurrentOrigin();
 			this.showOrigin(newOrigin, this.getCurrentLayer(), Objects.equals(newOrigin.getKey(), this.randomOrigin.getKey()));
 		}
 	}
 
-	private void openNextLayerScreen() {
-		Minecraft.getInstance().setScreen(new WaitForNextLayerScreen(this.layers, this.currentLayerIndex, this.showDirtBackground));
-	}
+	private void openNextLayerScreen() { Minecraft.getInstance().setScreen(new WaitForNextLayerScreen(this.layers, this.currentLayerIndex, this.showDirtBackground));	}
 
 	private void initRandomOrigin() {
 		this.randomOrigin = Holder.direct(Origin.special(OriginsItems.ORB_OF_ORIGIN.toStack(), Impact.NONE, -1));
@@ -96,14 +91,10 @@ public class ChooseOriginScreen extends OriginDisplayScreen {
 	}
 
 	@Override
-	public @NotNull Component getTitle() {
-		return this.getCurrentLayer().value().getChooseOriginTitle(Component.translatable("origins.gui.choose_origin.title", Layer.getName(this.getCurrentLayer())));
-	}
+	public @NotNull Component getTitle() { return this.getCurrentLayer().value().getChooseOriginTitle(Component.translatable("origins.gui.choose_origin.title", Layer.getName(this.getCurrentLayer()))); }
 
 	@Override
-	public boolean shouldCloseOnEsc() {
-		return false;
-	}
+	public boolean shouldCloseOnEsc() { return false; }
 
 	@Override
 	protected void init() {
@@ -145,19 +136,15 @@ public class ChooseOriginScreen extends OriginDisplayScreen {
 		}
 		if (this.maxSelection > 0) {
 			this.addRenderableWidget(Button.builder(Component.translatable("origins.gui.select"), (button) -> {
-				if (this.currentOriginIndex == this.origins.size())
-					PacketDistributor.sendToServer(new ChooseOriginC2SPayload(this.getCurrentLayer(), Optional.empty()));
-				else
-					PacketDistributor.sendToServer(new ChooseOriginC2SPayload(this.getCurrentLayer(), Optional.of(super.getCurrentOrigin())));
+				if (this.currentOriginIndex == this.origins.size()) {PacketDistributor.sendToServer(new ChooseOriginC2SPayload(this.getCurrentLayer(), Optional.empty()));}
+				else {PacketDistributor.sendToServer(new ChooseOriginC2SPayload(this.getCurrentLayer(), Optional.of(super.getCurrentOrigin())));}
 				this.openNextLayerScreen();
 			}).bounds(this.guiLeft + 88 - 50, this.guiTop + CHOICES_HEIGHT + 5, 100, 20).build());
 		}
 	}
 
 	@Override
-	public Holder<Layer> getCurrentLayer() {
-		return this.layers.get(this.currentLayerIndex);
-	}
+	public Holder<Layer> getCurrentLayer() { return this.layers.get(this.currentLayerIndex); }
 
 	@Override
 	public Holder<Origin> getCurrentOrigin() {
@@ -166,9 +153,7 @@ public class ChooseOriginScreen extends OriginDisplayScreen {
 	}
 
 	@Override
-	public ResourceLocation getCurrentOriginId() {
-		return Objects.equals(this.getCurrentOrigin(), this.randomOrigin) ? ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "random") : super.getCurrentOriginId();
-	}
+	public ResourceLocation getCurrentOriginId() { return Objects.equals(this.getCurrentOrigin(), this.randomOrigin) ? ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "random") : super.getCurrentOriginId(); }
 
 	@Override
 	public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {

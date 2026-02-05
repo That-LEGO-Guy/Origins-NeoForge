@@ -24,7 +24,5 @@ public record ChooseOriginC2SPayload(Holder<Layer> layer,
 	);
 
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
-		return TYPE;
-	}
+	public @NotNull Type<? extends CustomPacketPayload> type() { return TYPE; }
 }

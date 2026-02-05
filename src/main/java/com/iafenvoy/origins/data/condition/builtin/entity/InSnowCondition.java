@@ -13,12 +13,8 @@ public enum InSnowCondition implements EntityCondition {
 	public static final MapCodec<InSnowCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return LevelUtil.inSnow(entity.level(), BlockPos.containing(MiscUtil.getPoseDependentEyePos(entity)), entity.blockPosition());
-	}
+	public boolean test(@NotNull Entity entity) { return LevelUtil.inSnow(entity.level(), BlockPos.containing(MiscUtil.getPoseDependentEyePos(entity)), entity.blockPosition()); }
 }

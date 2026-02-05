@@ -15,12 +15,8 @@ public record DistanceCondition(Comparison comparison, double compareTo) impleme
 	).apply(i, DistanceCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return this.comparison.compare(source.distanceTo(target), this.compareTo);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return this.comparison.compare(source.distanceTo(target), this.compareTo); }
 }

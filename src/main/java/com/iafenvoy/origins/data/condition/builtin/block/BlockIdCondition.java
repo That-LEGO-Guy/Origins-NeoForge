@@ -15,12 +15,8 @@ public record BlockIdCondition(Block block) implements BlockCondition {
 	).apply(i, BlockIdCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return level.getBlockState(pos).is(this.block);
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return level.getBlockState(pos).is(this.block); }
 }

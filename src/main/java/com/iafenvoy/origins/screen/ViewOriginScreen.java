@@ -62,9 +62,7 @@ public class ViewOriginScreen extends OriginDisplayScreen {
 	}
 
 	@Override
-	public @NotNull Component getTitle() {
-		return this.getCurrentLayer().value().getViewOriginTitle(Component.translatable("origins.gui.view_origin.title", Layer.getName(this.getCurrentLayer())));
-	}
+	public @NotNull Component getTitle() { return this.getCurrentLayer().value().getViewOriginTitle(Component.translatable("origins.gui.view_origin.title", Layer.getName(this.getCurrentLayer()))); }
 
 	@Override
 	protected void init() {
@@ -113,14 +111,10 @@ public class ViewOriginScreen extends OriginDisplayScreen {
 	}
 
 	@Override
-	public Holder<Layer> getCurrentLayer() {
-		return this.originLayers.get(this.currentLayerIndex).getFirst();
-	}
+	public Holder<Layer> getCurrentLayer() { return this.originLayers.get(this.currentLayerIndex).getFirst(); }
 
 	@Override
-	public Holder<Origin> getCurrentOrigin() {
-		return this.originLayers.get(this.currentLayerIndex).getSecond();
-	}
+	public Holder<Origin> getCurrentOrigin() { return this.originLayers.get(this.currentLayerIndex).getSecond(); }
 
 	@Override
 	public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {

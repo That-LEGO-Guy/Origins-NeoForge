@@ -12,12 +12,8 @@ public record NotCondition(BiEntityCondition condition) implements BiEntityCondi
 	).apply(i, NotCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return !this.condition.test(source, target);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return !this.condition.test(source, target); }
 }

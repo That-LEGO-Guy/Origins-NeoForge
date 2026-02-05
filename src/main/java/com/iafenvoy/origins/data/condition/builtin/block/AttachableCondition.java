@@ -14,12 +14,8 @@ public enum AttachableCondition implements BlockCondition {
 	public static final MapCodec<AttachableCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return Arrays.stream(Direction.values()).anyMatch(d -> level.getBlockState(pos.relative(d)).isFaceSturdy(level, pos, d.getOpposite()));
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return Arrays.stream(Direction.values()).anyMatch(d -> level.getBlockState(pos.relative(d)).isFaceSturdy(level, pos, d.getOpposite())); }
 }

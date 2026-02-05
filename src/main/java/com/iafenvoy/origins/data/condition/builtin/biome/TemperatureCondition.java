@@ -17,12 +17,8 @@ public record TemperatureCondition(Comparison comparison, double compareTo) impl
 	).apply(i, TemperatureCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiomeCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiomeCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
-		return this.comparison.compare(biome.value().getBaseTemperature(), this.compareTo);
-	}
+	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) { return this.comparison.compare(biome.value().getBaseTemperature(), this.compareTo); }
 }

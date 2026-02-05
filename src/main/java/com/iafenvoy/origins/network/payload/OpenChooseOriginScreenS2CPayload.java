@@ -16,7 +16,5 @@ public record OpenChooseOriginScreenS2CPayload(boolean showBackground) implement
 	);
 
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
-		return TYPE;
-	}
+	public @NotNull Type<? extends CustomPacketPayload> type() { return TYPE; }
 }

@@ -19,9 +19,7 @@ public record FreezePower(EntityCondition condition) implements Power {
 	).apply(i, FreezePower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent
 	public static void enableFrozen(EntityFrozenEvent event) {

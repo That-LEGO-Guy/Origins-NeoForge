@@ -14,12 +14,8 @@ public record ConstantCondition(boolean value) implements ItemCondition {
 	).apply(i, ConstantCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-		return this.value;
-	}
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) { return this.value; }
 }

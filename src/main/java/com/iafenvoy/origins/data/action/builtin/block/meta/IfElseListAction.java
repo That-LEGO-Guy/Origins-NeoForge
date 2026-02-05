@@ -18,9 +18,7 @@ public record IfElseListAction(List<ConditionedActionHolder> actions) implements
 	).apply(i, IfElseListAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {

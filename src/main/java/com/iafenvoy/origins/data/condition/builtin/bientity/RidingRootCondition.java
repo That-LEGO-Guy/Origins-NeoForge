@@ -12,12 +12,8 @@ public enum RidingRootCondition implements BiEntityCondition {
 	public static final MapCodec<RidingRootCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return Objects.equals(source.getRootVehicle(), target);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return Objects.equals(source.getRootVehicle(), target); }
 }

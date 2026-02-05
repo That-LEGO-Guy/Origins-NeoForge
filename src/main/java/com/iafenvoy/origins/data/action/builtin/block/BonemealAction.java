@@ -19,9 +19,7 @@ public record BonemealAction(boolean effect) implements BlockAction {
 	).apply(i, BonemealAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@SuppressWarnings("deprecation")
 	@Override

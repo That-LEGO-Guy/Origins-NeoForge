@@ -17,9 +17,7 @@ public enum CraftingTableAction implements EntityAction {
 	private static final Component TITLE = Component.translatable("container.crafting");
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

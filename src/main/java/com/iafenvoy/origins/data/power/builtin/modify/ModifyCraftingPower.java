@@ -39,9 +39,7 @@ public record ModifyCraftingPower(Optional<ResourceLocation> recipeLocation, Ite
 	).apply(i, ModifyCraftingPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 
 	// TODO 并非同义行为
@@ -57,10 +55,8 @@ public record ModifyCraftingPower(Optional<ResourceLocation> recipeLocation, Ite
 
 	public ItemStack createResult(RecipeInput container, Recipe<? super RecipeInput> recipe,Entity entity, Level level) {
 		ItemStack stack;
-		if (this.newStack().isPresent())
-			stack = this.newStack().get().copy();
-		else
-			stack = recipe.assemble(container, level.registryAccess());
+		if (this.newStack().isPresent()) { stack = this.newStack().get().copy();}
+		else { stack = recipe.assemble(container, level.registryAccess()); }
 		itemAction().execute(level,entity, stack);
 		return stack;
 	}
@@ -77,7 +73,5 @@ public record ModifyCraftingPower(Optional<ResourceLocation> recipeLocation, Ite
 		entityAction().execute(entity);
 	}
 
-	public void executeAfterCraftingAction(Level level,Entity entity, ItemStack stack) {
-		afterCraftingItemAction().execute(level,entity, stack);
-	}
+	public void executeAfterCraftingAction(Level level,Entity entity, ItemStack stack) { afterCraftingItemAction().execute(level,entity, stack); }
 }

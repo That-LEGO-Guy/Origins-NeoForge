@@ -15,12 +15,8 @@ public record HasComponentCondition(DataComponentType<?> component) implements I
 	).apply(i, HasComponentCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-		return stack.has(this.component);
-	}
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) { return stack.has(this.component); }
 }

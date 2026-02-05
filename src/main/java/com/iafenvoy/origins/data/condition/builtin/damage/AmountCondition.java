@@ -15,12 +15,8 @@ public record AmountCondition(Comparison comparison, double compareTo) implement
 	).apply(i, AmountCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull DamageSource source, float amount) {
-		return this.comparison.compare(amount, this.compareTo);
-	}
+	public boolean test(@NotNull DamageSource source, float amount) { return this.comparison.compare(amount, this.compareTo); }
 }

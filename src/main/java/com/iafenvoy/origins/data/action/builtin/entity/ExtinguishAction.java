@@ -10,12 +10,8 @@ public enum ExtinguishAction implements EntityAction {
 	public static final MapCodec<ExtinguishAction> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		source.extinguishFire();
-	}
+	public void execute(@NotNull Entity source) { source.extinguishFire(); }
 }

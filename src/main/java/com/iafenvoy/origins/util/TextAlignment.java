@@ -20,18 +20,12 @@ public enum TextAlignment implements StringRepresentable {
 	}
 
 	@Override
-	public @NotNull String getSerializedName() {
-		return this.name;
-	}
+	public @NotNull String getSerializedName() { return this.name; }
 
-	public Optional<Integer> horizontal(int left, int right, int textWidth) {
-		return Optional.ofNullable(this.horizontalSupplier.apply(left, right, textWidth));
-	}
+	public Optional<Integer> horizontal(int left, int right, int textWidth) { return Optional.ofNullable(this.horizontalSupplier.apply(left, right, textWidth)); }
 
 	@FunctionalInterface
-	public interface PositionSupplier {
-		Integer apply(int left, int right, int textWidth);
-	}
+	public interface PositionSupplier { Integer apply(int left, int right, int textWidth); }
 
 }
 

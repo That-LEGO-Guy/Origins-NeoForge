@@ -14,12 +14,8 @@ public record FluidIdCondition(FluidCondition fluidCondition) implements BlockCo
 	).apply(i, FluidIdCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return this.fluidCondition.test(level.getFluidState(pos));
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return this.fluidCondition.test(level.getFluidState(pos)); }
 }

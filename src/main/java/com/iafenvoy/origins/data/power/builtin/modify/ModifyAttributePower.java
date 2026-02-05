@@ -26,7 +26,5 @@ public record ModifyAttributePower(Holder<Attribute> attribute) implements Power
 //	).apply(instance, ModifyAttributeConfiguration::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

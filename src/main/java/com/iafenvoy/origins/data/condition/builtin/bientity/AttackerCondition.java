@@ -13,9 +13,7 @@ public enum AttackerCondition implements BiEntityCondition {
 	public static final MapCodec<AttackerCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity source, @NotNull Entity target) {

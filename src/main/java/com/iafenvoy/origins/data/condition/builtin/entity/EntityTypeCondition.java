@@ -14,12 +14,8 @@ public record EntityTypeCondition(EntityType<?> entityType) implements EntityCon
 	).apply(i, EntityTypeCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity.getType() == this.entityType;
-	}
+	public boolean test(@NotNull Entity entity) { return entity.getType() == this.entityType; }
 }

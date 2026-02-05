@@ -16,12 +16,8 @@ public record HardnessCondition(Comparison comparison, double compareTo) impleme
 	).apply(i, HardnessCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return this.comparison.compare(level.getBlockState(pos).getDestroySpeed(level, pos), this.compareTo);
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return this.comparison.compare(level.getBlockState(pos).getDestroySpeed(level, pos), this.compareTo); }
 }

@@ -14,12 +14,8 @@ public record HealAction(float amount) implements EntityAction {
 	).apply(i, HealAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		if (source instanceof LivingEntity living) living.heal(this.amount);
-	}
+	public void execute(@NotNull Entity source) { if (source instanceof LivingEntity living) living.heal(this.amount); }
 }

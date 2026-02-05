@@ -26,13 +26,9 @@ public class DefaultedCodec<A> implements Codec<A> {
 		this.name = name;
 	}
 
-	public static <T, A> DefaultedCodec<T> registryDispatch(Registry<A> registry, String typeKey, Function<? super T, ? extends A> type, Function<? super A, ? extends MapCodec<? extends T>> codec, Supplier<T> defaultValue) {
-		return new DefaultedCodec<>(registry.byNameCodec().dispatch(typeKey, type, codec), defaultValue, registry.key().location().toString());
-	}
+	public static <T, A> DefaultedCodec<T> registryDispatch(Registry<A> registry, String typeKey, Function<? super T, ? extends A> type, Function<? super A, ? extends MapCodec<? extends T>> codec, Supplier<T> defaultValue) { return new DefaultedCodec<>(registry.byNameCodec().dispatch(typeKey, type, codec), defaultValue, registry.key().location().toString()); }
 
-	public static <T, A> DefaultedCodec<T> registryDispatch(Registry<A> registry, Function<? super T, ? extends A> type, Function<? super A, ? extends MapCodec<? extends T>> codec, Supplier<T> defaultValue) {
-		return registryDispatch(registry, Constants.TYPE_KEY, type, codec, defaultValue);
-	}
+	public static <T, A> DefaultedCodec<T> registryDispatch(Registry<A> registry, Function<? super T, ? extends A> type, Function<? super A, ? extends MapCodec<? extends T>> codec, Supplier<T> defaultValue) { return registryDispatch(registry, Constants.TYPE_KEY, type, codec, defaultValue); }
 
 	@Override
 	public <T> DataResult<Pair<A, T>> decode(DynamicOps<T> ops, T input) {

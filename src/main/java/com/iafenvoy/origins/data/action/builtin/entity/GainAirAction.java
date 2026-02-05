@@ -14,12 +14,8 @@ public record GainAirAction(int amount) implements EntityAction {
 	).apply(i, GainAirAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		if (source instanceof Player player) player.setAirSupply(player.getAirSupply() + this.amount);
-	}
+	public void execute(@NotNull Entity source) { if (source instanceof Player player) player.setAirSupply(player.getAirSupply() + this.amount); }
 }

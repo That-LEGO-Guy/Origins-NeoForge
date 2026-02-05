@@ -17,7 +17,5 @@ public record ActionOnItemUsePower(ItemCondition itemCondition, EntityAction ent
 	).apply(i, ActionOnItemUsePower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

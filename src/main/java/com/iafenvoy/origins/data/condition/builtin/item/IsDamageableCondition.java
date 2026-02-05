@@ -11,12 +11,8 @@ public enum IsDamageableCondition implements ItemCondition {
 	public static final MapCodec<IsDamageableCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-		return stack.isDamageableItem();
-	}
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) { return stack.isDamageableItem(); }
 }

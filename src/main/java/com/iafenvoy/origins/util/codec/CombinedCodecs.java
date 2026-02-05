@@ -22,7 +22,5 @@ public final class CombinedCodecs {
 	public static final Codec<List<Holder<Biome>>> BIOME = combineCodec(Biome.CODEC);
 	public static final Codec<List<InteractionHand>> HAND = combineCodec(ExtraEnumCodecs.HAND);
 
-	public static <T> Codec<List<T>> combineCodec(Codec<T> codec) {
-		return Codec.either(codec, codec.listOf()).xmap(x -> x.map(List::of, l -> l), l -> l.size() == 1 ? Either.left(l.getFirst()) : Either.right(l));
-	}
+	public static <T> Codec<List<T>> combineCodec(Codec<T> codec) { return Codec.either(codec, codec.listOf()).xmap(x -> x.map(List::of, l -> l), l -> l.size() == 1 ? Either.left(l.getFirst()) : Either.right(l)); }
 }

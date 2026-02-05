@@ -17,9 +17,7 @@ public record DimensionCondition(ResourceKey<Level> dimension, boolean inverted)
 	).apply(i, DimensionCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

@@ -24,7 +24,5 @@ public record ModifyValueBlockPower(BlockCondition condition) implements Power {
 //	).apply(instance, ModifyValueBlockConfiguration::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

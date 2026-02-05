@@ -16,12 +16,8 @@ public record FuelCondition(Comparison comparison, int compareTo) implements Ite
 	).apply(i, FuelCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-		return this.comparison.compare(stack.getBurnTime(null), this.compareTo);
-	}
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) { return this.comparison.compare(stack.getBurnTime(null), this.compareTo); }
 }

@@ -25,11 +25,7 @@ public interface Badge {
 
 	ResourceLocation spriteId();
 
-	default List<ClientTooltipComponent> getTooltipComponents(Power power, Font textRenderer, int widthLimit, float delta) {
-		return List.of();
-	}
+	default List<ClientTooltipComponent> getTooltipComponents(Power power, Font textRenderer, int widthLimit, float delta) { return List.of(); }
 
-	default boolean hasTooltip() {
-		return false;
-	}
+	default boolean hasTooltip() { return false; }
 }

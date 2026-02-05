@@ -12,12 +12,8 @@ public record UndirectedCondition(BiEntityCondition condition) implements BiEnti
 	).apply(i, UndirectedCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return this.condition.test(source, target) || this.condition.test(target, source);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return this.condition.test(source, target) || this.condition.test(target, source); }
 }

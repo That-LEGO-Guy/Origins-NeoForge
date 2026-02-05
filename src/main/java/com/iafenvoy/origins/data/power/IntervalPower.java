@@ -9,9 +9,7 @@ public abstract class IntervalPower implements Power {
 	public IntervalPower() {
 	}
 
-	public IntervalPower(int delay) {
-		this.remainTicks = delay;
-	}
+	public IntervalPower(int delay) { this.remainTicks = delay; }
 
 	@Override
 	public void tick(@NotNull Entity entity) {

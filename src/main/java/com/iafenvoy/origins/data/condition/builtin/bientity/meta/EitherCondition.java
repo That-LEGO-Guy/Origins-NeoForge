@@ -13,12 +13,8 @@ public record EitherCondition(EntityCondition condition) implements BiEntityCond
 	).apply(i, EitherCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return this.condition.test(source) || this.condition.test(target);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return this.condition.test(source) || this.condition.test(target); }
 }

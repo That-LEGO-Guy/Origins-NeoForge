@@ -10,7 +10,5 @@ public class EntityResultedEvent<T extends Entity> extends ResultedEvent {
 		this.entity = entity;
 	}
 
-	public T getEntity() {
-		return this.entity;
-	}
+	public T getEntity() { return this.entity; }
 }

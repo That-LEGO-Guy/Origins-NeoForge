@@ -16,12 +16,8 @@ public record SideAction(EntityAction action, Dist side) implements EntityAction
 	).apply(i, SideAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		if (Environment.get().getDist() == this.side) this.action.execute(source);
-	}
+	public void execute(@NotNull Entity source) { if (Environment.get().getDist() == this.side) this.action.execute(source); }
 }

@@ -13,12 +13,8 @@ public record SetFallDistanceAction(float fallDistance) implements EntityAction 
 	).apply(i, SetFallDistanceAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		source.fallDistance = this.fallDistance;
-	}
+	public void execute(@NotNull Entity source) { source.fallDistance = this.fallDistance; }
 }

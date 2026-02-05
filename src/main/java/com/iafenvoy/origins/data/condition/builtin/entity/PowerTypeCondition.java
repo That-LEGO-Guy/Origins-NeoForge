@@ -15,9 +15,7 @@ public record PowerTypeCondition(ResourceLocation powerType) implements EntityCo
 	).apply(i, PowerTypeCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

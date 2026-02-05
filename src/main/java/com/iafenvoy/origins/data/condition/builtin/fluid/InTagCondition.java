@@ -15,12 +15,8 @@ public record InTagCondition(TagKey<Fluid> tag) implements FluidCondition {
 	).apply(i, InTagCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends FluidCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends FluidCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull FluidState state) {
-		return state.is(this.tag);
-	}
+	public boolean test(@NotNull FluidState state) { return state.is(this.tag); }
 }

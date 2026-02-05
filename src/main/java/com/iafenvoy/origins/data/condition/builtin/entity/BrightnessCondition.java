@@ -18,9 +18,7 @@ public record BrightnessCondition(Comparison comparison, double compareTo) imple
 	).apply(i, BrightnessCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

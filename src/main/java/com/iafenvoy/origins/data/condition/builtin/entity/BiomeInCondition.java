@@ -19,9 +19,7 @@ public record BiomeInCondition(List<Holder<Biome>> biome, BiomeCondition conditi
 	).apply(i, BiomeInCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

@@ -20,24 +20,16 @@ public record CanSeeCondition(ClipContext.Block shapeType,
 	).apply(i, CanSeeCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		if (!Objects.equals(source.level(), target.level())) {
-			return false;
-		}
+		if (!Objects.equals(source.level(), target.level())) { return false; }
 		else {
 			Vec3 vec3d = new Vec3(source.getX(), source.getEyeY(), source.getZ());
 			Vec3 vec3d2 = new Vec3(target.getX(), target.getEyeY(), target.getZ());
-			if (vec3d2.distanceTo(vec3d) > 128.0D) {
-				return false;
-			}
-			else {
-				return source.level().clip(new ClipContext(vec3d, vec3d2, this.shapeType, this.fluidHandling, source)).getType() == HitResult.Type.MISS;
-			}
+			if (vec3d2.distanceTo(vec3d) > 128.0D) { return false; }
+			else { return source.level().clip(new ClipContext(vec3d, vec3d2, this.shapeType, this.fluidHandling, source)).getType() == HitResult.Type.MISS; }
 		}
 	}
 }

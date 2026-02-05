@@ -13,9 +13,7 @@ public record OnBlockCondition(BlockCondition blockCondition) implements EntityC
 	).apply(i, OnBlockCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

@@ -15,12 +15,8 @@ public record InTagCondition(TagKey<EntityType<?>> tag) implements EntityConditi
 	).apply(i, InTagCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity.getType().is(this.tag);
-	}
+	public boolean test(@NotNull Entity entity) { return entity.getType().is(this.tag); }
 }

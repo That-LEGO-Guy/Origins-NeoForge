@@ -12,12 +12,8 @@ public record InvertCondition(BiEntityCondition condition) implements BiEntityCo
 	).apply(i, InvertCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return this.condition.test(target, source);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return this.condition.test(target, source); }
 }

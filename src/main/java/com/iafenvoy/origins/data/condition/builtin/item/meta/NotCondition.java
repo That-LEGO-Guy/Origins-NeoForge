@@ -13,12 +13,8 @@ public record NotCondition(ItemCondition condition) implements ItemCondition {
 	).apply(i, NotCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-		return !this.condition.test(level, stack);
-	}
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) { return !this.condition.test(level, stack); }
 }

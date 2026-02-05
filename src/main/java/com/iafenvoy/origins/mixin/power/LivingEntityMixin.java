@@ -36,19 +36,13 @@ public abstract class LivingEntityMixin extends Entity {
 	@Shadow
 	private Optional<BlockPos> lastClimbablePos;
 
-	public LivingEntityMixin(EntityType<?> entityType, Level level) {
-		super(entityType, level);
-	}
+	public LivingEntityMixin(EntityType<?> entityType, Level level) { super(entityType, level); }
 
 	@Unique
-	private LivingEntity origins$self() {
-		return (LivingEntity) (Object) this;
-	}
+	private LivingEntity origins$self() { return (LivingEntity) (Object) this; }
 
 	@ModifyExpressionValue(method = "updateFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getItemBySlot(Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;"))
-	private ItemStack handleElytra(ItemStack original) {
-		return NeoForge.EVENT_BUS.post(new CanFlyWithoutElytraEvent(this.origins$self())).getResult().allow() ? Items.ELYTRA.getDefaultInstance() : original;
-	}
+	private ItemStack handleElytra(ItemStack original) { return NeoForge.EVENT_BUS.post(new CanFlyWithoutElytraEvent(this.origins$self())).getResult().allow() ? Items.ELYTRA.getDefaultInstance() : original; }
 
 	@Inject(method = "isCurrentlyGlowing", at = @At("HEAD"), cancellable = true)
 	private void handleGlowing(CallbackInfoReturnable<Boolean> cir) {
@@ -63,9 +57,7 @@ public abstract class LivingEntityMixin extends Entity {
 	}
 
 	@ModifyExpressionValue(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getAttributeValue(Lnet/minecraft/core/Holder;)D", ordinal = 0))
-	private double handleSpeedInWater(double original) {
-		return NeoForge.EVENT_BUS.post(new IgnoreWaterEvent(this.origins$self())).getResult().allow() ? 1 : original;
-	}
+	private double handleSpeedInWater(double original) { return NeoForge.EVENT_BUS.post(new IgnoreWaterEvent(this.origins$self())).getResult().allow() ? 1 : original; }
 
 	@Inject(method = "canStandOnFluid", at = @At("HEAD"), cancellable = true)
 	private void modifyWalkableFluids(FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {

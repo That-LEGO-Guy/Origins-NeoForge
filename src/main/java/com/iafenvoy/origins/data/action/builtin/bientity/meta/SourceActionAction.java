@@ -13,12 +13,8 @@ public record SourceActionAction(EntityAction action) implements BiEntityAction 
 	).apply(i, SourceActionAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source, @NotNull Entity target) {
-		this.action.execute(source);
-	}
+	public void execute(@NotNull Entity source, @NotNull Entity target) { this.action.execute(source); }
 }

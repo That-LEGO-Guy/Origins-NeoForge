@@ -26,9 +26,7 @@ public record EnchantmentCondition(Holder<Enchantment> enchantment, Calculation 
 	).apply(i, EnchantmentCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {
@@ -45,17 +43,11 @@ public record EnchantmentCondition(Holder<Enchantment> enchantment, Calculation 
 		public static final Codec<Calculation> CODEC = StringRepresentable.fromValues(Calculation::values);
 		private final BiFunction<Integer, Integer, Integer> processor;
 
-		Calculation(BiFunction<Integer, Integer, Integer> processor) {
-			this.processor = processor;
-		}
+		Calculation(BiFunction<Integer, Integer, Integer> processor) { this.processor = processor; }
 
-		public int process(int a, int b) {
-			return this.processor.apply(a, b);
-		}
+		public int process(int a, int b) { return this.processor.apply(a, b); }
 
 		@Override
-		public @NotNull String getSerializedName() {
-			return this.name().toLowerCase(Locale.ROOT);
-		}
+		public @NotNull String getSerializedName() { return this.name().toLowerCase(Locale.ROOT); }
 	}
 }

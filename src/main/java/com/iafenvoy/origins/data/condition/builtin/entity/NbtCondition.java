@@ -14,12 +14,8 @@ public record NbtCondition(CompoundTag nbt) implements EntityCondition {
 	).apply(i, NbtCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return NbtUtils.compareNbt(this.nbt, entity.saveWithoutId(new CompoundTag()), true);
-	}
+	public boolean test(@NotNull Entity entity) { return NbtUtils.compareNbt(this.nbt, entity.saveWithoutId(new CompoundTag()), true); }
 }

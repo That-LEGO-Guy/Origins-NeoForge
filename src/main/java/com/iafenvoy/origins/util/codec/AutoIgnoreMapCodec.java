@@ -48,12 +48,8 @@ public record AutoIgnoreMapCodec<K, V>(Codec<K> keyCodec,
 	}
 
 	@Override
-	public <T> DataResult<Pair<Map<K, V>, T>> decode(DynamicOps<T> ops, T input) {
-		return ops.getMap(input).map(map -> this.decode(ops, map)).flatMap(Function.identity()).map(map -> new Pair<>(map, input));
-	}
+	public <T> DataResult<Pair<Map<K, V>, T>> decode(DynamicOps<T> ops, T input) { return ops.getMap(input).map(map -> this.decode(ops, map)).flatMap(Function.identity()).map(map -> new Pair<>(map, input)); }
 
 	@Override
-	public <T> DataResult<T> encode(Map<K, V> input, DynamicOps<T> ops, T prefix) {
-		return this.encode(input, ops, ops.mapBuilder()).build(prefix);
-	}
+	public <T> DataResult<T> encode(Map<K, V> input, DynamicOps<T> ops, T prefix) { return this.encode(input, ops, ops.mapBuilder()).build(prefix); }
 }

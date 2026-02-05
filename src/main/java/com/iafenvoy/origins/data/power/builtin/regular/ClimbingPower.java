@@ -15,9 +15,7 @@ public record ClimbingPower(boolean allowHolding, EntityCondition holdCondition)
 	).apply(i, ClimbingPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	public boolean canHold(Entity entity) {
 		return this.allowHolding && this.holdCondition.test(entity);

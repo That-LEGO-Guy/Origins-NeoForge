@@ -15,9 +15,7 @@ public enum DisableRegenPower implements Power {
 	public static final MapCodec<DisableRegenPower> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent
 	public static void disableNaturalRegen(CanNaturalRegenEvent event) {

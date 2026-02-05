@@ -28,9 +28,7 @@ public record AddVelocityAction(float x, float y, float z, Reference reference, 
 	).apply(i, AddVelocityAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source, @NotNull Entity target) {
@@ -62,17 +60,11 @@ public record AddVelocityAction(float x, float y, float z, Reference reference, 
 
 		final BiFunction<Entity, Entity, Vec3> refFunction;
 
-		Reference(BiFunction<Entity, Entity, Vec3> refFunction) {
-			this.refFunction = refFunction;
-		}
+		Reference(BiFunction<Entity, Entity, Vec3> refFunction) { this.refFunction = refFunction; }
 
-		public Vec3 apply(Entity actor, Entity target) {
-			return this.refFunction.apply(actor, target);
-		}
+		public Vec3 apply(Entity actor, Entity target) { return this.refFunction.apply(actor, target); }
 
 		@Override
-		public @NotNull String getSerializedName() {
-			return this.name().toLowerCase(Locale.ROOT);
-		}
+		public @NotNull String getSerializedName() { return this.name().toLowerCase(Locale.ROOT); }
 	}
 }

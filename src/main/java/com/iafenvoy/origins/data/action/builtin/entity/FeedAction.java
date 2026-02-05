@@ -15,12 +15,8 @@ public record FeedAction(int food, float saturation) implements EntityAction {
 	).apply(i, FeedAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		if (source instanceof Player player) player.getFoodData().eat(this.food, this.saturation);
-	}
+	public void execute(@NotNull Entity source) { if (source instanceof Player player) player.getFoodData().eat(this.food, this.saturation); }
 }

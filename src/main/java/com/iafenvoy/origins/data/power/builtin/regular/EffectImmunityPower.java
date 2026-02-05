@@ -25,13 +25,9 @@ public record EffectImmunityPower(List<Holder<MobEffect>> effect, boolean invert
 	).apply(i, EffectImmunityPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
-	public boolean canApply(MobEffectInstance effectInstance) {
-		return this.canApply(effectInstance.getEffect());
-	}
+	public boolean canApply(MobEffectInstance effectInstance) { return this.canApply(effectInstance.getEffect()); }
 
 	public boolean canApply(Holder<MobEffect> effect) {
 		return !this.effect.contains(effect) ^ this.inverted;

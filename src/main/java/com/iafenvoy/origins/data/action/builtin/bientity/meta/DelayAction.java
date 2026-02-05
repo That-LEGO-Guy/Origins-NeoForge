@@ -15,12 +15,8 @@ public record DelayAction(BiEntityAction action, int ticks) implements BiEntityA
 	).apply(i, DelayAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source, @NotNull Entity target) {
-		Timeout.create(this.ticks, () -> this.action.execute(source, target));
-	}
+	public void execute(@NotNull Entity source, @NotNull Entity target) { Timeout.create(this.ticks, () -> this.action.execute(source, target)); }
 }

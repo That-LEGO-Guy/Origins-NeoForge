@@ -21,9 +21,7 @@ public record ProjectileCondition(Optional<EntityType<?>> projectile,
 	).apply(i, ProjectileCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull DamageSource source, float amount) {

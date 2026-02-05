@@ -13,12 +13,8 @@ public record ChanceCondition(double chance) implements FluidCondition {
 	).apply(i, ChanceCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends FluidCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends FluidCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull FluidState state) {
-		return Math.random() < this.chance;
-	}
+	public boolean test(@NotNull FluidState state) { return Math.random() < this.chance; }
 }

@@ -21,14 +21,10 @@ public enum Shape implements StringRepresentable {
 	public static final Codec<Shape> CODEC = StringRepresentable.fromEnum(Shape::values);
 	private final DistancePredicate processor;
 
-	Shape(DistancePredicate processor) {
-		this.processor = processor;
-	}
+	Shape(DistancePredicate processor) { this.processor = processor; }
 
 	@Override
-	public @NotNull String getSerializedName() {
-		return this.name().toLowerCase(Locale.ROOT);
-	}
+	public @NotNull String getSerializedName() { return this.name().toLowerCase(Locale.ROOT); }
 
 	public List<BlockPos> getBlocks(BlockPos center, int radius) {
 		List<BlockPos> results = new LinkedList<>();
@@ -40,16 +36,10 @@ public enum Shape implements StringRepresentable {
 		return results;
 	}
 
-	public List<Entity> getEntities(Level level, Vec3 center, double radius) {
-		return level.getEntitiesOfClass(Entity.class, createArea(center, radius), EntitySelector.NO_SPECTATORS.and(entity -> this.processor.test(entity.getX(), entity.getY(), entity.getZ(), radius)));
-	}
+	public List<Entity> getEntities(Level level, Vec3 center, double radius) { return level.getEntitiesOfClass(Entity.class, createArea(center, radius), EntitySelector.NO_SPECTATORS.and(entity -> this.processor.test(entity.getX(), entity.getY(), entity.getZ(), radius))); }
 
-	private static AABB createArea(Vec3 pos, double r) {
-		return new AABB(pos.subtract(r, r, r), pos.add(r, r, r));
-	}
+	private static AABB createArea(Vec3 pos, double r) { return new AABB(pos.subtract(r, r, r), pos.add(r, r, r)); }
 
 	@FunctionalInterface
-	private interface DistancePredicate {
-		boolean test(double x, double y, double z, double radius);
-	}
+	private interface DistancePredicate { boolean test(double x, double y, double z, double radius); }
 }

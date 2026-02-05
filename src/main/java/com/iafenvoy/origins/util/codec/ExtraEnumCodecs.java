@@ -24,7 +24,5 @@ public final class ExtraEnumCodecs {
 	public static final Codec<FogType> FOG_TYPE = enumCodec(FogType::valueOf);
 	public static final Codec<Direction.AxisDirection> AXIS = enumCodec(Direction.AxisDirection::valueOf);
 
-	public static <T extends Enum<T>> Codec<T> enumCodec(Function<String, T> stringSolver) {
-		return Codec.stringResolver(x -> x.name().toLowerCase(Locale.ROOT), x -> stringSolver.apply(x.toUpperCase(Locale.ROOT)));
-	}
+	public static <T extends Enum<T>> Codec<T> enumCodec(Function<String, T> stringSolver) { return Codec.stringResolver(x -> x.name().toLowerCase(Locale.ROOT), x -> stringSolver.apply(x.toUpperCase(Locale.ROOT))); }
 }

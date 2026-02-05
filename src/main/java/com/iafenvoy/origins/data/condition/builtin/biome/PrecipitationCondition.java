@@ -14,12 +14,8 @@ public record PrecipitationCondition(Biome.Precipitation precipitation) implemen
 	).apply(i, PrecipitationCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiomeCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiomeCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
-		return biome.value().getPrecipitationAt(pos) == this.precipitation;
-	}
+	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) { return biome.value().getPrecipitationAt(pos) == this.precipitation; }
 }

@@ -13,12 +13,8 @@ public record ConstantCondition(boolean value) implements BiEntityCondition {
 	).apply(i, ConstantCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return this.value;
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return this.value; }
 }

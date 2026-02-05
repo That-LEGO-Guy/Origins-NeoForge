@@ -174,15 +174,11 @@ public record ModifyPlayerSpawnPower(ResourceKey<Level> dimension, float distanc
 				++segmentPassed;
 				mutable.set(x, center + i, z);
 				tpPos = DismountHelper.findSafeDismountLocation(EntityType.PLAYER, world, mutable, true);
-				if (tpPos != null) {
-					return Optional.of(tpPos);
-				}
+				if (tpPos != null) { return Optional.of(tpPos); }
 				else {
 					mutable.setY(center + d);
 					tpPos = DismountHelper.findSafeDismountLocation(EntityType.PLAYER, world, mutable, true);
-					if (tpPos != null) {
-						return Optional.of(tpPos);
-					}
+					if (tpPos != null) { return Optional.of(tpPos); }
 				}
 
 				if (segmentPassed == segmentLength) {
@@ -195,9 +191,7 @@ public record ModifyPlayerSpawnPower(ResourceKey<Level> dimension, float distanc
 					dz = buffer;
 
 					// increase segment length if necessary
-					if (dz == 0) {
-						++segmentLength;
-					}
+					if (dz == 0) { ++segmentLength; }
 				}
 			}
 			i++;
@@ -230,17 +224,11 @@ public record ModifyPlayerSpawnPower(ResourceKey<Level> dimension, float distanc
 		);
 
 		final TriFunction<BlockPos, Integer, Float, BlockPos> strategyApplier;
-		SpawnStrategy(TriFunction<BlockPos, Integer, Float, BlockPos> strategyApplier) {
-			this.strategyApplier = strategyApplier;
-		}
+		SpawnStrategy(TriFunction<BlockPos, Integer, Float, BlockPos> strategyApplier) { this.strategyApplier = strategyApplier; }
 
-		public BlockPos apply(BlockPos blockPos, int center, float multiplier) {
-			return strategyApplier.apply(blockPos, center, multiplier);
-		}
+		public BlockPos apply(BlockPos blockPos, int center, float multiplier) { return strategyApplier.apply(blockPos, center, multiplier); }
 
 	}
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

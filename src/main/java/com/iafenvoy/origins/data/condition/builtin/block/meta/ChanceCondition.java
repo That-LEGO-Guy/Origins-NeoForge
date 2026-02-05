@@ -14,12 +14,8 @@ public record ChanceCondition(double chance) implements BlockCondition {
 	).apply(i, ChanceCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return Math.random() < this.chance;
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return Math.random() < this.chance; }
 }

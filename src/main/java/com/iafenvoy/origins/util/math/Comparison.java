@@ -22,21 +22,13 @@ public enum Comparison implements StringRepresentable {
 		this.comparator = comparator;
 	}
 
-	public boolean compare(double current, double given) {
-		return this.comparator.compare(current, given);
-	}
+	public boolean compare(double current, double given) { return this.comparator.compare(current, given); }
 
-	public boolean compare(double current, int given) {
-		return this.comparator.compare(current, given);
-	}
+	public boolean compare(double current, int given) { return this.comparator.compare(current, given); }
 
 	@Override
-	public @NotNull String getSerializedName() {
-		return this.key;
-	}
+	public @NotNull String getSerializedName() { return this.key; }
 
 	@FunctionalInterface
-	private interface Comparator {
-		boolean compare(double a, double b);
-	}
+	private interface Comparator { boolean compare(double a, double b); }
 }

@@ -10,12 +10,8 @@ public enum SwimmingCondition implements EntityCondition {
 	public static final MapCodec<SwimmingCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity.isSwimming();
-	}
+	public boolean test(@NotNull Entity entity) { return entity.isSwimming(); }
 }

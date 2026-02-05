@@ -20,16 +20,10 @@ public record ComponentCondition(DataComponentType<?> component, CompoundTag nbt
 	).apply(i, ComponentCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-		return NbtUtils.compareNbt(this.nbt, getNbt(this.component, stack), true);
-	}
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) { return NbtUtils.compareNbt(this.nbt, getNbt(this.component, stack), true); }
 
-	public static <T> Tag getNbt(DataComponentType<T> type, ItemStack stack) {
-		return type.codecOrThrow().encodeStart(NbtOps.INSTANCE, stack.get(type)).mapOrElse(x -> x, x -> new CompoundTag());
-	}
+	public static <T> Tag getNbt(DataComponentType<T> type, ItemStack stack) { return type.codecOrThrow().encodeStart(NbtOps.INSTANCE, stack.get(type)).mapOrElse(x -> x, x -> new CompoundTag()); }
 }

@@ -20,9 +20,7 @@ public record AdvancementCondition(ResourceLocation advancement) implements Enti
 	).apply(i, AdvancementCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

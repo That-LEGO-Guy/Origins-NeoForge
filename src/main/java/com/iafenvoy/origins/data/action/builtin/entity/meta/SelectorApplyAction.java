@@ -21,9 +21,7 @@ public record SelectorApplyAction(String selector, BiEntityAction biEntityAction
 	).apply(i, SelectorApplyAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {
@@ -32,8 +30,6 @@ public record SelectorApplyAction(String selector, BiEntityAction biEntityAction
 				if (this.biEntityCondition.test(source, entity))
 					this.biEntityAction.execute(source, entity);
 		}
-		catch (Exception e) {
-			Origins.LOGGER.error("Failed to execute selector.", e);
-		}
+		catch (Exception e) { Origins.LOGGER.error("Failed to execute selector.", e); }
 	}
 }

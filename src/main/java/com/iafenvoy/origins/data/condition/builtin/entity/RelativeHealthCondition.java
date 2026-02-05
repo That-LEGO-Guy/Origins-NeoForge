@@ -16,9 +16,7 @@ public record RelativeHealthCondition(Comparison comparison, double compareTo) i
 	).apply(i, RelativeHealthCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

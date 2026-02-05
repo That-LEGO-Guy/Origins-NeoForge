@@ -49,38 +49,22 @@ public record Layer(int order, TagKey<Origin> origins, boolean enabled, Optional
 		return count;
 	}
 
-	public Stream<Holder<Origin>> collectOrigins(RegistryAccess access) {
-		return access.registryOrThrow(OriginRegistries.ORIGIN_KEY).getOrCreateTag(this.origins).stream();
-	}
+	public Stream<Holder<Origin>> collectOrigins(RegistryAccess access) { return access.registryOrThrow(OriginRegistries.ORIGIN_KEY).getOrCreateTag(this.origins).stream(); }
 
-	public Stream<Holder<Origin>> collectChoosableOrigins(RegistryAccess access) {
-		return this.collectOrigins(access).filter(x -> x.value().choosable());
-	}
+	public Stream<Holder<Origin>> collectChoosableOrigins(RegistryAccess access) { return this.collectOrigins(access).filter(x -> x.value().choosable()); }
 
-	public Stream<Holder<Origin>> collectRandomizableOrigins(RegistryAccess access) {
-		return this.collectOrigins(access).filter(x -> !this.excludeRandom.contains(x));
-	}
+	public Stream<Holder<Origin>> collectRandomizableOrigins(RegistryAccess access) { return this.collectOrigins(access).filter(x -> !this.excludeRandom.contains(x)); }
 
-	public Component getChooseOriginTitle(Component fallback) {
-		return this.guiTitle.flatMap(x -> x.chooseOrigin).orElse(fallback);
-	}
+	public Component getChooseOriginTitle(Component fallback) { return this.guiTitle.flatMap(x -> x.chooseOrigin).orElse(fallback); }
 
-	public Component getViewOriginTitle(Component fallback) {
-		return this.guiTitle.flatMap(x -> x.viewOrigin).orElse(fallback);
-	}
+	public Component getViewOriginTitle(Component fallback) { return this.guiTitle.flatMap(x -> x.viewOrigin).orElse(fallback); }
 
 	@Override
-	public int compareTo(@NotNull Layer that) {
-		return Integer.compare(this.order, that.order);
-	}
+	public int compareTo(@NotNull Layer that) { return Integer.compare(this.order, that.order); }
 
-	public static MutableComponent getName(Holder<Layer> layer) {
-		return getName(RLHelper.id(layer));
-	}
+	public static MutableComponent getName(Holder<Layer> layer) { return getName(RLHelper.id(layer)); }
 
-	public static MutableComponent getName(ResourceLocation id) {
-		return Component.translatable(id.toLanguageKey("layer", "name"));
-	}
+	public static MutableComponent getName(ResourceLocation id) { return Component.translatable(id.toLanguageKey("layer", "name")); }
 
 	public record GuiTitle(Optional<Component> chooseOrigin, Optional<Component> viewOrigin) {
 		public static final Codec<GuiTitle> CODEC = RecordCodecBuilder.create(i -> i.group(

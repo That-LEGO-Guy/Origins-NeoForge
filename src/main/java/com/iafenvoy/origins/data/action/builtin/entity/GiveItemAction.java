@@ -21,9 +21,7 @@ public record GiveItemAction(ItemStack stack, ItemAction itemAction,
 	).apply(i, GiveItemAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

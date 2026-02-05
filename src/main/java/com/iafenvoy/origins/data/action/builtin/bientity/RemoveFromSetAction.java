@@ -14,12 +14,8 @@ public record RemoveFromSetAction(ResourceLocation set) implements BiEntityActio
 	).apply(i, RemoveFromSetAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source, @NotNull Entity target) {
-		OriginDataHolder.get(source).removeEntity(this.set, target);
-	}
+	public void execute(@NotNull Entity source, @NotNull Entity target) { OriginDataHolder.get(source).removeEntity(this.set, target); }
 }

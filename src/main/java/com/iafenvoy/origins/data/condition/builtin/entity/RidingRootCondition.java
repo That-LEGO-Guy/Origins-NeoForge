@@ -13,12 +13,8 @@ public record RidingRootCondition(BiEntityCondition biEntityCondition) implement
 	).apply(i, RidingRootCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return this.biEntityCondition.test(entity, entity.getRootVehicle());
-	}
+	public boolean test(@NotNull Entity entity) { return this.biEntityCondition.test(entity, entity.getRootVehicle()); }
 }

@@ -14,12 +14,8 @@ public record EmitGameEventAction(Holder<GameEvent> event) implements EntityActi
 	).apply(i, EmitGameEventAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		source.gameEvent(this.event);
-	}
+	public void execute(@NotNull Entity source) { source.gameEvent(this.event); }
 }

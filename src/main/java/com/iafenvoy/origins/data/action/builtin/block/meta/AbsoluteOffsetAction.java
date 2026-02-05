@@ -18,12 +18,8 @@ public record AbsoluteOffsetAction(BlockAction action, int x, int y, int z) impl
 	).apply(i, AbsoluteOffsetAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-		this.action.execute(level, pos.offset(this.x, this.y, this.z), direction);
-	}
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) { this.action.execute(level, pos.offset(this.x, this.y, this.z), direction); }
 }

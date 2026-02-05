@@ -11,9 +11,7 @@ import java.util.function.Function;
 public interface EntityCondition {
 	Codec<EntityCondition> CODEC = DefaultedCodec.registryDispatch(ConditionRegistries.ENTITY_CONDITION, EntityCondition::codec, Function.identity(), () -> AlwaysTrueCondition.INSTANCE);
 
-	static MapCodec<EntityCondition> optionalCodec(String name) {
-		return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE);
-	}
+	static MapCodec<EntityCondition> optionalCodec(String name) { return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE); }
 
 	@NotNull
 	MapCodec<? extends EntityCondition> codec();

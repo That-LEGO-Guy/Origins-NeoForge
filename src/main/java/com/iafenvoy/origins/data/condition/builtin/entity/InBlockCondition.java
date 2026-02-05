@@ -13,12 +13,8 @@ public record InBlockCondition(BlockCondition blockCondition) implements EntityC
 	).apply(i, InBlockCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return this.blockCondition.test(entity.level(), entity.blockPosition());
-	}
+	public boolean test(@NotNull Entity entity) { return this.blockCondition.test(entity.level(), entity.blockPosition()); }
 }

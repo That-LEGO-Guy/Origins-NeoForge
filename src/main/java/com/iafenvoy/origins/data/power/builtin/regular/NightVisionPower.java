@@ -22,9 +22,7 @@ public record NightVisionPower(float strength, EntityCondition condition) implem
 	).apply(i, NightVisionPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent
 	public static void handleNightVisionStrength(NightVisionStrengthEvent event) {

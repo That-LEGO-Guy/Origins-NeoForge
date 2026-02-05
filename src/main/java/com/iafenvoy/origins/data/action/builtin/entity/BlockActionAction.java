@@ -14,12 +14,8 @@ public record BlockActionAction(BlockAction action) implements EntityAction {
 	).apply(i, BlockActionAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		this.action.execute(source.level(), source.blockPosition(), Direction.DOWN);
-	}
+	public void execute(@NotNull Entity source) { this.action.execute(source.level(), source.blockPosition(), Direction.DOWN); }
 }

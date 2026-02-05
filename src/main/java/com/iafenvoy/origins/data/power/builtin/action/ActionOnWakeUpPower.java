@@ -17,7 +17,5 @@ public record ActionOnWakeUpPower(BlockCondition blockCondition, EntityAction en
 	).apply(i, ActionOnWakeUpPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

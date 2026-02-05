@@ -19,7 +19,5 @@ public record ActionOnBlockBreakPower(BlockCondition blockCondition,EntityAction
 	).apply(i, ActionOnBlockBreakPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

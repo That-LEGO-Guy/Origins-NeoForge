@@ -31,9 +31,7 @@ public record ExplodeAction(float power, DestructionType destructionType,
 	).apply(i, ExplodeAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {
@@ -61,17 +59,11 @@ public record ExplodeAction(float power, DestructionType destructionType,
 		public static final Codec<DestructionType> CODEC = StringRepresentable.fromEnum(DestructionType::values);
 		private final Explosion.BlockInteraction interaction;
 
-		DestructionType(Explosion.BlockInteraction interaction) {
-			this.interaction = interaction;
-		}
+		DestructionType(Explosion.BlockInteraction interaction) { this.interaction = interaction; }
 
-		public Explosion.BlockInteraction getInteraction() {
-			return this.interaction;
-		}
+		public Explosion.BlockInteraction getInteraction() { return this.interaction; }
 
 		@Override
-		public @NotNull String getSerializedName() {
-			return this.name().toLowerCase(Locale.ROOT);
-		}
+		public @NotNull String getSerializedName() { return this.name().toLowerCase(Locale.ROOT); }
 	}
 }

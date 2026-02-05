@@ -16,12 +16,8 @@ public record AndAction(List<BlockAction> actions) implements BlockAction {
 	).apply(i, AndAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-		this.actions.forEach(x -> x.execute(level, pos, direction));
-	}
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) { this.actions.forEach(x -> x.execute(level, pos, direction)); }
 }

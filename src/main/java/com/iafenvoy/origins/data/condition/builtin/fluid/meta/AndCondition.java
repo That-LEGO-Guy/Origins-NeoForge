@@ -14,12 +14,8 @@ public record AndCondition(List<FluidCondition> conditions) implements FluidCond
 	).apply(i, AndCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends FluidCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends FluidCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull FluidState state) {
-		return this.conditions.stream().allMatch(x -> x.test(state));
-	}
+	public boolean test(@NotNull FluidState state) { return this.conditions.stream().allMatch(x -> x.test(state)); }
 }

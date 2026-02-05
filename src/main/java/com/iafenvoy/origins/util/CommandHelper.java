@@ -13,9 +13,7 @@ public final class CommandHelper {
 		if (server.isCommandBlockEnabled() && !StringUtil.isNullOrEmpty(command)) {
 			try {
 				AtomicInteger successCount = new AtomicInteger();
-				server.getCommands().performPrefixedCommand(server.createCommandSourceStack().withCallback((success, count) -> {
-					if (success) successCount.addAndGet(count);
-				}), command);
+				server.getCommands().performPrefixedCommand(server.createCommandSourceStack().withCallback((success, count) -> { if (success) successCount.addAndGet(count); }), command);
 				return successCount.get();
 			}
 			catch (Throwable throwable) {

@@ -24,9 +24,7 @@ public record SpawnEffectCloudAction(float radius, float radiusOnUse, int waitTi
 	).apply(i, SpawnEffectCloudAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

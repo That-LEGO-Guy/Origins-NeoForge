@@ -17,9 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class OrbOfOriginItem extends Item {
-	public OrbOfOriginItem() {
-		super(new Properties().stacksTo(1).rarity(Rarity.RARE).component(OriginsDataComponents.ORB_LAYERS, List.of()));
-	}
+	public OrbOfOriginItem() { super(new Properties().stacksTo(1).rarity(Rarity.RARE).component(OriginsDataComponents.ORB_LAYERS, List.of())); }
 
 	@Override
 	public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand usedHand) {

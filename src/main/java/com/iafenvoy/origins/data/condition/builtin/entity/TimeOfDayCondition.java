@@ -15,12 +15,8 @@ public record TimeOfDayCondition(Comparison comparison, double compareTo) implem
 	).apply(i, TimeOfDayCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return this.comparison.compare(entity.level().getDayTime() % 24000L, this.compareTo);
-	}
+	public boolean test(@NotNull Entity entity) { return this.comparison.compare(entity.level().getDayTime() % 24000L, this.compareTo); }
 }

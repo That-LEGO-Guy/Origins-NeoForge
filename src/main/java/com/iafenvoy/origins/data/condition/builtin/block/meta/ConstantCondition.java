@@ -14,12 +14,8 @@ public record ConstantCondition(boolean value) implements BlockCondition {
 	).apply(i, ConstantCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return this.value;
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return this.value; }
 }

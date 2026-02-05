@@ -16,12 +16,8 @@ public record HeightCondition(Comparison comparison, double compareTo) implement
 	).apply(i, HeightCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return this.comparison.compare(pos.getY(), this.compareTo);
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return this.comparison.compare(pos.getY(), this.compareTo); }
 }

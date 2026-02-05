@@ -25,7 +25,5 @@ public record ActionWhenHitPower(DamageCondition damageCondition,EntityAction en
 
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

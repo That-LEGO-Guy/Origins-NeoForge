@@ -20,9 +20,7 @@ public record OriginCondition(Holder<Origin> origin, Optional<Holder<Layer>> lay
 	).apply(i, OriginCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

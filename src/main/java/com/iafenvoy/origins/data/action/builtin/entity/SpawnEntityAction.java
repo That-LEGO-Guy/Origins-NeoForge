@@ -24,9 +24,7 @@ public record SpawnEntityAction(EntityType<?> entityType, Optional<CompoundTag> 
 	).apply(i, SpawnEntityAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

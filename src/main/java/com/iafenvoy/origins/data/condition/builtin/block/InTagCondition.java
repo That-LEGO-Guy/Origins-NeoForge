@@ -16,12 +16,8 @@ public record InTagCondition(TagKey<Block> tag) implements BlockCondition {
 	).apply(i, InTagCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return level.getBlockState(pos).is(this.tag);
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return level.getBlockState(pos).is(this.tag); }
 }

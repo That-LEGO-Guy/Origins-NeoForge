@@ -18,14 +18,10 @@ public record ModifyBlockRenderPower(BlockCondition blockCondition,Block block) 
 	).apply(i, ModifyBlockRenderPower::new));
 	
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 
-	public boolean test(Level world, BlockPos pos) {
-		return blockCondition().test(world, pos);
-	}
+	public boolean test(Level world, BlockPos pos) { return blockCondition().test(world, pos); }
 
 	@Override
 	public void grant(@NotNull Entity entity) {

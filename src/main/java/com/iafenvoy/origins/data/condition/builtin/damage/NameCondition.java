@@ -14,12 +14,8 @@ public record NameCondition(String name) implements DamageCondition {
 	).apply(i, NameCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull DamageSource source, float amount) {
-		return source.getMsgId().equals(this.name);
-	}
+	public boolean test(@NotNull DamageSource source, float amount) { return source.getMsgId().equals(this.name); }
 }

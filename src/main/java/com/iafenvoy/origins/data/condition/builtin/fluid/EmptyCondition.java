@@ -10,12 +10,8 @@ public enum EmptyCondition implements FluidCondition {
 	public static final MapCodec<EmptyCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends FluidCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends FluidCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull FluidState state) {
-		return state.isEmpty();
-	}
+	public boolean test(@NotNull FluidState state) { return state.isEmpty(); }
 }

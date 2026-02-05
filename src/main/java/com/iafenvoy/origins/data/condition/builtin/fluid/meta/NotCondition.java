@@ -12,12 +12,8 @@ public record NotCondition(FluidCondition condition) implements FluidCondition {
 	).apply(i, NotCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends FluidCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends FluidCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull FluidState state) {
-		return !this.condition.test(state);
-	}
+	public boolean test(@NotNull FluidState state) { return !this.condition.test(state); }
 }

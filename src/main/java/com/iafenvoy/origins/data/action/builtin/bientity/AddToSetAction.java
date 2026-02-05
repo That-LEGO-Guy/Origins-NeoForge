@@ -16,12 +16,8 @@ public record AddToSetAction(ResourceLocation set, int timeLimit) implements BiE
 	).apply(i, AddToSetAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source, @NotNull Entity target) {
-		OriginDataHolder.get(source).addEntity(this.set, target, this.timeLimit);
-	}
+	public void execute(@NotNull Entity source, @NotNull Entity target) { OriginDataHolder.get(source).addEntity(this.set, target, this.timeLimit); }
 }

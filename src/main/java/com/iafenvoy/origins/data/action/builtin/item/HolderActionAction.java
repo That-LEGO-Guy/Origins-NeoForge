@@ -15,12 +15,8 @@ public record HolderActionAction(EntityAction action) implements ItemAction {
 	).apply(i, HolderActionAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
-		this.action.execute(source);
-	}
+	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) { this.action.execute(source); }
 }

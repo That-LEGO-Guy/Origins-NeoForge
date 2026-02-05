@@ -16,12 +16,8 @@ public record AndAction(List<ItemAction> actions) implements ItemAction {
 	).apply(i, AndAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
-		this.actions.forEach(x -> x.execute(level, source, stack));
-	}
+	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) { this.actions.forEach(x -> x.execute(level, source, stack)); }
 }

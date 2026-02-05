@@ -10,12 +10,8 @@ public enum OnFireCondition implements EntityCondition {
 	public static final MapCodec<OnFireCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity.isOnFire();
-	}
+	public boolean test(@NotNull Entity entity) { return entity.isOnFire(); }
 }

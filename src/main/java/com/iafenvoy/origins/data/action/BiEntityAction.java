@@ -11,9 +11,7 @@ import java.util.function.Function;
 public interface BiEntityAction {
 	Codec<BiEntityAction> CODEC = DefaultedCodec.registryDispatch(ActionRegistries.BI_ENTITY_ACTION, BiEntityAction::codec, Function.identity(), () -> NoOpAction.INSTANCE);
 
-	static MapCodec<BiEntityAction> optionalCodec(String name) {
-		return CODEC.optionalFieldOf(name, NoOpAction.INSTANCE);
-	}
+	static MapCodec<BiEntityAction> optionalCodec(String name) { return CODEC.optionalFieldOf(name, NoOpAction.INSTANCE); }
 
 	@NotNull
 	MapCodec<? extends BiEntityAction> codec();

@@ -22,9 +22,7 @@ public record BlockInRadiusCondition(BlockCondition blockCondition, int radius, 
 	).apply(i, BlockInRadiusCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

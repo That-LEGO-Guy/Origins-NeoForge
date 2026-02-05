@@ -47,25 +47,15 @@ public final class EntitySetAttachment {
 		}
 	}
 
-	public void postAdd(Entity self, ResourceLocation id, Entity target) {
-		EntityOriginAttachment.get(self).streamEntitySetPowers(id, self.registryAccess()).forEach(x -> x.actionOnAdd().execute(self, target));
-	}
+	public void postAdd(Entity self, ResourceLocation id, Entity target) { EntityOriginAttachment.get(self).streamEntitySetPowers(id, self.registryAccess()).forEach(x -> x.actionOnAdd().execute(self, target)); }
 
-	public void postRemove(Entity self, ResourceLocation id, Entity target) {
-		EntityOriginAttachment.get(self).streamEntitySetPowers(id, self.registryAccess()).forEach(x -> x.actionOnRemove().execute(self, target));
-	}
+	public void postRemove(Entity self, ResourceLocation id, Entity target) { EntityOriginAttachment.get(self).streamEntitySetPowers(id, self.registryAccess()).forEach(x -> x.actionOnRemove().execute(self, target)); }
 
-	public List<UUID> getEntityUuids(ResourceLocation id) {
-		return new LinkedList<>(this.storedEntities.get(id).keySet());
-	}
+	public List<UUID> getEntityUuids(ResourceLocation id) { return new LinkedList<>(this.storedEntities.get(id).keySet()); }
 
-	public boolean containEntity(ResourceLocation id, Entity target) {
-		return this.storedEntities.computeIfAbsent(id, i -> new LinkedHashMap<>()).containsKey(target.getUUID());
-	}
+	public boolean containEntity(ResourceLocation id, Entity target) { return this.storedEntities.computeIfAbsent(id, i -> new LinkedHashMap<>()).containsKey(target.getUUID()); }
 
-	public int getSize(ResourceLocation id) {
-		return this.storedEntities.get(id).size();
-	}
+	public int getSize(ResourceLocation id) { return this.storedEntities.get(id).size(); }
 
 	public void tick(@NotNull Entity entity) {
 		for (Map.Entry<ResourceLocation, Map<UUID, Integer>> entry : this.storedEntities.entrySet()) {
@@ -83,16 +73,10 @@ public final class EntitySetAttachment {
 		}
 	}
 
-	private Map<ResourceLocation, Map<UUID, Integer>> getStoredEntities() {
-		return this.storedEntities;
-	}
+	private Map<ResourceLocation, Map<UUID, Integer>> getStoredEntities() { return this.storedEntities; }
 
-	public static EntitySetAttachment get(Entity entity) {
-		return entity.getData(OriginsAttachments.ENTITY_SET);
-	}
+	public static EntitySetAttachment get(Entity entity) { return entity.getData(OriginsAttachments.ENTITY_SET); }
 
 	@SubscribeEvent
-	public static void onEntityTick(EntityTickEvent.Post event) {
-		EntitySetAttachment.get(event.getEntity()).tick(event.getEntity());
-	}
+	public static void onEntityTick(EntityTickEvent.Post event) { EntitySetAttachment.get(event.getEntity()).tick(event.getEntity()); }
 }

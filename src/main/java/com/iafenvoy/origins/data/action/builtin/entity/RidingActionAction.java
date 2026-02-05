@@ -19,9 +19,7 @@ public record RidingActionAction(EntityAction action, BiEntityAction biEntityAct
 	).apply(i, RidingActionAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

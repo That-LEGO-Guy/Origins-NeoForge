@@ -13,9 +13,7 @@ public enum NoOpAction implements BiEntityAction, BlockAction, EntityAction, Ite
 	public static final MapCodec<NoOpAction> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<NoOpAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<NoOpAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {

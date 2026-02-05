@@ -23,9 +23,7 @@ public class ScrollingTextWidget extends AbstractStringWidget {
 		this.hasShadow = hasShadow;
 	}
 
-	public void setAlignment(TextAlignment textAlignment) {
-		this.textAlignment = textAlignment;
-	}
+	public void setAlignment(TextAlignment textAlignment) { this.textAlignment = textAlignment; }
 
 	@Override
 	public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
@@ -38,9 +36,7 @@ public class ScrollingTextWidget extends AbstractStringWidget {
 	}
 
 	@Override
-	public boolean mouseClicked(double mouseX, double mouseY, int button) {
-		return false;
-	}
+	public boolean mouseClicked(double mouseX, double mouseY, int button) { return false; }
 
 	protected static void drawScrollingText(GuiGraphics graphics, Font textRenderer, Component text, TextAlignment textAlignment, int left, int top, int right, int bottom, int color, boolean hasShadow) {
 		int textWidth = textRenderer.width(text);

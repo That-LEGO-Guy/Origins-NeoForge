@@ -11,19 +11,11 @@ import java.util.Optional;
 public class ElytraTextureEvent extends LivingEvent {
 	private Optional<ResourceLocation> texture = Optional.empty();
 
-	public ElytraTextureEvent(LivingEntity entity) {
-		super(entity);
-	}
+	public ElytraTextureEvent(LivingEntity entity) { super(entity); }
 
-	public void setTexture(@NotNull ResourceLocation texture) {
-		this.texture = Optional.of(texture);
-	}
+	public void setTexture(@NotNull ResourceLocation texture) { this.texture = Optional.of(texture); }
 
-	public void clearTexture() {
-		this.texture = Optional.empty();
-	}
+	public void clearTexture() { this.texture = Optional.empty(); }
 
-	public Optional<ResourceLocation> getTexture() {
-		return this.texture;
-	}
+	public Optional<ResourceLocation> getTexture() { return this.texture; }
 }

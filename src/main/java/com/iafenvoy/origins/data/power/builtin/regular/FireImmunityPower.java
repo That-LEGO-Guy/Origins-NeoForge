@@ -19,9 +19,7 @@ public record FireImmunityPower(EntityCondition condition) implements Power {
 	).apply(i, FireImmunityPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent
 	public static void enableFireImmune(EntityFireImmuneEvent event) {

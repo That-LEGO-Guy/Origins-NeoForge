@@ -61,7 +61,5 @@ public class WaitForNextLayerScreen extends Screen {
 	}
 
 	@Override
-	public boolean shouldCloseOnEsc() {
-		return false;
-	}
+	public boolean shouldCloseOnEsc() { return false; }
 }

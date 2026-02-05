@@ -12,12 +12,8 @@ public enum WaterLoggableCondition implements BlockCondition {
 	public static final MapCodec<WaterLoggableCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return level.getBlockState(pos).getBlock() instanceof LiquidBlockContainer;
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return level.getBlockState(pos).getBlock() instanceof LiquidBlockContainer; }
 }

@@ -27,9 +27,7 @@ public record TooltipPower(ItemCondition itemCondition, List<Component> text, in
 	).apply(i, TooltipPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent
 	public static void appendTooltips(ItemTooltipEvent event) {

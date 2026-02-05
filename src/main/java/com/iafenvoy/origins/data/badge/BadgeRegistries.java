@@ -20,12 +20,8 @@ public final class BadgeRegistries {
 	public static final ResourceKey<Registry<Badge>> BADGE_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "badge"));
 
 	@SubscribeEvent
-	public static void newRegistries(NewRegistryEvent event) {
-		event.register(BADGE_TYPE);
-	}
+	public static void newRegistries(NewRegistryEvent event) { event.register(BADGE_TYPE); }
 
 	@SubscribeEvent
-	public static void newDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-		event.dataPackRegistry(BADGE_KEY, Badge.CODEC, Badge.CODEC);
-	}
+	public static void newDatapackRegistries(DataPackRegistryEvent.NewRegistry event) { event.dataPackRegistry(BADGE_KEY, Badge.CODEC, Badge.CODEC); }
 }

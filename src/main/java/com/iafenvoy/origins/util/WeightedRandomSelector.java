@@ -27,7 +27,5 @@ public final class WeightedRandomSelector {
 		return holders.getLast();
 	}
 
-	public interface WeightGetter {
-		int weight();
-	}
+	public interface WeightGetter { int weight(); }
 }

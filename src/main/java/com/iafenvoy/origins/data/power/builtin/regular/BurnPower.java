@@ -21,21 +21,13 @@ public class BurnPower extends IntervalPower {
 	}
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@Override
-	public void intervalTick(@NotNull Entity entity) {
-		entity.setRemainingFireTicks(this.burnDuration);
-	}
+	public void intervalTick(@NotNull Entity entity) { entity.setRemainingFireTicks(this.burnDuration); }
 
 	@Override
-	public int getInterval() {
-		return this.interval;
-	}
+	public int getInterval() { return this.interval; }
 
-	public int getBurnDuration() {
-		return this.burnDuration;
-	}
+	public int getBurnDuration() { return this.burnDuration; }
 }

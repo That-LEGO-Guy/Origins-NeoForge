@@ -23,9 +23,7 @@ public interface Power {
 	MapCodec<? extends Power> codec();
 
 	//Power maps will use this method to collect
-	default List<Power> getSelfOrSubPowers() {
-		return List.of(this);
-	}
+	default List<Power> getSelfOrSubPowers() { return List.of(this); }
 
 	default void grant(@NotNull Entity entity) {
 	}
@@ -42,19 +40,11 @@ public interface Power {
 	default void tick(@NotNull Entity entity) {
 	}
 
-	default boolean hidden() {
-		return false;
-	}
+	default boolean hidden() { return false; }
 
-	default ResourceLocation getId(RegistryAccess access) {
-		return access.registryOrThrow(PowerRegistries.POWER_KEY).getKey(this);
-	}
+	default ResourceLocation getId(RegistryAccess access) { return access.registryOrThrow(PowerRegistries.POWER_KEY).getKey(this); }
 
-	default MutableComponent getName(RegistryAccess access) {
-		return Component.translatable(this.getId(access).toLanguageKey("power", "name"));
-	}
+	default MutableComponent getName(RegistryAccess access) { return Component.translatable(this.getId(access).toLanguageKey("power", "name")); }
 
-	default MutableComponent getDescription(RegistryAccess access) {
-		return Component.translatable(this.getId(access).toLanguageKey("power", "description"));
-	}
+	default MutableComponent getDescription(RegistryAccess access) { return Component.translatable(this.getId(access).toLanguageKey("power", "description")); }
 }

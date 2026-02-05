@@ -14,12 +14,8 @@ public record AndCondition(List<DamageCondition> conditions) implements DamageCo
 	).apply(i, AndCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull DamageSource source, float amount) {
-		return this.conditions.stream().allMatch(x -> x.test(source, amount));
-	}
+	public boolean test(@NotNull DamageSource source, float amount) { return this.conditions.stream().allMatch(x -> x.test(source, amount)); }
 }

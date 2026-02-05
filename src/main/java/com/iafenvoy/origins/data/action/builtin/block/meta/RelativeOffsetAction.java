@@ -16,12 +16,8 @@ public record RelativeOffsetAction(BlockAction action, int distance) implements 
 	).apply(i, RelativeOffsetAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-		this.action.execute(level, pos.relative(direction, this.distance), direction);
-	}
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) { this.action.execute(level, pos.relative(direction, this.distance), direction); }
 }

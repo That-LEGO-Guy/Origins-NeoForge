@@ -14,9 +14,7 @@ public enum ExposedToSunCondition implements EntityCondition {
 	private static final ExposedToSkyCondition EXPOSED_TO_SKY = ExposedToSkyCondition.INSTANCE;
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

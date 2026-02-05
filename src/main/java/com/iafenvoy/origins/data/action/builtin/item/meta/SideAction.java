@@ -18,12 +18,8 @@ public record SideAction(ItemAction action, Dist side) implements ItemAction {
 	).apply(i, SideAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
-		if (Environment.get().getDist() == this.side) this.action.execute(level, source, stack);
-	}
+	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) { if (Environment.get().getDist() == this.side) this.action.execute(level, source, stack); }
 }

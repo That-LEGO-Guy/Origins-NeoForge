@@ -16,9 +16,7 @@ public enum UsingEffectiveToolCondition implements EntityCondition {
 	public static final MapCodec<UsingEffectiveToolCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	//FIXME::Correct logic?
 	@Override

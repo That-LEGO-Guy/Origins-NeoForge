@@ -11,12 +11,8 @@ public enum GlowingCondition implements EntityCondition {
 	public static final MapCodec<GlowingCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return !entity.level().isClientSide ? entity.isCurrentlyGlowing() : Minecraft.getInstance().shouldEntityAppearGlowing(entity);
-	}
+	public boolean test(@NotNull Entity entity) { return !entity.level().isClientSide ? entity.isCurrentlyGlowing() : Minecraft.getInstance().shouldEntityAppearGlowing(entity); }
 }

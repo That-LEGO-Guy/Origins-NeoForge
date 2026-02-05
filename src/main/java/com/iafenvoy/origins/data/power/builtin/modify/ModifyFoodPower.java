@@ -41,9 +41,7 @@ public record ModifyFoodPower(ItemCondition itemCondition, EntityAction entityAc
 //).apply(instance, (t1, t2, t3, t4, t5, t6, t7, t8) -> new ModifyFoodConfiguration(t1, t2, t3, t4, t5.orElse(null), t6, t7, t8)));
 //
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	// TODO
 //
@@ -82,11 +80,7 @@ public record ModifyFoodPower(ItemCondition itemCondition, EntityAction entityAc
 //	}
 
 
-	public boolean test(Level level, ItemStack stack) {
-		return itemCondition().test(level, stack);
-	}
+	public boolean test(Level level, ItemStack stack) { return itemCondition().test(level, stack); }
 
-	public void execute(Entity player) {
-		entityAction().execute(player);
-	}
+	public void execute(Entity player) { entityAction().execute(player); }
 }

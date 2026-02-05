@@ -18,9 +18,7 @@ public record IsEquipableCondition(Optional<EquipmentSlot> slot) implements Item
 	).apply(i, IsEquipableCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {

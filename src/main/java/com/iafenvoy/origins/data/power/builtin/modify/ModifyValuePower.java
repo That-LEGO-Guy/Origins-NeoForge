@@ -24,7 +24,5 @@ public record ModifyValuePower() implements Power {
 //	).apply(instance, ModifyVelocityConfiguration::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return null;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return null; }
 }

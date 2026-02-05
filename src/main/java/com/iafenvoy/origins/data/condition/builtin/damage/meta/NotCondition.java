@@ -12,12 +12,8 @@ public record NotCondition(DamageCondition condition) implements DamageCondition
 	).apply(i, NotCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull DamageSource source, float amount) {
-		return !this.condition.test(source, amount);
-	}
+	public boolean test(@NotNull DamageSource source, float amount) { return !this.condition.test(source, amount); }
 }

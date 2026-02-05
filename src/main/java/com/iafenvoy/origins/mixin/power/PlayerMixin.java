@@ -14,9 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(Player.class)
 public class PlayerMixin {
 	@Unique
-	private Player origins$self() {
-		return (Player) (Object) this;
-	}
+	private Player origins$self() { return (Player) (Object) this; }
 
 	@ModifyExpressionValue(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/GameRules;getBoolean(Lnet/minecraft/world/level/GameRules$Key;)Z"))
 	private boolean checkNaturalSpawn(boolean original) {
@@ -24,7 +22,5 @@ public class PlayerMixin {
 	}
 
 	@ModifyExpressionValue(method = "tryToStartFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getItemBySlot(Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;"))
-	private ItemStack handleElytra(ItemStack original) {
-		return NeoForge.EVENT_BUS.post(new CanFlyWithoutElytraEvent(this.origins$self())).getResult().allow() ? Items.ELYTRA.getDefaultInstance() : original;
-	}
+	private ItemStack handleElytra(ItemStack original) { return NeoForge.EVENT_BUS.post(new CanFlyWithoutElytraEvent(this.origins$self())).getResult().allow() ? Items.ELYTRA.getDefaultInstance() : original; }
 }

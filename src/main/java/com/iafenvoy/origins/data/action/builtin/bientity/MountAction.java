@@ -10,12 +10,8 @@ public enum MountAction implements BiEntityAction {
 	public static final MapCodec<MountAction> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source, @NotNull Entity target) {
-		source.startRiding(target);
-	}
+	public void execute(@NotNull Entity source, @NotNull Entity target) { source.startRiding(target); }
 }

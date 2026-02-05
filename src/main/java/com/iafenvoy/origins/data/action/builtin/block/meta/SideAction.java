@@ -18,12 +18,8 @@ public record SideAction(BlockAction action, Dist side) implements BlockAction {
 	).apply(i, SideAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-		if (Environment.get().getDist() == this.side) this.action.execute(level, pos, direction);
-	}
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) { if (Environment.get().getDist() == this.side) this.action.execute(level, pos, direction); }
 }

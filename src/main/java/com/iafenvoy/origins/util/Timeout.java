@@ -24,9 +24,7 @@ public final class Timeout {
 		this.finalize = finalize;
 	}
 
-	public static void create(int waitTicks, Runnable callback) {
-		create(waitTicks, 1, callback);
-	}
+	public static void create(int waitTicks, Runnable callback) { create(waitTicks, 1, callback); }
 
 	public static void create(int waitTicks, int maxTimes, Runnable callback) {
 		create(waitTicks, maxTimes, callback, () -> {

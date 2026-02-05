@@ -27,9 +27,7 @@ public class ExhaustPower extends IntervalPower {
 	}
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@Override
 	public void intervalTick(@NotNull Entity entity) {
@@ -38,15 +36,9 @@ public class ExhaustPower extends IntervalPower {
 	}
 
 	@Override
-	public int getInterval() {
-		return this.interval;
-	}
+	public int getInterval() { return this.interval; }
 
-	public float getExhaustion() {
-		return this.exhaustion;
-	}
+	public float getExhaustion() { return this.exhaustion; }
 
-	public EntityCondition getCondition() {
-		return this.condition;
-	}
+	public EntityCondition getCondition() { return this.condition; }
 }

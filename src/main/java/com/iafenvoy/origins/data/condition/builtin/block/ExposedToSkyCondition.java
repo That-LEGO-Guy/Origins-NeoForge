@@ -11,12 +11,8 @@ public enum ExposedToSkyCondition implements BlockCondition {
 	public static final MapCodec<ExposedToSkyCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return level.canSeeSky(pos);
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return level.canSeeSky(pos); }
 }

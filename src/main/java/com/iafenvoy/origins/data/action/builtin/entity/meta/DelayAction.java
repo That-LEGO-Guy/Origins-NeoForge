@@ -15,12 +15,8 @@ public record DelayAction(EntityAction action, int ticks) implements EntityActio
 	).apply(i, DelayAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		Timeout.create(this.ticks, () -> this.action.execute(source));
-	}
+	public void execute(@NotNull Entity source) { Timeout.create(this.ticks, () -> this.action.execute(source)); }
 }

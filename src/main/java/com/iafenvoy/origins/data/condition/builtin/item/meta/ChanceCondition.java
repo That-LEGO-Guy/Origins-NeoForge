@@ -14,12 +14,8 @@ public record ChanceCondition(double chance) implements ItemCondition {
 	).apply(i, ChanceCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-		return Math.random() < this.chance;
-	}
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) { return Math.random() < this.chance; }
 }

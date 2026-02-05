@@ -13,12 +13,8 @@ public record TargetConditionCondition(EntityCondition condition) implements BiE
 	).apply(i, TargetConditionCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return this.condition.test(target);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return this.condition.test(target); }
 }

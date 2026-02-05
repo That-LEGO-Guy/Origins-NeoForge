@@ -32,29 +32,17 @@ public record Origin(List<Holder<Power>> powers, Optional<ItemStack> icon, boole
 	public static final StreamCodec<RegistryFriendlyByteBuf, Holder<Origin>> STREAM_CODEC = ByteBufCodecs.holderRegistry(OriginRegistries.ORIGIN_KEY);
 	public static final Origin EMPTY = special(null, Impact.NONE, 0);
 
-	public static Origin special(@Nullable ItemStack icon, Impact impact, int order) {
-		return new Origin(List.of(), Optional.ofNullable(icon), true, order, impact, List.of());
-	}
+	public static Origin special(@Nullable ItemStack icon, Impact impact, int order) { return new Origin(List.of(), Optional.ofNullable(icon), true, order, impact, List.of()); }
 
-	public boolean choosable() {
-		return !this.unchoosable;
-	}
+	public boolean choosable() { return !this.unchoosable; }
 
-	public static MutableComponent getName(Holder<Origin> origin) {
-		return getName(RLHelper.id(origin));
-	}
+	public static MutableComponent getName(Holder<Origin> origin) { return getName(RLHelper.id(origin)); }
 
-	public static MutableComponent getName(ResourceLocation id) {
-		return Component.translatable(id.toLanguageKey("origin", "name"));
-	}
+	public static MutableComponent getName(ResourceLocation id) { return Component.translatable(id.toLanguageKey("origin", "name")); }
 
-	public static MutableComponent getDescription(Holder<Origin> origin) {
-		return getDescription(RLHelper.id(origin));
-	}
+	public static MutableComponent getDescription(Holder<Origin> origin) { return getDescription(RLHelper.id(origin)); }
 
-	public static MutableComponent getDescription(ResourceLocation id) {
-		return Component.translatable(id.toLanguageKey("origin", "description"));
-	}
+	public static MutableComponent getDescription(ResourceLocation id) { return Component.translatable(id.toLanguageKey("origin", "description")); }
 
 	public record Upgrade(ResourceLocation condition, ResourceLocation origin, Optional<String> announcement) {
 		public static final Codec<Upgrade> CODEC = RecordCodecBuilder.create(i -> i.group(

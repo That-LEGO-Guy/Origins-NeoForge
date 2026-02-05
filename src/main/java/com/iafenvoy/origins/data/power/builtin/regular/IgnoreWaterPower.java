@@ -15,9 +15,7 @@ public enum IgnoreWaterPower implements Power {
 	public static final MapCodec<IgnoreWaterPower> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent
 	public static void ignoreWater(IgnoreWaterEvent event) {

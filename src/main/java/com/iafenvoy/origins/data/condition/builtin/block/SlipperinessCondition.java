@@ -16,12 +16,8 @@ public record SlipperinessCondition(Comparison comparison, double compareTo) imp
 	).apply(i, SlipperinessCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return this.comparison.compare(level.getBlockState(pos).getBlock().getFriction(), this.compareTo);
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return this.comparison.compare(level.getBlockState(pos).getBlock().getFriction(), this.compareTo); }
 }

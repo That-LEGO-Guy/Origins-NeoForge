@@ -12,9 +12,7 @@ public enum TameAction implements BiEntityAction {
 	public static final MapCodec<TameAction> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source, @NotNull Entity target) {

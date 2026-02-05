@@ -10,12 +10,8 @@ public enum InRainCondition implements EntityCondition {
 	public static final MapCodec<InRainCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity.isInRain();
-	}
+	public boolean test(@NotNull Entity entity) { return entity.isInRain(); }
 }

@@ -23,12 +23,8 @@ public record PlaySoundAction(SoundEvent sound, Optional<SoundSource> category, 
 	).apply(i, PlaySoundAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		source.level().playSound(null, source.getX(), source.getY(), source.getZ(), this.sound, this.category.orElse(source.getSoundSource()), this.volume, this.pitch);
-	}
+	public void execute(@NotNull Entity source) { source.level().playSound(null, source.getX(), source.getY(), source.getZ(), this.sound, this.category.orElse(source.getSoundSource()), this.volume, this.pitch); }
 }

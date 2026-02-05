@@ -27,7 +27,5 @@ public final class OriginsKeyMappings {
 	}
 
 	@SubscribeEvent
-	public static void clientTick(ClientTickEvent.Post event) {
-		if (VIEW_ORIGIN.consumeClick()) Minecraft.getInstance().setScreen(new ViewOriginScreen());
-	}
+	public static void clientTick(ClientTickEvent.Post event) { if (VIEW_ORIGIN.consumeClick()) Minecraft.getInstance().setScreen(new ViewOriginScreen()); }
 }

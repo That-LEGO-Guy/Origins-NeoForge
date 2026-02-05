@@ -15,12 +15,8 @@ public record InTagCondition(TagKey<DamageType> tag) implements DamageCondition 
 	).apply(i, InTagCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull DamageSource source, float amount) {
-		return source.is(this.tag);
-	}
+	public boolean test(@NotNull DamageSource source, float amount) { return source.is(this.tag); }
 }

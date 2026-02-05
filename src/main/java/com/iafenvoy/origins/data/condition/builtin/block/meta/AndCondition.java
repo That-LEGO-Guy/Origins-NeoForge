@@ -15,12 +15,8 @@ public record AndCondition(List<BlockCondition> conditions) implements BlockCond
 	).apply(i, AndCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return this.conditions.stream().allMatch(x -> x.test(level, pos));
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return this.conditions.stream().allMatch(x -> x.test(level, pos)); }
 }

@@ -12,12 +12,8 @@ public record NotCondition(EntityCondition condition) implements EntityCondition
 	).apply(i, NotCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return !this.condition.test(entity);
-	}
+	public boolean test(@NotNull Entity entity) { return !this.condition.test(entity); }
 }

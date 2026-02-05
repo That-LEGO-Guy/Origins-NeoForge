@@ -26,27 +26,15 @@ public enum Impact {
 		this.spriteId = spriteId;
 	}
 
-	public ResourceLocation getSpriteId() {
-		return this.spriteId;
-	}
+	public ResourceLocation getSpriteId() { return this.spriteId; }
 
-	public int getImpactValue() {
-		return this.impactValue;
-	}
+	public int getImpactValue() { return this.impactValue; }
 
-	public String getTranslationKey() {
-		return this.translationKey;
-	}
+	public String getTranslationKey() { return this.translationKey; }
 
-	public ChatFormatting getTextStyle() {
-		return this.textStyle;
-	}
+	public ChatFormatting getTextStyle() { return this.textStyle; }
 
-	public MutableComponent getTextComponent() {
-		return Component.translatable(this.getTranslationKey()).withStyle(this.getTextStyle());
-	}
+	public MutableComponent getTextComponent() { return Component.translatable(this.getTranslationKey()).withStyle(this.getTextStyle()); }
 
-	public static Impact getByValue(int impactValue) {
-		return Impact.values()[impactValue];
-	}
+	public static Impact getByValue(int impactValue) { return Impact.values()[impactValue]; }
 }

@@ -13,12 +13,8 @@ public record ChanceCondition(double chance) implements DamageCondition {
 	).apply(i, ChanceCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends DamageCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends DamageCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull DamageSource source, float amount) {
-		return Math.random() < this.chance;
-	}
+	public boolean test(@NotNull DamageSource source, float amount) { return Math.random() < this.chance; }
 }

@@ -25,7 +25,5 @@ public record ModifyVelocityPower(Set<Direction.AxisDirection> axes) implements 
 //	).apply(instance, ModifyVelocityConfiguration::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

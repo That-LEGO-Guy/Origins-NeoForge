@@ -26,9 +26,7 @@ public record ModifyFallingPower(double velocity,boolean takeFallDamage) impleme
 //			ListConfiguration.MODIFIER_CODEC.forGetter(ModifyFallingConfiguration::modifiers)
 //	).apply(instance, ModifyFallingConfiguration::new));
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	public static double apply(Entity entity, double originalValue) {
 		if (!(entity instanceof LivingEntity living))

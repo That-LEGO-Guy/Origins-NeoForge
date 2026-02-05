@@ -10,12 +10,8 @@ public enum DismountAction implements EntityAction {
 	public static final MapCodec<DismountAction> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		source.stopRiding();
-	}
+	public void execute(@NotNull Entity source) { source.stopRiding(); }
 }

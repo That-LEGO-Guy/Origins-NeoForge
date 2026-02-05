@@ -16,9 +16,7 @@ public enum EnderChestAction implements EntityAction {
 	private static final Component TITLE = Component.translatable("container.enderchest");
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

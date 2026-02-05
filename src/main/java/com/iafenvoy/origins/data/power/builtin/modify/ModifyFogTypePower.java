@@ -19,9 +19,7 @@ public record ModifyFogTypePower(FogType to,Optional<FogType> from) implements P
 	).apply(i, ModifyFogTypePower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 //	public static Optional<FogType> tryReplace(Entity entity, FogType original) {
 //		return PowerContainer.getPowers(entity, MODIFY_CAMERA_SUBMERSION.get()).stream().flatMap(x -> x.value().getFactory().tryReplace(x.value(), entity, original).stream()).findFirst();

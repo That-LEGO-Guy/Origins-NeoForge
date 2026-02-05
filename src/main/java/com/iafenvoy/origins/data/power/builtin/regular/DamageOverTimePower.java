@@ -39,33 +39,19 @@ public class DamageOverTimePower extends IntervalPower {
 	}
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@Override
-	public void intervalTick(@NotNull Entity entity) {
-		entity.hurt(new DamageSource(this.damageType), entity.level().getDifficulty() == Difficulty.EASY ? this.damageEasy : this.damage);
-	}
+	public void intervalTick(@NotNull Entity entity) { entity.hurt(new DamageSource(this.damageType), entity.level().getDifficulty() == Difficulty.EASY ? this.damageEasy : this.damage); }
 
 	@Override
-	public int getInterval() {
-		return this.interval;
-	}
+	public int getInterval() { return this.interval; }
 
-	public Optional<Integer> getOnSetDelay() {
-		return this.onSetDelay;
-	}
+	public Optional<Integer> getOnSetDelay() { return this.onSetDelay; }
 
-	public float getDamage() {
-		return this.damage;
-	}
+	public float getDamage() { return this.damage; }
 
-	public Optional<Float> getDamageEasy() {
-		return Optional.of(this.damageEasy);
-	}
+	public Optional<Float> getDamageEasy() { return Optional.of(this.damageEasy); }
 
-	public Holder<DamageType> getDamageType() {
-		return this.damageType;
-	}
+	public Holder<DamageType> getDamageType() { return this.damageType; }
 }

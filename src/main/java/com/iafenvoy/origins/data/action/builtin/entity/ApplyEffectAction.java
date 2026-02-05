@@ -17,9 +17,7 @@ public record ApplyEffectAction(List<MobEffectInstance> effect) implements Entit
 	).apply(i, ApplyEffectAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

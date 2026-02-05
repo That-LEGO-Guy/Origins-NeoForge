@@ -11,12 +11,8 @@ public enum EmptyCondition implements ItemCondition {
 	public static final MapCodec<EmptyCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends ItemCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-		return stack.isEmpty();
-	}
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) { return stack.isEmpty(); }
 }

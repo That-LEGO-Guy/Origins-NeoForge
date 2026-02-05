@@ -7,7 +7,5 @@ public class EmptyPower implements Power {
 	public static final MapCodec<EmptyPower> CODEC = MapCodec.unit(EmptyPower::new);
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

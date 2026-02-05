@@ -24,9 +24,7 @@ public record StandOnFluidPower(TagKey<Fluid> fluid, EntityCondition condition) 
 	).apply(i, StandOnFluidPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent
 	public static void handleStandOnFluid(CanStandOnFluidEvent event) {

@@ -18,12 +18,8 @@ public record DamageTargetAction(Holder<DamageType> damageType, float amount) im
 	).apply(i, DamageTargetAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source, @NotNull Entity target) {
-		target.hurt(new DamageSource(this.damageType, source), this.amount);
-	}
+	public void execute(@NotNull Entity source, @NotNull Entity target) { target.hurt(new DamageSource(this.damageType, source), this.amount); }
 }

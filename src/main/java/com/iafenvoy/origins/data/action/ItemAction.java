@@ -13,9 +13,7 @@ import java.util.function.Function;
 public interface ItemAction {
 	Codec<ItemAction> CODEC = DefaultedCodec.registryDispatch(ActionRegistries.ITEM_ACTION, ItemAction::codec, Function.identity(), () -> NoOpAction.INSTANCE);
 
-	static MapCodec<ItemAction> optionalCodec(String name) {
-		return CODEC.optionalFieldOf(name, NoOpAction.INSTANCE);
-	}
+	static MapCodec<ItemAction> optionalCodec(String name) { return CODEC.optionalFieldOf(name, NoOpAction.INSTANCE); }
 
 	@NotNull
 	MapCodec<? extends ItemAction> codec();

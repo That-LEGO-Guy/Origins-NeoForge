@@ -13,12 +13,8 @@ public record ChanceCondition(double chance) implements EntityCondition {
 	).apply(i, ChanceCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return Math.random() < this.chance;
-	}
+	public boolean test(@NotNull Entity entity) { return Math.random() < this.chance; }
 }

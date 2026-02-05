@@ -13,9 +13,7 @@ public record BothCondition(EntityCondition condition) implements BiEntityCondit
 	).apply(i, BothCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity source, @NotNull Entity target) {

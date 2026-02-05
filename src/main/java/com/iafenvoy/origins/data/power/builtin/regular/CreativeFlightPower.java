@@ -12,17 +12,11 @@ public enum CreativeFlightPower implements Power {
 	public static final MapCodec<CreativeFlightPower> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@Override
-	public void grant(@NotNull Entity entity) {
-		if (entity instanceof Player player) player.getAbilities().mayfly = true;
-	}
+	public void grant(@NotNull Entity entity) { if (entity instanceof Player player) player.getAbilities().mayfly = true; }
 
 	@Override
-	public void revoke(@NotNull Entity entity) {
-		if (entity instanceof Player player) player.getAbilities().mayfly = false;
-	}
+	public void revoke(@NotNull Entity entity) { if (entity instanceof Player player) player.getAbilities().mayfly = false; }
 }

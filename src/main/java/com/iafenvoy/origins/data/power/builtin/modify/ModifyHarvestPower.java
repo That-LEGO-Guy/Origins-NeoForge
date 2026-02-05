@@ -25,9 +25,7 @@ public record ModifyHarvestPower(BlockCondition blockCondition,boolean allow) im
 //).apply(instance, ModifyHarvestConfiguration::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	// TODO
 //
@@ -39,11 +37,7 @@ public record ModifyHarvestPower(BlockCondition blockCondition,boolean allow) im
 //	}
 
 
-	public boolean doesApply(Level level, BlockPos pos) {
-		return blockCondition().test(level, pos);
-	}
+	public boolean doesApply(Level level, BlockPos pos) { return blockCondition().test(level, pos); }
 
-	public boolean isHarvestAllowed() {
-		return allow();
-	}
+	public boolean isHarvestAllowed() { return allow(); }
 }

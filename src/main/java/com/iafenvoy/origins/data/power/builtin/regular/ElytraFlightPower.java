@@ -24,9 +24,7 @@ public record ElytraFlightPower(boolean renderElytra, Optional<ResourceLocation>
 	private static final ResourceLocation ELYTRA_TEXTURE = ResourceLocation.withDefaultNamespace("textures/entity/elytra.png");
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent//FIXME::Cannot fall flying correctly
 	public static void enableElytraFly(CanFlyWithoutElytraEvent event) {

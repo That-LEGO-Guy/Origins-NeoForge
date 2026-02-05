@@ -10,12 +10,8 @@ public enum StillCondition implements FluidCondition {
 	public static final MapCodec<StillCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends FluidCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends FluidCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull FluidState state) {
-		return state.isSource();
-	}
+	public boolean test(@NotNull FluidState state) { return state.isSource(); }
 }

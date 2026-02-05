@@ -23,12 +23,8 @@ public record ModifyStatusEffectPower(List<Holder<MobEffect>> effects) implement
 //	).apply(instance, ModifyStatusEffectConfiguration::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 
-	public static boolean doesApply(ModifyStatusEffectPower power, MobEffect effect) {
-		return power.effects().isEmpty() || power.effects().contains(Holder.direct(effect));
-	}
+	public static boolean doesApply(ModifyStatusEffectPower power, MobEffect effect) { return power.effects().isEmpty() || power.effects().contains(Holder.direct(effect)); }
 }

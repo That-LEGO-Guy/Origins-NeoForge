@@ -12,7 +12,5 @@ public class CanStandOnFluidEvent extends EntityResultedEvent<LivingEntity> {
 		this.fluid = fluid;
 	}
 
-	public FluidState getFluid() {
-		return this.fluid;
-	}
+	public FluidState getFluid() { return this.fluid; }
 }

@@ -54,13 +54,9 @@ public final class EntityOriginAttachment {
 		this.refreshPowerMap();
 	}
 
-	public boolean isSelecting() {
-		return this.selecting;
-	}
+	public boolean isSelecting() { return this.selecting; }
 
-	public void setSelecting(boolean selecting) {
-		this.selecting = selecting;
-	}
+	public void setSelecting(boolean selecting) { this.selecting = selecting; }
 
 	public void setOrigin(@NotNull Holder<Layer> layer, @NotNull Holder<Origin> origin, @NotNull Entity entity) {
 		this.clearOrigin(layer, entity);
@@ -72,9 +68,7 @@ public final class EntityOriginAttachment {
 		executeOnPowers(origin, p -> p.grant(entity));
 	}
 
-	public void clearOrigin(@NotNull Holder<Layer> layer, @NotNull Entity entity) {
-		executeOnPowers(this.origins.remove(layer), p -> p.revoke(entity));
-	}
+	public void clearOrigin(@NotNull Holder<Layer> layer, @NotNull Entity entity) { executeOnPowers(this.origins.remove(layer), p -> p.revoke(entity)); }
 
 	public void refreshPowerMap() {
 		this.powerMap.clear();
@@ -85,17 +79,11 @@ public final class EntityOriginAttachment {
 				this.entitySetPowers.add(entitySetPower);
 	}
 
-	public void tick(@NotNull Entity entity) {
-		this.origins.values().forEach(o -> executeOnPowers(o, p -> p.tick(entity)));
-	}
+	public void tick(@NotNull Entity entity) { this.origins.values().forEach(o -> executeOnPowers(o, p -> p.tick(entity))); }
 
-	Map<Holder<Layer>, Holder<Origin>> getOrigins() {
-		return this.origins;
-	}
+	Map<Holder<Layer>, Holder<Origin>> getOrigins() { return this.origins; }
 
-	Stream<EntitySetPower> streamEntitySetPowers(ResourceLocation id, RegistryAccess access) {
-		return this.entitySetPowers.stream().filter(x -> x.getId(access).equals(id));
-	}
+	Stream<EntitySetPower> streamEntitySetPowers(ResourceLocation id, RegistryAccess access) { return this.entitySetPowers.stream().filter(x -> x.getId(access).equals(id)); }
 
 	@NotNull
 	public <T extends Power> List<T> getPowers(ResourceLocation id, Class<T> clazz) {
@@ -110,9 +98,7 @@ public final class EntityOriginAttachment {
 		return this.origins.containsKey(layer) && this.origins.get(layer).value() != Origin.EMPTY;
 	}
 
-	public void sync(Entity entity) {
-		entity.syncData(OriginsAttachments.ENTITY_ORIGIN);
-	}
+	public void sync(Entity entity) { entity.syncData(OriginsAttachments.ENTITY_ORIGIN); }
 
 	public boolean randomOrigin(Holder<Layer> layer, Entity entity) {
 		List<Holder<Origin>> available = layer.value().collectRandomizableOrigins(entity.registryAccess()).toList();
@@ -143,21 +129,13 @@ public final class EntityOriginAttachment {
 		return true;
 	}
 
-	private static void executeOnPowers(@Nullable Holder<Origin> origin, Consumer<Power> consumer) {
-		if (origin != null) origin.value().powers().stream().map(Holder::value).forEach(consumer);
-	}
+	private static void executeOnPowers(@Nullable Holder<Origin> origin, Consumer<Power> consumer) { if (origin != null) origin.value().powers().stream().map(Holder::value).forEach(consumer); }
 
-	public static EntityOriginAttachment get(Entity entity) {
-		return entity.getData(OriginsAttachments.ENTITY_ORIGIN);
-	}
+	public static EntityOriginAttachment get(Entity entity) { return entity.getData(OriginsAttachments.ENTITY_ORIGIN); }
 
 	@SubscribeEvent
-	public static void refreshPowersWhenReload(OnDatapackSyncEvent event) {
-		event.getRelevantPlayers().map(EntityOriginAttachment::get).forEach(EntityOriginAttachment::refreshPowerMap);
-	}
+	public static void refreshPowersWhenReload(OnDatapackSyncEvent event) { event.getRelevantPlayers().map(EntityOriginAttachment::get).forEach(EntityOriginAttachment::refreshPowerMap); }
 
 	@SubscribeEvent
-	public static void onEntityTick(EntityTickEvent.Post event) {
-		EntityOriginAttachment.get(event.getEntity()).tick(event.getEntity());
-	}
+	public static void onEntityTick(EntityTickEvent.Post event) { EntityOriginAttachment.get(event.getEntity()).tick(event.getEntity()); }
 }

@@ -14,12 +14,8 @@ public record AndCondition(List<BiEntityCondition> conditions) implements BiEnti
 	).apply(i, AndCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return this.conditions.stream().allMatch(x -> x.test(source, target));
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return this.conditions.stream().allMatch(x -> x.test(source, target)); }
 }

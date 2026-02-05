@@ -20,9 +20,7 @@ import java.util.Optional;
 public class ElytraPowerLayer<T extends LivingEntity, M extends EntityModel<T> & HeadedModel> extends ElytraLayer<T, M> {
 	private Optional<ResourceLocation> textureCache = Optional.empty();
 
-	public ElytraPowerLayer(RenderLayerParent<T, M> renderer, EntityModelSet modelSet) {
-		super(renderer, modelSet);
-	}
+	public ElytraPowerLayer(RenderLayerParent<T, M> renderer, EntityModelSet modelSet) { super(renderer, modelSet); }
 
 	@Override
 	public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource buffer, int packedLight, @NotNull T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -31,9 +29,7 @@ public class ElytraPowerLayer<T extends LivingEntity, M extends EntityModel<T> &
 	}
 
 	@Override
-	public @NotNull ResourceLocation getElytraTexture(@NotNull ItemStack stack, @NotNull T entity) {
-		return this.textureCache.orElse(super.getElytraTexture(stack, entity));
-	}
+	public @NotNull ResourceLocation getElytraTexture(@NotNull ItemStack stack, @NotNull T entity) { return this.textureCache.orElse(super.getElytraTexture(stack, entity)); }
 
 	@Override
 	public boolean shouldRender(@NotNull ItemStack stack, @NotNull T entity) {

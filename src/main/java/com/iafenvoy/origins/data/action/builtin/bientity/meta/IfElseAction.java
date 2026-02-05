@@ -16,9 +16,7 @@ public record IfElseAction(BiEntityCondition condition, BiEntityAction ifAction,
 	).apply(i, IfElseAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source, @NotNull Entity target) {

@@ -13,7 +13,5 @@ public record EntitySetPower(BiEntityAction actionOnAdd, BiEntityAction actionOn
 	).apply(i, EntitySetPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 }

@@ -12,9 +12,7 @@ import java.util.function.Function;
 public interface BlockCondition {
 	Codec<BlockCondition> CODEC = DefaultedCodec.registryDispatch(ConditionRegistries.BLOCK_CONDITION, BlockCondition::codec, Function.identity(), () -> AlwaysTrueCondition.INSTANCE);
 
-	static MapCodec<BlockCondition> optionalCodec(String name) {
-		return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE);
-	}
+	static MapCodec<BlockCondition> optionalCodec(String name) { return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE); }
 
 	@NotNull
 	MapCodec<? extends BlockCondition> codec();

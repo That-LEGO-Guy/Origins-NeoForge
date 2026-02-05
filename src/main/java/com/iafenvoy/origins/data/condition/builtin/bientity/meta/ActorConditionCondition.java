@@ -13,12 +13,8 @@ public record ActorConditionCondition(EntityCondition condition) implements BiEn
 	).apply(i, ActorConditionCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return this.condition.test(source);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return this.condition.test(source); }
 }

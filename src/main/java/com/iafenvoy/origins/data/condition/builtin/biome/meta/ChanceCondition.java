@@ -15,12 +15,8 @@ public record ChanceCondition(double chance) implements BiomeCondition {
 	).apply(i, ChanceCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiomeCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiomeCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
-		return Math.random() < this.chance;
-	}
+	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) { return Math.random() < this.chance; }
 }

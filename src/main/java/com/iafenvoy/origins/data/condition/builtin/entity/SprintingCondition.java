@@ -10,12 +10,8 @@ public enum SprintingCondition implements EntityCondition {
 	public static final MapCodec<SprintingCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity.isSprinting();
-	}
+	public boolean test(@NotNull Entity entity) { return entity.isSprinting(); }
 }

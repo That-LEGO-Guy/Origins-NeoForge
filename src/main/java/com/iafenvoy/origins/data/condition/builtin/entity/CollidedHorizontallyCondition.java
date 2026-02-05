@@ -10,12 +10,8 @@ public enum CollidedHorizontallyCondition implements EntityCondition {
 	public static final MapCodec<CollidedHorizontallyCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity.horizontalCollision;
-	}
+	public boolean test(@NotNull Entity entity) { return entity.horizontalCollision; }
 }

@@ -14,12 +14,8 @@ public record AndAction(List<BiEntityAction> actions) implements BiEntityAction 
 	).apply(i, AndAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source, @NotNull Entity target) {
-		this.actions.forEach(x -> x.execute(source, target));
-	}
+	public void execute(@NotNull Entity source, @NotNull Entity target) { this.actions.forEach(x -> x.execute(source, target)); }
 }

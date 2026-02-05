@@ -17,12 +17,8 @@ public record DelayAction(BlockAction action, int ticks) implements BlockAction 
 	).apply(i, DelayAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-		Timeout.create(this.ticks, () -> this.action.execute(level, pos, direction));
-	}
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) { Timeout.create(this.ticks, () -> this.action.execute(level, pos, direction)); }
 }

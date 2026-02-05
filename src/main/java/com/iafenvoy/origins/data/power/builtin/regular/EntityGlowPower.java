@@ -29,9 +29,7 @@ public record EntityGlowPower(EntityCondition entityCondition, BiEntityCondition
 	).apply(i, EntityGlowPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@ApiStatus.Internal
 	@EventBusSubscriber(Dist.CLIENT)

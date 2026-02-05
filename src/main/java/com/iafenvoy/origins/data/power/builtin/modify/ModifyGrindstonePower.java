@@ -53,9 +53,7 @@ public record ModifyGrindstonePower(ItemCondition topItemCondition, ItemConditio
 //			ExtraCodecs.strictOptionalField(ConfiguredModifier.CODEC, "xp_modifier").forGetter(ModifyGrindstoneConfiguration::experienceModifier)
 //	).apply(instance, ModifyGrindstoneConfiguration::new));
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	public void tryExecute(ModifyGrindstonePower power, Entity entity, ItemStack itemStack, Optional<BlockPos> pos) {
 		power.lateItemAction().execute(entity.level(),entity, itemStack);
@@ -70,7 +68,5 @@ public record ModifyGrindstonePower(ItemCondition topItemCondition, ItemConditio
 				(pos.isEmpty() || power.blockCondition().test(level, pos.get()));
 	}
 
-	public enum ResultType {
-		UNCHANGED, SPECIFIED, FROM_TOP, FROM_BOTTOM
-	}
+	public enum ResultType { UNCHANGED, SPECIFIED, FROM_TOP, FROM_BOTTOM }
 }

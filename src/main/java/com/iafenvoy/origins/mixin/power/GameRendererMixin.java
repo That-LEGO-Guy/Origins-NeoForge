@@ -11,7 +11,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(GameRenderer.class)
 public class GameRendererMixin {
 	@Inject(method = "getNightVisionScale", at = @At("HEAD"), cancellable = true)
-	private static void nightVisionPatch(LivingEntity livingEntity, float nanoTime, CallbackInfoReturnable<Float> cir) {
-		if (!livingEntity.hasEffect(MobEffects.NIGHT_VISION)) cir.setReturnValue(0F);
-	}
+	private static void nightVisionPatch(LivingEntity livingEntity, float nanoTime, CallbackInfoReturnable<Float> cir) { if (!livingEntity.hasEffect(MobEffects.NIGHT_VISION)) cir.setReturnValue(0F); }
 }

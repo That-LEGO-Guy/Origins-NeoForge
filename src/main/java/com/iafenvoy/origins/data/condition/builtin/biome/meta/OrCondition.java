@@ -16,12 +16,8 @@ public record OrCondition(List<BiomeCondition> conditions) implements BiomeCondi
 	).apply(i, OrCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiomeCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiomeCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
-		return this.conditions.stream().anyMatch(x -> x.test(biome, pos));
-	}
+	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) { return this.conditions.stream().anyMatch(x -> x.test(biome, pos)); }
 }

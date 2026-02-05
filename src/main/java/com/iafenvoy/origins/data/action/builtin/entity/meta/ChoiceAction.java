@@ -16,9 +16,7 @@ public record ChoiceAction(List<WeightedActionHolder> actions) implements Entity
 	).apply(i, ChoiceAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

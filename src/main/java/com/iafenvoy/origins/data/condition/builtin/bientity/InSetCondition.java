@@ -14,12 +14,8 @@ public record InSetCondition(ResourceLocation set) implements BiEntityCondition 
 	).apply(i, InSetCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return EntitySetAttachment.get(source).containEntity(this.set, target);
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return EntitySetAttachment.get(source).containEntity(this.set, target); }
 }

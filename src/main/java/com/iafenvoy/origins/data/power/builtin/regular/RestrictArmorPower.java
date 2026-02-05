@@ -36,9 +36,7 @@ public final class RestrictArmorPower extends IntervalPower {
 	}
 
 	@Override
-	public int getInterval() {
-		return this.tickRate;
-	}
+	public int getInterval() { return this.tickRate; }
 
 	@Override
 	public void intervalTick(@NotNull Entity entity) {
@@ -56,23 +54,13 @@ public final class RestrictArmorPower extends IntervalPower {
 	}
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
-	public ItemCondition headCondition() {
-		return this.head;
-	}
+	public ItemCondition headCondition() { return this.head; }
 
-	public ItemCondition chestCondition() {
-		return this.chest;
-	}
+	public ItemCondition chestCondition() { return this.chest; }
 
-	public ItemCondition legsCondition() {
-		return this.legs;
-	}
+	public ItemCondition legsCondition() { return this.legs; }
 
-	public ItemCondition feetCondition() {
-		return this.feet;
-	}
+	public ItemCondition feetCondition() { return this.feet; }
 }

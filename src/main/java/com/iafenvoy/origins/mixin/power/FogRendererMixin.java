@@ -30,7 +30,5 @@ public class FogRendererMixin {
 	}
 
 	@ModifyExpressionValue(method = "setupColor", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GameRenderer;getNightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F"))
-	private static float handleNightVisionStrength2(float original) {
-		return NIGHT_VISION_STRENGTH.orElse(original);
-	}
+	private static float handleNightVisionStrength2(float original) { return NIGHT_VISION_STRENGTH.orElse(original); }
 }

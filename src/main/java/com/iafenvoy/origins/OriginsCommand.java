@@ -35,28 +35,28 @@ public class OriginsCommand {
 	public static void registerCommand(RegisterCommandsEvent event) {
 		CommandBuildContext context = event.getBuildContext();
 		event.getDispatcher().register(literal(Origins.MOD_ID)
-				.requires(source -> source.hasPermission(2))
-				.then(literal("set")
-						.then(argument("targets", EntityArgument.players())
-								.then(argument("layer", ResourceArgument.resource(context, LayerRegistries.LAYER_KEY))
-										.then(argument("origin", ResourceArgument.resource(context, OriginRegistries.ORIGIN_KEY))
-												.executes(OriginsCommand::set)))))
-				.then(literal("get")
-						.then(argument("targets", EntityArgument.players())
-								.then(argument("layer", ResourceArgument.resource(context, LayerRegistries.LAYER_KEY))
-										.executes(OriginsCommand::get))))
-				.then(literal("gui")
-						.executes(ctx -> OriginsCommand.openGuiAll(ctx, true))
-						.then(argument("targets", EntityArgument.players())
-								.executes(ctx -> OriginsCommand.openGuiAll(ctx, false))
-								.then(argument("layer", ResourceArgument.resource(context, LayerRegistries.LAYER_KEY))
-										.executes(OriginsCommand::openGuiSpecific))))
-				.then(literal("random")
-						.executes(ctx -> OriginsCommand.randomAll(ctx, true))
-						.then(argument("targets", EntityArgument.players())
-								.executes(ctx -> OriginsCommand.randomAll(ctx, false))
-								.then(argument("layer", ResourceArgument.resource(context, LayerRegistries.LAYER_KEY))
-										.executes(OriginsCommand::randomSpecific))))
+			.requires(source -> source.hasPermission(2))
+			.then(literal("set")
+				.then(argument("targets", EntityArgument.players())
+					.then(argument("layer", ResourceArgument.resource(context, LayerRegistries.LAYER_KEY))
+						.then(argument("origin", ResourceArgument.resource(context, OriginRegistries.ORIGIN_KEY))
+							.executes(OriginsCommand::set)))))
+			.then(literal("get")
+				.then(argument("targets", EntityArgument.players())
+					.then(argument("layer", ResourceArgument.resource(context, LayerRegistries.LAYER_KEY))
+						.executes(OriginsCommand::get))))
+			.then(literal("gui")
+				.executes(ctx -> OriginsCommand.openGuiAll(ctx, true))
+				.then(argument("targets", EntityArgument.players())
+					.executes(ctx -> OriginsCommand.openGuiAll(ctx, false))
+					.then(argument("layer", ResourceArgument.resource(context, LayerRegistries.LAYER_KEY))
+						.executes(OriginsCommand::openGuiSpecific))))
+			.then(literal("random")
+				.executes(ctx -> OriginsCommand.randomAll(ctx, true))
+				.then(argument("targets", EntityArgument.players())
+					.executes(ctx -> OriginsCommand.randomAll(ctx, false))
+					.then(argument("layer", ResourceArgument.resource(context, LayerRegistries.LAYER_KEY))
+						.executes(OriginsCommand::randomSpecific))))
 		);
 	}
 
@@ -82,8 +82,7 @@ public class OriginsCommand {
 				source.sendSuccess(() -> Component.translatable("commands.origin.set.success.multiple", finalProcessedTargets, Layer.getName(layer), Origin.getName(origin)), true);
 			}
 		}
-		else
-			source.sendFailure(Component.translatableEscape("commands.origin.unregistered_in_layer", RLHelper.string(origin), RLHelper.string(layer)));
+		else {source.sendFailure(Component.translatableEscape("commands.origin.unregistered_in_layer", RLHelper.string(origin), RLHelper.string(layer)));}
 		return processedTargets;
 	}
 
@@ -137,10 +136,8 @@ public class OriginsCommand {
 
 		if (layer.value().allowRandom()) {
 			for (ServerPlayer target : targets) origin.set(setAndGetRandomOrigin(target, layer));
-			if (targets.size() > 1)
-				source.sendSuccess(() -> Component.translatable("commands.origin.random.success.multiple", targets.size(), Layer.getName(layer)), true);
-			else
-				source.sendSuccess(() -> Component.translatable("commands.origin.random.success.single", targets.getFirst().getName(), Origin.getName(origin.get()), Layer.getName(layer)), true);
+			if (targets.size() > 1){source.sendSuccess(() -> Component.translatable("commands.origin.random.success.multiple", targets.size(), Layer.getName(layer)), true);}
+			else {source.sendSuccess(() -> Component.translatable("commands.origin.random.success.single", targets.getFirst().getName(), Origin.getName(origin.get()), Layer.getName(layer)), true); }
 		}
 
 		return targets.size();

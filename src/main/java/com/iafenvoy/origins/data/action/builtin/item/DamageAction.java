@@ -17,9 +17,7 @@ public record DamageAction(int amount, boolean ignoreUnbreaking) implements Item
 	).apply(i, DamageAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends ItemAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends ItemAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {

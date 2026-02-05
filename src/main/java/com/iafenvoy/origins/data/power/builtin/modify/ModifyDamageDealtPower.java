@@ -39,9 +39,7 @@ public record ModifyDamageDealtPower(DamageCondition damageCondition, EntityCond
 //			ConfiguredBiEntityAction.optional("bientity_action").forGetter(ModifyDamageDealtConfiguration::biEntityAction)
 //	).apply(instance, ModifyDamageDealtConfiguration::new));
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 
 	// TODO

@@ -16,12 +16,8 @@ public record SetBlockAction(Block block) implements BlockAction {
 	).apply(i, SetBlockAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-		level.setBlock(pos, this.block.defaultBlockState(), Block.UPDATE_ALL);
-	}
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) { level.setBlock(pos, this.block.defaultBlockState(), Block.UPDATE_ALL); }
 }

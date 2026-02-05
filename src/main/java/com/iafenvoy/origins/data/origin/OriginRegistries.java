@@ -18,12 +18,8 @@ public final class OriginRegistries {
 	public static final ResourceKey<Registry<Origin>> ORIGIN_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "origin"));
 
 	@SubscribeEvent
-	public static void newDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-		event.dataPackRegistry(ORIGIN_KEY, Origin.DIRECT_CODEC, Origin.DIRECT_CODEC);
-	}
+	public static void newDatapackRegistries(DataPackRegistryEvent.NewRegistry event) { event.dataPackRegistry(ORIGIN_KEY, Origin.DIRECT_CODEC, Origin.DIRECT_CODEC); }
 
 	@SuppressWarnings("unchecked")
-	public static Stream<Holder<Layer>> streamAvailableOrigins(RegistryAccess access) {
-		return access.registryOrThrow(ORIGIN_KEY).holders().filter(x -> x.value().choosable()).map(Holder.class::cast);
-	}
+	public static Stream<Holder<Layer>> streamAvailableOrigins(RegistryAccess access) { return access.registryOrThrow(ORIGIN_KEY).holders().filter(x -> x.value().choosable()).map(Holder.class::cast); }
 }

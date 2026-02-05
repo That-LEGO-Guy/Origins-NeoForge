@@ -13,12 +13,8 @@ public record ConstantCondition(boolean value) implements FluidCondition {
 	).apply(i, ConstantCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends FluidCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends FluidCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull FluidState state) {
-		return this.value;
-	}
+	public boolean test(@NotNull FluidState state) { return this.value; }
 }

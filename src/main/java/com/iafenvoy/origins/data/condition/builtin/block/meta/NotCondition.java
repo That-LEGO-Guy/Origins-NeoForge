@@ -13,12 +13,8 @@ public record NotCondition(BlockCondition condition) implements BlockCondition {
 	).apply(i, NotCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return !this.condition.test(level, pos);
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return !this.condition.test(level, pos); }
 }

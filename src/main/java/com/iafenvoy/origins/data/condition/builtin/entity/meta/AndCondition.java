@@ -14,12 +14,8 @@ public record AndCondition(List<EntityCondition> conditions) implements EntityCo
 	).apply(i, AndCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return this.conditions.stream().allMatch(x -> x.test(entity));
-	}
+	public boolean test(@NotNull Entity entity) { return this.conditions.stream().allMatch(x -> x.test(entity)); }
 }

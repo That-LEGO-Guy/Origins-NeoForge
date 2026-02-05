@@ -11,12 +11,8 @@ public enum BlockEntityCondition implements BlockCondition {
 	public static final MapCodec<BlockEntityCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return level.getBlockEntity(pos) != null;
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return level.getBlockEntity(pos) != null; }
 }

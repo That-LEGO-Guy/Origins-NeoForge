@@ -19,9 +19,7 @@ public record AbilityCondition(PlayerAbility ability) implements EntityCondition
 	).apply(i, AbilityCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {
@@ -37,17 +35,11 @@ public record AbilityCondition(PlayerAbility ability) implements EntityCondition
 		public static final Codec<PlayerAbility> CODEC = StringRepresentable.fromValues(PlayerAbility::values);
 		private final Predicate<Abilities> getter;
 
-		PlayerAbility(Predicate<Abilities> getter) {
-			this.getter = getter;
-		}
+		PlayerAbility(Predicate<Abilities> getter) { this.getter = getter; }
 
-		public boolean get(Player player) {
-			return this.getter.test(player.getAbilities());
-		}
+		public boolean get(Player player) { return this.getter.test(player.getAbilities()); }
 
 		@Override
-		public @NotNull String getSerializedName() {
-			return this.name().toLowerCase(Locale.ROOT);
-		}
+		public @NotNull String getSerializedName() { return this.name().toLowerCase(Locale.ROOT); }
 	}
 }

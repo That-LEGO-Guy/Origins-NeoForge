@@ -26,9 +26,7 @@ public record SpawnEntityAction(EntityType<?> entityType, Optional<CompoundTag> 
 	).apply(i, SpawnEntityAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {

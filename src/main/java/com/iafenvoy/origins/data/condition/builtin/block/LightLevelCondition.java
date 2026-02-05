@@ -22,9 +22,7 @@ public record LightLevelCondition(Optional<LightLayer> lightType, Comparison com
 	).apply(i, LightLevelCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {

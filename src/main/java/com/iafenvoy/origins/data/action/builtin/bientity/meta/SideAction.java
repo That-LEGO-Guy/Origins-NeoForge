@@ -16,12 +16,8 @@ public record SideAction(BiEntityAction action, Dist side) implements BiEntityAc
 	).apply(i, SideAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source, @NotNull Entity target) {
-		if (Environment.get().getDist() == this.side) this.action.execute(source, target);
-	}
+	public void execute(@NotNull Entity source, @NotNull Entity target) { if (Environment.get().getDist() == this.side) this.action.execute(source, target); }
 }

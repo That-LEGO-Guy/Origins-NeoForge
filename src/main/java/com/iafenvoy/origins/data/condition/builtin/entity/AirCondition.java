@@ -15,12 +15,8 @@ public record AirCondition(Comparison comparison, int compareTo) implements Enti
 	).apply(i, AirCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return this.comparison.compare(entity.getAirSupply(), this.compareTo);
-	}
+	public boolean test(@NotNull Entity entity) { return this.comparison.compare(entity.getAirSupply(), this.compareTo); }
 }

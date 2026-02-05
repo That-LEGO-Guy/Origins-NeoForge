@@ -17,9 +17,7 @@ public record AddExperienceAction(Optional<Integer> points, Optional<Integer> le
 	).apply(i, AddExperienceAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

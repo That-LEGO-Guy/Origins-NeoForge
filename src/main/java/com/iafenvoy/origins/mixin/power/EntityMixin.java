@@ -18,9 +18,7 @@ import java.util.OptionalInt;
 @Mixin(Entity.class)
 public class EntityMixin {
 	@Unique
-	private Entity origins$self() {
-		return (Entity) (Object) this;
-	}
+	private Entity origins$self() { return (Entity) (Object) this; }
 
 	@Inject(method = "getTeamColor", at = @At("HEAD"), cancellable = true)
 	private void handleGlowColor(CallbackInfoReturnable<Integer> cir) {

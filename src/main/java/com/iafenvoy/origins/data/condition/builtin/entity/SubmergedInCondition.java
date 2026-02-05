@@ -16,12 +16,8 @@ public record SubmergedInCondition(Fluid fluid) implements EntityCondition {
 	).apply(i, SubmergedInCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return Objects.equals(entity.getEyeInFluidType(), this.fluid.getFluidType());
-	}
+	public boolean test(@NotNull Entity entity) { return Objects.equals(entity.getEyeInFluidType(), this.fluid.getFluidType()); }
 }

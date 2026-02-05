@@ -21,9 +21,7 @@ public record RegionApplyAction(double radius, Shape shape, BiEntityAction biEnt
 	).apply(i, RegionApplyAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

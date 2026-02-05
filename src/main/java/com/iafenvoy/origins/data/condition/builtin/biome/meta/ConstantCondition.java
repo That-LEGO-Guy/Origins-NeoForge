@@ -15,12 +15,8 @@ public record ConstantCondition(boolean value) implements BiomeCondition {
 	).apply(i, ConstantCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiomeCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiomeCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
-		return this.value;
-	}
+	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) { return this.value; }
 }

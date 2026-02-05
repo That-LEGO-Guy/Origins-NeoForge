@@ -23,9 +23,7 @@ public record ScoreboardCondition(Optional<String> name, String objective, Compa
 	).apply(i, ScoreboardCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

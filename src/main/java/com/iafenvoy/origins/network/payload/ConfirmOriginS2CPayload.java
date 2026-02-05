@@ -19,7 +19,5 @@ public record ConfirmOriginS2CPayload(Holder<Layer> layer, Holder<Origin> origin
 	);
 
 	@Override
-	public @NotNull Type<? extends CustomPacketPayload> type() {
-		return TYPE;
-	}
+	public @NotNull Type<? extends CustomPacketPayload> type() { return TYPE; }
 }

@@ -10,12 +10,8 @@ public enum InvisibleCondition implements EntityCondition {
 	public static final MapCodec<InvisibleCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return entity.isInvisible();
-	}
+	public boolean test(@NotNull Entity entity) { return entity.isInvisible(); }
 }

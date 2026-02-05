@@ -80,9 +80,7 @@ public class OriginDisplayScreen extends Screen {
 		this.scrollPos = 0;
 	}
 
-	public void setRandomOriginText(Component text) {
-		this.randomOriginText = text;
-	}
+	public void setRandomOriginText(Component text) { this.randomOriginText = text; }
 
 	@Override
 	protected void init() {
@@ -103,9 +101,7 @@ public class OriginDisplayScreen extends Screen {
 	}
 
 	@Override
-	public void renderTransparentBackground(GuiGraphics graphics) {
-		graphics.fillGradient(0, 0, this.width, this.height, -5, 1678774288, -2112876528);
-	}
+	public void renderTransparentBackground(GuiGraphics graphics) { graphics.fillGradient(0, 0, this.width, this.height, -5, 1678774288, -2112876528); }
 
 	@Override
 	public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
@@ -166,17 +162,11 @@ public class OriginDisplayScreen extends Screen {
 
 	}
 
-	public Holder<Origin> getCurrentOrigin() {
-		return this.origin;
-	}
+	public Holder<Origin> getCurrentOrigin() { return this.origin; }
 
-	public Holder<Layer> getCurrentLayer() {
-		return this.layer;
-	}
+	public Holder<Layer> getCurrentLayer() { return this.layer; }
 
-	public ResourceLocation getCurrentOriginId() {
-		return this.getCurrentOrigin().unwrapKey().map(ResourceKey::location).orElse(ResourceLocation.withDefaultNamespace(""));
-	}
+	public ResourceLocation getCurrentOriginId() { return this.getCurrentOrigin().unwrapKey().map(ResourceKey::location).orElse(ResourceLocation.withDefaultNamespace("")); }
 
 	protected void renderScrollbar(GuiGraphics graphics, int mouseX, int mouseY) {
 		if (this.cannotScroll()) return;
@@ -193,9 +183,7 @@ public class OriginDisplayScreen extends Screen {
 
 	}
 
-	protected boolean cannotScroll() {
-		return this.origin == null || this.currentMaxScroll <= 0;
-	}
+	protected boolean cannotScroll() { return this.origin == null || this.currentMaxScroll <= 0; }
 
 	protected boolean canDragScroll(double mouseX, double mouseY, int scrollBarY) {
 		return (mouseX >= this.guiLeft + 156 && mouseX < this.guiLeft + 156 + 6) && (mouseY >= this.guiTop + scrollBarY && mouseY < this.guiTop + scrollBarY + 27);
@@ -370,12 +358,8 @@ public class OriginDisplayScreen extends Screen {
 	}
 
 	protected record RenderedBadge(Power power, Badge badge, int x, int y) {
-		public List<ClientTooltipComponent> getTooltipComponents(Font textRenderer, int widthLimit, float delta) {
-			return this.badge.getTooltipComponents(this.power, textRenderer, widthLimit, delta);
-		}
+		public List<ClientTooltipComponent> getTooltipComponents(Font textRenderer, int widthLimit, float delta) { return this.badge.getTooltipComponents(this.power, textRenderer, widthLimit, delta); }
 
-		public boolean hasTooltip() {
-			return this.badge.hasTooltip();
-		}
+		public boolean hasTooltip() { return this.badge.hasTooltip(); }
 	}
 }

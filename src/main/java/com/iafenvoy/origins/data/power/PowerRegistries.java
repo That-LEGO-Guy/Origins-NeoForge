@@ -22,12 +22,8 @@ public final class PowerRegistries {
 	public static final ResourceKey<Registry<Power>> POWER_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "power"));
 
 	@SubscribeEvent
-	public static void newRegistries(NewRegistryEvent event) {
-		event.register(POWER_TYPE);
-	}
+	public static void newRegistries(NewRegistryEvent event) { event.register(POWER_TYPE); }
 
 	@SubscribeEvent
-	public static void newDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-		event.dataPackRegistry(POWER_KEY, Power.DIRECT_CODEC, Power.DIRECT_CODEC);
-	}
+	public static void newDatapackRegistries(DataPackRegistryEvent.NewRegistry event) { event.dataPackRegistry(POWER_KEY, Power.DIRECT_CODEC, Power.DIRECT_CODEC); }
 }

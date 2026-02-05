@@ -13,12 +13,8 @@ public record ChanceCondition(double chance) implements BiEntityCondition {
 	).apply(i, ChanceCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity source, @NotNull Entity target) {
-		return Math.random() < this.chance;
-	}
+	public boolean test(@NotNull Entity source, @NotNull Entity target) { return Math.random() < this.chance; }
 }

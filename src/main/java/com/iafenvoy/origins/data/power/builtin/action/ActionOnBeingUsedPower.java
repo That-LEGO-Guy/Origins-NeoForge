@@ -46,9 +46,7 @@ public record ActionOnBeingUsedPower(BiEntityAction biEntityAction, ItemAction h
 	).apply(i, ActionOnBeingUsedPower::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 	@SubscribeEvent
 	public static void onBeingUsed(PlayerInteractEvent.EntityInteractSpecific event) {

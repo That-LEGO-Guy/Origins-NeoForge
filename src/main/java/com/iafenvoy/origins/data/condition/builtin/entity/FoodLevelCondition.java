@@ -16,9 +16,7 @@ public record FoodLevelCondition(Comparison comparison, int compareTo) implement
 	).apply(i, FoodLevelCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

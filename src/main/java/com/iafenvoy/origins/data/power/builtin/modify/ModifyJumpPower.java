@@ -23,17 +23,13 @@ public record ModifyJumpPower(EntityAction entityAction) implements Power {
 //	).apply(instance, ModifyJumpConfiguration::new));
 
 	@Override
-	public @NotNull MapCodec<? extends Power> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends Power> codec() { return CODEC; }
 
 
 //	public static double apply(Entity player, double baseValue) {
 //		return PowerContainer.modify(player, ApoliPowers.MODIFY_JUMP.get(), baseValue, x -> true, x -> x.value().getFactory().execute(x.value(), player));
 //	}
 
-	public void execute(Entity player) {
-		entityAction().execute(player);
-	}
+	public void execute(Entity player) { entityAction().execute(player); }
 
 }

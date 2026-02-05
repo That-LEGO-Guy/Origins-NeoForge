@@ -20,9 +20,7 @@ public record InBlockAnywhereCondition(BlockCondition blockCondition, Comparison
 	).apply(i, InBlockAnywhereCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
 	public boolean test(@NotNull Entity entity) {

@@ -15,12 +15,8 @@ public record SwingHandAction(InteractionHand hand) implements EntityAction {
 	).apply(i, SwingHandAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
-	public void execute(@NotNull Entity source) {
-		if (source instanceof LivingEntity living) living.swing(this.hand, true);
-	}
+	public void execute(@NotNull Entity source) { if (source instanceof LivingEntity living) living.swing(this.hand, true); }
 }

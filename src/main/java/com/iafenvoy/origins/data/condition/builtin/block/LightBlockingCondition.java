@@ -11,12 +11,8 @@ public enum LightBlockingCondition implements BlockCondition {
 	public static final MapCodec<LightBlockingCondition> CODEC = MapCodec.unit(INSTANCE);
 
 	@Override
-	public @NotNull MapCodec<? extends BlockCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-		return level.getBlockState(pos).canOcclude();
-	}
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) { return level.getBlockState(pos).canOcclude(); }
 }

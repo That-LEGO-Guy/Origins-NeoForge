@@ -17,9 +17,7 @@ public record ChanceAction(BlockAction action, float chance, BlockAction failAct
 	).apply(i, ChanceAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends BlockAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends BlockAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {

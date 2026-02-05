@@ -28,9 +28,7 @@ public record ActionOnSetAction(ResourceLocation set, BiEntityAction biEntityAct
 	).apply(i, ActionOnSetAction::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityAction> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityAction> codec() { return CODEC; }
 
 	@Override
 	public void execute(@NotNull Entity source) {

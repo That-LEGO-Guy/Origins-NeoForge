@@ -13,12 +13,8 @@ public record ConstantCondition(boolean value) implements EntityCondition {
 	).apply(i, ConstantCondition::new));
 
 	@Override
-	public @NotNull MapCodec<? extends EntityCondition> codec() {
-		return CODEC;
-	}
+	public @NotNull MapCodec<? extends EntityCondition> codec() { return CODEC; }
 
 	@Override
-	public boolean test(@NotNull Entity entity) {
-		return this.value;
-	}
+	public boolean test(@NotNull Entity entity) { return this.value; }
 }
