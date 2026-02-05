@@ -1,12 +1,43 @@
-##### TLG attempt to mangle it into shape #####
-did my odd code formating
-
+##### TLG attempt to mangle it into shape  npp set py for folding #####
+!origins-neoforgeFR !*.png !*.bin !*.jar !*.txt !*.tsrg !*.zip !*gradle* !*.html !*.bak !*.class.* !*.class !*.webp 
+did my odd code formatting
 
 compile with 'gradlew.bat build'  look in build/lib
 
+Updating Minecraft Origins neoforge. tab indent. some things have been unfixable, admit if there is a limitation that code changes wont fix.
 
 
 
+
+
+
+{
+	has messagew that logs when player chooses origin
+	C:\Users\Ryan Ryzen\Documents\Cool code\Origins-NeoForge\src\main\java\com\iafenvoy\origins\network\ServerNetworkHandler.java
+	
+	
+	
+FIXME			problem notes from dev
+igniteForSeconds|setRemainingFireTicks|hurt		is regex OR
+
+src\main\resources\data\origins\origins\power\burn_in_daylight.json
+
+
+import net.minecraft.network.chat.Component; //ingame chat msg
+
+import com.mojang.logging.LogUtils; //import to log
+import org.slf4j.Logger;            //import to log
+
+public class MyMod {
+	private static final Logger LOGGER = LogUtils.getLogger();	// add to all classes to log
+	public void someMethod() {
+		LOGGER.info("yo thing happening with data: {}", someVariable);
+		LOGGER.warn("This is a warning!");
+		LOGGER.error("This is an error!");
+	}
+}
+
+}
 # Origins (NeoForge)
 
 **This mod is still under construction, some functions may not work properly.**

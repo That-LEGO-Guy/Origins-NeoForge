@@ -11,6 +11,8 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import org.lwjgl.glfw.GLFW;
 
+import net.minecraft.network.chat.Component; //ingame chat msg
+
 @OnlyIn(Dist.CLIENT)
 @EventBusSubscriber(Dist.CLIENT)
 public final class OriginsKeyMappings {
@@ -27,5 +29,19 @@ public final class OriginsKeyMappings {
 	}
 
 	@SubscribeEvent
-	public static void clientTick(ClientTickEvent.Post event) { if (VIEW_ORIGIN.consumeClick()) Minecraft.getInstance().setScreen(new ViewOriginScreen()); }
+	public static void clientTick(ClientTickEvent.Post event) {
+		if (VIEW_ORIGIN.consumeClick()) Minecraft.getInstance().setScreen(new ViewOriginScreen()); 
+		
+		if (PRIMARY_ACTIVE.consumeClick()) {
+			if (Minecraft.getInstance().player != null) {
+				Minecraft.getInstance().player.displayClientMessage(Component.literal("yo thing happening: PRIMARY_ACTIVE"), true);
+			}
+		}
+
+		if (SECONDARY_ACTIVE.consumeClick()) {
+			if (Minecraft.getInstance().player != null) {
+				Minecraft.getInstance().player.displayClientMessage(Component.literal("yo thing happening: SECONDARY_ACTIVE"), true);
+			}
+		}
+	}
 }

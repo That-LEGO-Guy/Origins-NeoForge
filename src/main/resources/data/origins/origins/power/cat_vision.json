@@ -1,9 +1,6 @@
-{
-	"type": "origins:night_vision",
+{	"type": "origins:night_vision",
 	"strength": 0.4,
 	"condition": {
-		"type": "origins:submerged_in",
-		"fluid": "minecraft:water",
-		"inverted": true
+		"type": "origins:submerged_in",	"fluid": "minecraft:water",	"inverted": true}
 	}
 }

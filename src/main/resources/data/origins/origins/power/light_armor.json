@@ -1,5 +1,4 @@
-{
-	"type": "origins:restrict_armor",
+{	"type": "origins:restrict_armor",
 	"head": {
 		"type": "origins:armor_value",
 		"comparison": ">",

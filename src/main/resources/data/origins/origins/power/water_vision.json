@@ -1,5 +1,4 @@
-{
-	"type": "origins:multiple",
+{	"type": "origins:multiple",
 	"toggle": {
 		"type": "origins:toggle",
 		"active_by_default": true,
@@ -14,22 +13,15 @@
 		"condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "origins:power_active",
-					"power": "*:*_toggle"
-				},
-				{
-					"type": "origins:submerged_in",
-					"fluid": "minecraft:water"
-				}
+				{	"type": "origins:power_active",	"power": "*:*_toggle"},
+				{	"type": "origins:submerged_in",	"fluid": "minecraft:water"},
 			]
 		}
 	},
 	"no_delay": {
 		"type": "origins:water_vision",
 		"condition": {
-			"type": "origins:power_active",
-			"power": "*:*_toggle"
+			"type": "origins:power_active",	"power": "*:*_toggle"
 		}
 	}
 }

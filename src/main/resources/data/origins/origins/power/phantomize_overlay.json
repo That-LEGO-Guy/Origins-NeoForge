@@ -1,5 +1,4 @@
-{
-	"type": "apoli:multiple",
+{	"type": "apoli:multiple",
 	"hidden": true,
 	"green": {
 		"type": "origins:overlay",
@@ -16,12 +15,8 @@
 		"condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "apoli:power_active",
-					"power": "origins:phantomize"
-				},
-				{
-					"type": "apoli:food_level",
+				{	"type": "apoli:power_active",	"power": "origins:phantomize"},
+				{	"type": "apoli:food_level",
 					"comparison": ">",
 					"compare_to": 10
 				}
@@ -43,17 +38,12 @@
 		"condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "apoli:power_active",
-					"power": "origins:phantomize"
-				},
-				{
-					"type": "apoli:food_level",
+				{	"type": "apoli:power_active",	"power": "origins:phantomize"},
+				{	"type": "apoli:food_level",
 					"comparison": "<=",
 					"compare_to": 10
 				},
-				{
-					"type": "apoli:food_level",
+				{	"type": "apoli:food_level",
 					"comparison": ">",
 					"compare_to": 8
 				}
@@ -75,12 +65,8 @@
 		"condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "apoli:power_active",
-					"power": "origins:phantomize"
-				},
-				{
-					"type": "apoli:food_level",
+				{	"type": "apoli:power_active",	"power": "origins:phantomize" },
+				{	"type": "apoli:food_level",
 					"comparison": "<=",
 					"compare_to": 8
 				}

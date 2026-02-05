@@ -1,5 +1,4 @@
-{
-	"type": "origins:modify_damage_taken",
+{	"type": "origins:modify_damage_taken",
 	"modifier": {
 		"amount": 0.5,
 		"operation": "multiply_base_multiplicative"

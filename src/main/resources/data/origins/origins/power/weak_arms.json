@@ -1,5 +1,4 @@
-{
-	"type": "origins:modify_break_speed",
+{	"type": "origins:modify_break_speed",
 	"modifier": {
 		"amount": -1,
 		"operation": "multiply_total_multiplicative"
@@ -7,12 +6,8 @@
 	"block_condition": {
 		"type": "origins:all_of",
 		"conditions": [
-			{
-				"type": "origins:in_tag",
-				"tag": "origins:natural_stone"
-			},
-			{
-				"type": "origins:adjacent",
+			{	"type": "origins:in_tag", "tag": "origins:natural_stone"},
+			{	"type": "origins:adjacent",
 				"adjacent_condition": {
 					"type": "origins:in_tag",
 					"tag": "origins:natural_stone"
@@ -24,7 +19,6 @@
 	},
 	"condition": {
 		"type": "origins:status_effect",
-		"effect": "minecraft:strength",
-		"inverted": true
+		"effect": "minecraft:strength",	"inverted": true}
 	}
 }

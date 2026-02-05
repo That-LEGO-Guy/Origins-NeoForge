@@ -1,5 +1,4 @@
-{
-	"type": "origins:attribute",
+{	"type": "origins:attribute",
 	"modifier": {
 		"id": "*:*",
 		"attribute": "minecraft:generic.max_health",

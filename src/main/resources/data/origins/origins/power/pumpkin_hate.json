@@ -1,15 +1,11 @@
-{
-	"type": "origins:multiple",
+{	"type": "origins:multiple",
 	"prevent_eating": {
 		"type": "origins:prevent_item_use",
 		"item_condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "origins:food"
-				},
-				{
-					"type": "origins:ingredient",
+				{	"type": "origins:food"},
+				{	"type": "origins:ingredient",
 					"ingredient": {
 						"tag": "*:pumpkin_like/food"
 					}
@@ -20,18 +16,13 @@
 	},
 	"prevent_seeing": {
 		"type": "origins:prevent_entity_render",
-		"bientity_condition": {
-			"type": "apoli:equal",
-			"inverted": true
-		},
+		"bientity_condition": {"type": "apoli:equal",	"inverted": true},
 		"entity_condition": {
 			"type": "origins:equipped_item",
 			"equipment_slot": "head",
 			"item_condition": {
 				"type": "origins:ingredient",
-				"ingredient": {
-					"tag": "*:pumpkin_like/equipment"
-				}
+				"ingredient": { "tag": "*:pumpkin_like/equipment"}
 			}
 		}
 	}

@@ -14,8 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Map;
 
-public record OriginDataHolder(Entity entity, EntityOriginAttachment data, EntitySetAttachment entitySet,
-							   RegistryAccess access) {
+public record OriginDataHolder(Entity entity, EntityOriginAttachment data, EntitySetAttachment entitySet, RegistryAccess access) {
 	public Map<Holder<Layer>, Holder<Origin>> getOrigins() { return Map.copyOf(this.data.getOrigins()); }
 
 	public Holder<Origin> getOrigin(Holder<Layer> layer) { return this.data.getOrigins().get(layer); }

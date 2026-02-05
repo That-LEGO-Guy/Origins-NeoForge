@@ -1,5 +1,4 @@
-{
-	"type": "origins:cooldown",
+{	"type": "origins:cooldown",
 	"cooldown": 120,
 	"hud_render": {
 		"sprite_location": "origins:textures/gui/resource_bar.png",

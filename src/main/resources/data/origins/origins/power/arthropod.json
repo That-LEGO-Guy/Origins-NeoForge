@@ -1,5 +1,4 @@
-{
-	"type": "origins:modify_type_tag",
+{	"type": "origins:modify_type_tag",
 	"tag": "minecraft:arthropod",
 	"hidden": true
 }

@@ -1,5 +1,4 @@
-{
-	"type": "origins:multiple",
+{	"type": "origins:multiple",
 	"underwater": {
 		"type": "origins:modify_break_speed",
 		"modifier": {
@@ -9,12 +8,8 @@
 		"condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "origins:submerged_in",
-					"fluid": "minecraft:water"
-				},
-				{
-					"type": "origins:enchantment",
+				{	"type": "origins:submerged_in",	"fluid": "minecraft:water"},
+				{	"type": "origins:enchantment",
 					"enchantment": "minecraft:aqua_affinity",
 					"comparison": "==",
 					"compare_to": 0
@@ -31,16 +26,11 @@
 		"condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "origins:fluid_height",
-					"fluid": "minecraft:water",
+				{	"type": "origins:fluid_height",	"fluid": "minecraft:water",
 					"comparison": ">",
 					"compare_to": 0
 				},
-				{
-					"type": "origins:on_block",
-					"inverted": true
-				}
+				{	"type": "origins:on_block",	"inverted": true}
 			]
 		}
 	}

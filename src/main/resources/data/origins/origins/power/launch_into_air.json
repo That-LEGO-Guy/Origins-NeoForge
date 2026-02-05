@@ -1,5 +1,4 @@
-{
-	"type": "origins:launch",
+{	"type": "origins:launch",
 	"cooldown": 600,
 	"hud_render": {
 		"sprite_location": "origins:textures/gui/resource_bar.png",

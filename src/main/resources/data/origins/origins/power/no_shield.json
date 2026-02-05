@@ -1,9 +1,6 @@
-{
-	"type": "origins:prevent_item_use",
+{	"type": "origins:prevent_item_use",
 	"item_condition": {
 		"type": "origins:ingredient",
-		"ingredient": {
-			"tag": "origins:shields"
-		}
+		"ingredient": { "tag": "origins:shields" }
 	}
 }

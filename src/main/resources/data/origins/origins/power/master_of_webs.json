@@ -1,5 +1,4 @@
-{
-	"type": "origins:multiple",
+{	"type": "origins:multiple",
 	"webbing": {
 		"type": "origins:target_action_on_hit",
 		"cooldown": 120,
@@ -11,19 +10,14 @@
 			"type": "origins:block_action_at",
 			"block_action": {
 				"type": "origins:if_else",
-				"condition": {
-					"type": "origins:replaceable"
-				},
+				"condition": { "type": "origins:replaceable" },
 				"if_action": {
 					"type": "origins:set_block",
 					"block": "origins:temporary_cobweb"
 				}
 			}
 		},
-		"condition": {
-			"type": "origins:sneaking",
-			"inverted": true
-		}
+		"condition": {"type": "origins:sneaking",	"inverted": true}
 	},
 	"no_slowdown": {
 		"type": "origins:phasing",
@@ -38,30 +32,20 @@
 		"condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "origins:in_block_anywhere",
+				{	"type": "origins:in_block_anywhere",
 					"block_condition": {
 						"type": "origins:in_tag",
 						"tag": "origins:cobwebs"
 					}
 				},
-				{
-					"type": "origins:power_active",
-					"power": "*:climbing_toggle"
-				}
+				{	"type": "origins:power_active",	"power": "*:climbing_toggle"}
 			]
 		},
 		"hold_condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "origins:power_active",
-					"power": "*:*_climbing"
-				},
-				{
-					"type": "origins:sneaking",
-					"inverted": true
-				}
+				{	"type": "origins:power_active",	"power": "*:*_climbing"},
+				{	"type": "origins:sneaking",	"inverted": true}
 			]
 		}
 	},
@@ -71,27 +55,21 @@
 			"type": "origins:in_tag",
 			"tag": "origins:cobwebs"
 		},
-		"condition": {
-			"type": "origins:sneaking",
-			"inverted": true
-		}
+		"condition": {"type": "origins:sneaking",	"inverted": true}
 	},
 	"sense": {
 		"type": "origins:entity_glow",
 		"entity_condition": {
 			"type": "origins:all_of",
 			"conditions": [
-				{
-					"type": "origins:in_block_anywhere",
+				{	"type": "origins:in_block_anywhere",
 					"block_condition": {
 						"type": "origins:in_tag",
 						"tag": "origins:cobwebs"
 					}
 				},
-				{
-					"type": "origins:in_tag",
-					"tag": "arthropod",
-					"inverted": true
+				{	"type": "origins:in_tag",
+					"tag": "arthropod",	"inverted": true}
 				}
 			]
 		}
@@ -102,16 +80,10 @@
 			"id": "origins:master_of_webs/web_crafting",
 			"type": "minecraft:crafting_shapeless",
 			"ingredients": [
-				{
-					"item": "minecraft:string"
-				},
-				{
-					"item": "minecraft:string"
-				}
+				{	"item": "minecraft:string"},
+				{	"item": "minecraft:string"}
 			],
-			"result": {
-				"id": "minecraft:cobweb"
-			}
+			"result": { "id": "minecraft:cobweb" }
 		}
 	}
 }
