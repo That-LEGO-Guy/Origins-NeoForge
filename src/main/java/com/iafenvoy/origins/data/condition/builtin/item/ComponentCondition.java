@@ -14,22 +14,22 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record ComponentCondition(DataComponentType<?> component, CompoundTag nbt) implements ItemCondition {
-    public static final MapCodec<ComponentCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BuiltInRegistries.DATA_COMPONENT_TYPE.byNameCodec().fieldOf("component").forGetter(ComponentCondition::component),
-            CompoundTag.CODEC.fieldOf("nbt").forGetter(ComponentCondition::nbt)
-    ).apply(i, ComponentCondition::new));
+	public static final MapCodec<ComponentCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BuiltInRegistries.DATA_COMPONENT_TYPE.byNameCodec().fieldOf("component").forGetter(ComponentCondition::component),
+			CompoundTag.CODEC.fieldOf("nbt").forGetter(ComponentCondition::nbt)
+	).apply(i, ComponentCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-        return NbtUtils.compareNbt(this.nbt, getNbt(this.component, stack), true);
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
+		return NbtUtils.compareNbt(this.nbt, getNbt(this.component, stack), true);
+	}
 
-    public static <T> Tag getNbt(DataComponentType<T> type, ItemStack stack) {
-        return type.codecOrThrow().encodeStart(NbtOps.INSTANCE, stack.get(type)).mapOrElse(x -> x, x -> new CompoundTag());
-    }
+	public static <T> Tag getNbt(DataComponentType<T> type, ItemStack stack) {
+		return type.codecOrThrow().encodeStart(NbtOps.INSTANCE, stack.get(type)).mapOrElse(x -> x, x -> new CompoundTag());
+	}
 }

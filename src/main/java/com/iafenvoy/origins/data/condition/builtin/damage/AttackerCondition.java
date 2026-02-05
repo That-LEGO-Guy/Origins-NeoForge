@@ -9,18 +9,18 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record AttackerCondition(EntityCondition entityCondition) implements DamageCondition {
-    public static final MapCodec<AttackerCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EntityCondition.CODEC.fieldOf("entity_condition").forGetter(AttackerCondition::entityCondition)
-    ).apply(i, AttackerCondition::new));
+	public static final MapCodec<AttackerCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EntityCondition.CODEC.fieldOf("entity_condition").forGetter(AttackerCondition::entityCondition)
+	).apply(i, AttackerCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends DamageCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends DamageCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull DamageSource source, float amount) {
-        Entity attacker = source.getEntity();
-        return attacker != null && this.entityCondition.test(attacker);
-    }
+	@Override
+	public boolean test(@NotNull DamageSource source, float amount) {
+		Entity attacker = source.getEntity();
+		return attacker != null && this.entityCondition.test(attacker);
+	}
 }

@@ -15,32 +15,32 @@ import java.util.Optional;
 
 public record ModifyFluidRenderPower(BlockCondition blockCondition, FluidCondition fluidCondition, Optional<FluidState> fluid) implements Power {
 
-    public static final MapCodec<ModifyFluidRenderPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockCondition.optionalCodec("block_condition").forGetter(ModifyFluidRenderPower::blockCondition),
-            FluidCondition.optionalCodec("fluid_condition").forGetter(ModifyFluidRenderPower::fluidCondition),
-            FluidState.CODEC.optionalFieldOf("fluid").forGetter( p -> p.fluid)
-    ).apply(i, ModifyFluidRenderPower::new));
-    
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	public static final MapCodec<ModifyFluidRenderPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockCondition.optionalCodec("block_condition").forGetter(ModifyFluidRenderPower::blockCondition),
+			FluidCondition.optionalCodec("fluid_condition").forGetter(ModifyFluidRenderPower::fluidCondition),
+			FluidState.CODEC.optionalFieldOf("fluid").forGetter( p -> p.fluid)
+	).apply(i, ModifyFluidRenderPower::new));
+	
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
 
-    public boolean test(Level world, BlockPos pos, FluidState fluid) {
-        return blockCondition().test( world, pos) && fluidCondition().test(fluid);
-    }
+	public boolean test(Level world, BlockPos pos, FluidState fluid) {
+		return blockCondition().test( world, pos) && fluidCondition().test(fluid);
+	}
 
-    @Override
-    public void grant(@NotNull Entity entity) {
-        // TODO
-//        ApoliClient.shouldReloadWorldRenderer = true;
-    }
+	@Override
+	public void grant(@NotNull Entity entity) {
+		// TODO
+//		ApoliClient.shouldReloadWorldRenderer = true;
+	}
 
-    @Override
-    public void revoke(@NotNull Entity entity) {
-        // TODO
-//        ApoliClient.shouldReloadWorldRenderer = true;
-    }
+	@Override
+	public void revoke(@NotNull Entity entity) {
+		// TODO
+//		ApoliClient.shouldReloadWorldRenderer = true;
+	}
 
 }

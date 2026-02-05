@@ -9,17 +9,17 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record IngredientCondition(Ingredient ingredient) implements ItemCondition {
-    public static final MapCodec<IngredientCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Ingredient.CODEC.fieldOf("ingredient").forGetter(IngredientCondition::ingredient)
-    ).apply(i, IngredientCondition::new));
+	public static final MapCodec<IngredientCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Ingredient.CODEC.fieldOf("ingredient").forGetter(IngredientCondition::ingredient)
+	).apply(i, IngredientCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-        return this.ingredient.test(stack);
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
+		return this.ingredient.test(stack);
+	}
 }

@@ -9,14 +9,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 public interface BiEntityCondition {
-    Codec<BiEntityCondition> CODEC = DefaultedCodec.registryDispatch(ConditionRegistries.BI_ENTITY_CONDITION, BiEntityCondition::codec, Function.identity(), () -> AlwaysTrueCondition.INSTANCE);
+	Codec<BiEntityCondition> CODEC = DefaultedCodec.registryDispatch(ConditionRegistries.BI_ENTITY_CONDITION, BiEntityCondition::codec, Function.identity(), () -> AlwaysTrueCondition.INSTANCE);
 
-    static MapCodec<BiEntityCondition> optionalCodec(String name) {
-        return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE);
-    }
+	static MapCodec<BiEntityCondition> optionalCodec(String name) {
+		return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE);
+	}
 
-    @NotNull
-    MapCodec<? extends BiEntityCondition> codec();
+	@NotNull
+	MapCodec<? extends BiEntityCondition> codec();
 
-    boolean test(@NotNull Entity source, @NotNull Entity target);
+	boolean test(@NotNull Entity source, @NotNull Entity target);
 }

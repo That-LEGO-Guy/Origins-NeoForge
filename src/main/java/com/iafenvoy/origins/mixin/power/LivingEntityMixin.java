@@ -32,61 +32,61 @@ import java.util.Optional;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
-    @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    @Shadow
-    private Optional<BlockPos> lastClimbablePos;
+	@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+	@Shadow
+	private Optional<BlockPos> lastClimbablePos;
 
-    public LivingEntityMixin(EntityType<?> entityType, Level level) {
-        super(entityType, level);
-    }
+	public LivingEntityMixin(EntityType<?> entityType, Level level) {
+		super(entityType, level);
+	}
 
-    @Unique
-    private LivingEntity origins$self() {
-        return (LivingEntity) (Object) this;
-    }
+	@Unique
+	private LivingEntity origins$self() {
+		return (LivingEntity) (Object) this;
+	}
 
-    @ModifyExpressionValue(method = "updateFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getItemBySlot(Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;"))
-    private ItemStack handleElytra(ItemStack original) {
-        return NeoForge.EVENT_BUS.post(new CanFlyWithoutElytraEvent(this.origins$self())).getResult().allow() ? Items.ELYTRA.getDefaultInstance() : original;
-    }
+	@ModifyExpressionValue(method = "updateFallFlying", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getItemBySlot(Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;"))
+	private ItemStack handleElytra(ItemStack original) {
+		return NeoForge.EVENT_BUS.post(new CanFlyWithoutElytraEvent(this.origins$self())).getResult().allow() ? Items.ELYTRA.getDefaultInstance() : original;
+	}
 
-    @Inject(method = "isCurrentlyGlowing", at = @At("HEAD"), cancellable = true)
-    private void handleGlowing(CallbackInfoReturnable<Boolean> cir) {
-        if (NeoForge.EVENT_BUS.post(new ClientShouldGlowingEvent(this.origins$self())).getResult().allow())
-            cir.setReturnValue(true);
-    }
+	@Inject(method = "isCurrentlyGlowing", at = @At("HEAD"), cancellable = true)
+	private void handleGlowing(CallbackInfoReturnable<Boolean> cir) {
+		if (NeoForge.EVENT_BUS.post(new ClientShouldGlowingEvent(this.origins$self())).getResult().allow())
+			cir.setReturnValue(true);
+	}
 
-    @Inject(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getTicksFrozen()I"))
-    private void handleFrozen(CallbackInfo ci) {
-        if (NeoForge.EVENT_BUS.post(new EntityFrozenEvent(this.origins$self())).getResult().allow())
-            this.isInPowderSnow = true;
-    }
+	@Inject(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getTicksFrozen()I"))
+	private void handleFrozen(CallbackInfo ci) {
+		if (NeoForge.EVENT_BUS.post(new EntityFrozenEvent(this.origins$self())).getResult().allow())
+			this.isInPowderSnow = true;
+	}
 
-    @ModifyExpressionValue(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getAttributeValue(Lnet/minecraft/core/Holder;)D", ordinal = 0))
-    private double handleSpeedInWater(double original) {
-        return NeoForge.EVENT_BUS.post(new IgnoreWaterEvent(this.origins$self())).getResult().allow() ? 1 : original;
-    }
+	@ModifyExpressionValue(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getAttributeValue(Lnet/minecraft/core/Holder;)D", ordinal = 0))
+	private double handleSpeedInWater(double original) {
+		return NeoForge.EVENT_BUS.post(new IgnoreWaterEvent(this.origins$self())).getResult().allow() ? 1 : original;
+	}
 
-    @Inject(method = "canStandOnFluid", at = @At("HEAD"), cancellable = true)
-    private void modifyWalkableFluids(FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
-        if (NeoForge.EVENT_BUS.post(new CanStandOnFluidEvent(this.origins$self(), fluidState)).getResult().allow())
-            cir.setReturnValue(true);
-    }
+	@Inject(method = "canStandOnFluid", at = @At("HEAD"), cancellable = true)
+	private void modifyWalkableFluids(FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
+		if (NeoForge.EVENT_BUS.post(new CanStandOnFluidEvent(this.origins$self(), fluidState)).getResult().allow())
+			cir.setReturnValue(true);
+	}
 
-    // CLIMBING
-    @ModifyReturnValue(method = "onClimbable", at = @At("RETURN"))
-    private boolean handleClimbing(boolean original) {
-        if (original) return true;
-        List<ClimbingPower> climbingPowers = OriginDataHolder.get(this).getPowers(RegularPowers.CLIMBING, ClimbingPower.class);
-        if (this.isSpectator() || climbingPowers.isEmpty()) return false;
-        this.lastClimbablePos = Optional.of(this.blockPosition());
-        return true;
-    }
+	// CLIMBING
+	@ModifyReturnValue(method = "onClimbable", at = @At("RETURN"))
+	private boolean handleClimbing(boolean original) {
+		if (original) return true;
+		List<ClimbingPower> climbingPowers = OriginDataHolder.get(this).getPowers(RegularPowers.CLIMBING, ClimbingPower.class);
+		if (this.isSpectator() || climbingPowers.isEmpty()) return false;
+		this.lastClimbablePos = Optional.of(this.blockPosition());
+		return true;
+	}
 
-    @ModifyReturnValue(method = "isSuppressingSlidingDownLadder", at = @At("RETURN"))
-    private boolean handleClimbingHold(boolean original) {
-        List<ClimbingPower> climbingPowers = OriginDataHolder.get(this).getPowers(RegularPowers.CLIMBING, ClimbingPower.class);
-        if (climbingPowers.isEmpty()) return original;
-        return climbingPowers.stream().anyMatch(x -> x.canHold(this));
-    }
+	@ModifyReturnValue(method = "isSuppressingSlidingDownLadder", at = @At("RETURN"))
+	private boolean handleClimbingHold(boolean original) {
+		List<ClimbingPower> climbingPowers = OriginDataHolder.get(this).getPowers(RegularPowers.CLIMBING, ClimbingPower.class);
+		if (climbingPowers.isEmpty()) return original;
+		return climbingPowers.stream().anyMatch(x -> x.canHold(this));
+	}
 }

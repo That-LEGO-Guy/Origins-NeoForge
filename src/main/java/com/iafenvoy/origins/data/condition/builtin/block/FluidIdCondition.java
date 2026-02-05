@@ -9,17 +9,17 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record FluidIdCondition(FluidCondition fluidCondition) implements BlockCondition {
-    public static final MapCodec<FluidIdCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            FluidCondition.CODEC.fieldOf("fluid_condition").forGetter(FluidIdCondition::fluidCondition)
-    ).apply(i, FluidIdCondition::new));
+	public static final MapCodec<FluidIdCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			FluidCondition.CODEC.fieldOf("fluid_condition").forGetter(FluidIdCondition::fluidCondition)
+	).apply(i, FluidIdCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-        return this.fluidCondition.test(level.getFluidState(pos));
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
+		return this.fluidCondition.test(level.getFluidState(pos));
+	}
 }

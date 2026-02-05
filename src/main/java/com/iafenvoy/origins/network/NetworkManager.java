@@ -10,11 +10,11 @@ import net.neoforged.neoforge.network.handling.MainThreadPayloadHandler;
 
 @EventBusSubscriber
 public final class NetworkManager {
-    @SubscribeEvent
-    public static void registerPayloads(RegisterPayloadHandlersEvent event) {
-        event.registrar("1")
-                .playToServer(ChooseOriginC2SPayload.TYPE, ChooseOriginC2SPayload.STREAM_CODEC, new MainThreadPayloadHandler<>(ServerNetworkHandler::onChooseOrigin))
-                .playToClient(ConfirmOriginS2CPayload.TYPE, ConfirmOriginS2CPayload.STREAM_CODEC, new MainThreadPayloadHandler<>(ClientNetworkHandler::onOriginConfirm))
-                .playToClient(OpenChooseOriginScreenS2CPayload.TYPE, OpenChooseOriginScreenS2CPayload.STREAM_CODEC, new MainThreadPayloadHandler<>(ClientNetworkHandler::openOriginScreen));
-    }
+	@SubscribeEvent
+	public static void registerPayloads(RegisterPayloadHandlersEvent event) {
+		event.registrar("1")
+				.playToServer(ChooseOriginC2SPayload.TYPE, ChooseOriginC2SPayload.STREAM_CODEC, new MainThreadPayloadHandler<>(ServerNetworkHandler::onChooseOrigin))
+				.playToClient(ConfirmOriginS2CPayload.TYPE, ConfirmOriginS2CPayload.STREAM_CODEC, new MainThreadPayloadHandler<>(ClientNetworkHandler::onOriginConfirm))
+				.playToClient(OpenChooseOriginScreenS2CPayload.TYPE, OpenChooseOriginScreenS2CPayload.STREAM_CODEC, new MainThreadPayloadHandler<>(ClientNetworkHandler::openOriginScreen));
+	}
 }

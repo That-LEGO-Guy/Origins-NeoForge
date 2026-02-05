@@ -15,16 +15,16 @@ import java.util.Optional;
 
 //if origin is empty = random
 public record ChooseOriginC2SPayload(Holder<Layer> layer,
-                                     Optional<Holder<Origin>> origin) implements CustomPacketPayload {
-    public static final Type<ChooseOriginC2SPayload> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin_c2s"));
-    public static final StreamCodec<RegistryFriendlyByteBuf, ChooseOriginC2SPayload> STREAM_CODEC = StreamCodec.composite(
-            Layer.STREAM_CODEC, ChooseOriginC2SPayload::layer,
-            ByteBufCodecs.optional(Origin.STREAM_CODEC), ChooseOriginC2SPayload::origin,
-            ChooseOriginC2SPayload::new
-    );
+									 Optional<Holder<Origin>> origin) implements CustomPacketPayload {
+	public static final Type<ChooseOriginC2SPayload> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin_c2s"));
+	public static final StreamCodec<RegistryFriendlyByteBuf, ChooseOriginC2SPayload> STREAM_CODEC = StreamCodec.composite(
+			Layer.STREAM_CODEC, ChooseOriginC2SPayload::layer,
+			ByteBufCodecs.optional(Origin.STREAM_CODEC), ChooseOriginC2SPayload::origin,
+			ChooseOriginC2SPayload::new
+	);
 
-    @Override
-    public @NotNull Type<? extends CustomPacketPayload> type() {
-        return TYPE;
-    }
+	@Override
+	public @NotNull Type<? extends CustomPacketPayload> type() {
+		return TYPE;
+	}
 }

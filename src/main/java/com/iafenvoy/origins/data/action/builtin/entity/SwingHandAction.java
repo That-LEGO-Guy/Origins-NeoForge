@@ -10,17 +10,17 @@ import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 public record SwingHandAction(InteractionHand hand) implements EntityAction {
-    public static final MapCodec<SwingHandAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ExtraEnumCodecs.HAND.fieldOf("hand").forGetter(SwingHandAction::hand)
-    ).apply(i, SwingHandAction::new));
+	public static final MapCodec<SwingHandAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ExtraEnumCodecs.HAND.fieldOf("hand").forGetter(SwingHandAction::hand)
+	).apply(i, SwingHandAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof LivingEntity living) living.swing(this.hand, true);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof LivingEntity living) living.swing(this.hand, true);
+	}
 }

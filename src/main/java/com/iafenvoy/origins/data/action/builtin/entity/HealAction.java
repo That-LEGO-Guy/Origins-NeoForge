@@ -9,17 +9,17 @@ import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 public record HealAction(float amount) implements EntityAction {
-    public static final MapCodec<HealAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.FLOAT.fieldOf("amount").forGetter(HealAction::amount)
-    ).apply(i, HealAction::new));
+	public static final MapCodec<HealAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.FLOAT.fieldOf("amount").forGetter(HealAction::amount)
+	).apply(i, HealAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof LivingEntity living) living.heal(this.amount);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof LivingEntity living) living.heal(this.amount);
+	}
 }

@@ -7,17 +7,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record InvertCondition(BiEntityCondition condition) implements BiEntityCondition {
-    public static final MapCodec<InvertCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BiEntityCondition.CODEC.fieldOf("condition").forGetter(InvertCondition::condition)
-    ).apply(i, InvertCondition::new));
+	public static final MapCodec<InvertCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BiEntityCondition.CODEC.fieldOf("condition").forGetter(InvertCondition::condition)
+	).apply(i, InvertCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity source, @NotNull Entity target) {
-        return this.condition.test(target, source);
-    }
+	@Override
+	public boolean test(@NotNull Entity source, @NotNull Entity target) {
+		return this.condition.test(target, source);
+	}
 }

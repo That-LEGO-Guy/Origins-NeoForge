@@ -20,40 +20,40 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 public record EntityGlowPower(EntityCondition entityCondition, BiEntityCondition biEntityCondition, boolean useTeam,
-                              int color) implements Power {
-    public static final MapCodec<EntityGlowPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EntityCondition.optionalCodec("entity_condition").forGetter(EntityGlowPower::entityCondition),
-            BiEntityCondition.optionalCodec("bientity_condition").forGetter(EntityGlowPower::biEntityCondition),
-            Codec.BOOL.optionalFieldOf("use_teams", true).forGetter(EntityGlowPower::useTeam),
-            Codec.INT.optionalFieldOf("color", 0xFFFFFFFF).forGetter(EntityGlowPower::color)
-    ).apply(i, EntityGlowPower::new));
+							  int color) implements Power {
+	public static final MapCodec<EntityGlowPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EntityCondition.optionalCodec("entity_condition").forGetter(EntityGlowPower::entityCondition),
+			BiEntityCondition.optionalCodec("bientity_condition").forGetter(EntityGlowPower::biEntityCondition),
+			Codec.BOOL.optionalFieldOf("use_teams", true).forGetter(EntityGlowPower::useTeam),
+			Codec.INT.optionalFieldOf("color", 0xFFFFFFFF).forGetter(EntityGlowPower::color)
+	).apply(i, EntityGlowPower::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @ApiStatus.Internal
-    @EventBusSubscriber(Dist.CLIENT)
-    public static final class ClientEvents {
-        @SubscribeEvent
-        public static void handleGlowingColor(ClientGlowingColorEvent event) {
-            Player player = Minecraft.getInstance().player;
-            Entity entity = event.getEntity();
-            if (player != null)
-                for (EntityGlowPower power : OriginDataHolder.get(player).getPowers(RegularPowers.ENTITY_GLOW, EntityGlowPower.class))
-                    if (!power.useTeam && power.entityCondition.test(entity) && power.biEntityCondition.test(player, entity))
-                        event.setColor(power.color);
-        }
+	@ApiStatus.Internal
+	@EventBusSubscriber(Dist.CLIENT)
+	public static final class ClientEvents {
+		@SubscribeEvent
+		public static void handleGlowingColor(ClientGlowingColorEvent event) {
+			Player player = Minecraft.getInstance().player;
+			Entity entity = event.getEntity();
+			if (player != null)
+				for (EntityGlowPower power : OriginDataHolder.get(player).getPowers(RegularPowers.ENTITY_GLOW, EntityGlowPower.class))
+					if (!power.useTeam && power.entityCondition.test(entity) && power.biEntityCondition.test(player, entity))
+						event.setColor(power.color);
+		}
 
-        @SubscribeEvent
-        public static void enableGlowing(ClientShouldGlowingEvent event) {
-            Player player = Minecraft.getInstance().player;
-            Entity entity = event.getEntity();
-            if (player != null)
-                for (EntityGlowPower power : OriginDataHolder.get(player).getPowers(RegularPowers.ENTITY_GLOW, EntityGlowPower.class))
-                    if (power.entityCondition.test(entity) && power.biEntityCondition.test(player, entity))
-                        event.allow();
-        }
-    }
+		@SubscribeEvent
+		public static void enableGlowing(ClientShouldGlowingEvent event) {
+			Player player = Minecraft.getInstance().player;
+			Entity entity = event.getEntity();
+			if (player != null)
+				for (EntityGlowPower power : OriginDataHolder.get(player).getPowers(RegularPowers.ENTITY_GLOW, EntityGlowPower.class))
+					if (power.entityCondition.test(entity) && power.biEntityCondition.test(player, entity))
+						event.allow();
+		}
+	}
 }

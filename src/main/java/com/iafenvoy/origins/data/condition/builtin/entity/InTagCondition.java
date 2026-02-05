@@ -10,17 +10,17 @@ import net.minecraft.world.entity.EntityType;
 import org.jetbrains.annotations.NotNull;
 
 public record InTagCondition(TagKey<EntityType<?>> tag) implements EntityCondition {
-    public static final MapCodec<InTagCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            TagKey.codec(Registries.ENTITY_TYPE).fieldOf("tag").forGetter(InTagCondition::tag)
-    ).apply(i, InTagCondition::new));
+	public static final MapCodec<InTagCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			TagKey.codec(Registries.ENTITY_TYPE).fieldOf("tag").forGetter(InTagCondition::tag)
+	).apply(i, InTagCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        return entity.getType().is(this.tag);
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		return entity.getType().is(this.tag);
+	}
 }

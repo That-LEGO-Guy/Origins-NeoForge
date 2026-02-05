@@ -16,12 +16,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @OnlyIn(Dist.CLIENT)
 @Mixin(PlayerRenderer.class)
 public abstract class PlayerRendererMixin extends LivingEntityRenderer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
-    public PlayerRendererMixin(EntityRendererProvider.Context context, PlayerModel<AbstractClientPlayer> model, float shadowRadius) {
-        super(context, model, shadowRadius);
-    }
+	public PlayerRendererMixin(EntityRendererProvider.Context context, PlayerModel<AbstractClientPlayer> model, float shadowRadius) {
+		super(context, model, shadowRadius);
+	}
 
-    @Inject(method = "<init>", at = @At("RETURN"))
-    private void registerLayers(EntityRendererProvider.Context context, boolean useSlimModel, CallbackInfo ci) {
-        this.addLayer(new ElytraPowerLayer<>(this, context.getModelSet()));
-    }
+	@Inject(method = "<init>", at = @At("RETURN"))
+	private void registerLayers(EntityRendererProvider.Context context, boolean useSlimModel, CallbackInfo ci) {
+		this.addLayer(new ElytraPowerLayer<>(this, context.getModelSet()));
+	}
 }

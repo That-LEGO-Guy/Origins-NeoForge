@@ -8,16 +8,16 @@ import net.minecraft.world.level.block.LiquidBlockContainer;
 import org.jetbrains.annotations.NotNull;
 
 public enum WaterLoggableCondition implements BlockCondition {
-    INSTANCE;
-    public static final MapCodec<WaterLoggableCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<WaterLoggableCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BlockCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-        return level.getBlockState(pos).getBlock() instanceof LiquidBlockContainer;
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
+		return level.getBlockState(pos).getBlock() instanceof LiquidBlockContainer;
+	}
 }

@@ -12,18 +12,18 @@ import net.neoforged.neoforgespi.Environment;
 import org.jetbrains.annotations.NotNull;
 
 public record SideAction(BlockAction action, Dist side) implements BlockAction {
-    public static final MapCodec<SideAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockAction.CODEC.fieldOf("action").forGetter(SideAction::action),
-            ExtraEnumCodecs.DIST.fieldOf("side").forGetter(SideAction::side)
-    ).apply(i, SideAction::new));
+	public static final MapCodec<SideAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockAction.CODEC.fieldOf("action").forGetter(SideAction::action),
+			ExtraEnumCodecs.DIST.fieldOf("side").forGetter(SideAction::side)
+	).apply(i, SideAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-        if (Environment.get().getDist() == this.side) this.action.execute(level, pos, direction);
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		if (Environment.get().getDist() == this.side) this.action.execute(level, pos, direction);
+	}
 }

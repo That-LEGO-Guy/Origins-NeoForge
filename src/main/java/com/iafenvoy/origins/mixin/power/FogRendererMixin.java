@@ -19,18 +19,18 @@ import java.util.Optional;
 @OnlyIn(Dist.CLIENT)
 @Mixin(FogRenderer.class)
 public class FogRendererMixin {
-    @Unique
-    @NotNull
-    private static Optional<Float> NIGHT_VISION_STRENGTH = Optional.empty();
+	@Unique
+	@NotNull
+	private static Optional<Float> NIGHT_VISION_STRENGTH = Optional.empty();
 
-    @ModifyExpressionValue(method = "setupColor", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/core/Holder;)Z", ordinal = 0))
-    private static boolean handleNightVisionStrength1(boolean original, @Local LivingEntity living) {
-        NIGHT_VISION_STRENGTH = NeoForge.EVENT_BUS.post(new NightVisionStrengthEvent(living)).getStrength();
-        return original || NIGHT_VISION_STRENGTH.isPresent();
-    }
+	@ModifyExpressionValue(method = "setupColor", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;hasEffect(Lnet/minecraft/core/Holder;)Z", ordinal = 0))
+	private static boolean handleNightVisionStrength1(boolean original, @Local LivingEntity living) {
+		NIGHT_VISION_STRENGTH = NeoForge.EVENT_BUS.post(new NightVisionStrengthEvent(living)).getStrength();
+		return original || NIGHT_VISION_STRENGTH.isPresent();
+	}
 
-    @ModifyExpressionValue(method = "setupColor", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GameRenderer;getNightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F"))
-    private static float handleNightVisionStrength2(float original) {
-        return NIGHT_VISION_STRENGTH.orElse(original);
-    }
+	@ModifyExpressionValue(method = "setupColor", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GameRenderer;getNightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F"))
+	private static float handleNightVisionStrength2(float original) {
+		return NIGHT_VISION_STRENGTH.orElse(original);
+	}
 }

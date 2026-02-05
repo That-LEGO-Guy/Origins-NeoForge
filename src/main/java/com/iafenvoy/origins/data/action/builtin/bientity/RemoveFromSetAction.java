@@ -9,17 +9,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record RemoveFromSetAction(ResourceLocation set) implements BiEntityAction {
-    public static final MapCodec<RemoveFromSetAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ResourceLocation.CODEC.fieldOf("set").forGetter(RemoveFromSetAction::set)
-    ).apply(i, RemoveFromSetAction::new));
+	public static final MapCodec<RemoveFromSetAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ResourceLocation.CODEC.fieldOf("set").forGetter(RemoveFromSetAction::set)
+	).apply(i, RemoveFromSetAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source, @NotNull Entity target) {
-        OriginDataHolder.get(source).removeEntity(this.set, target);
-    }
+	@Override
+	public void execute(@NotNull Entity source, @NotNull Entity target) {
+		OriginDataHolder.get(source).removeEntity(this.set, target);
+	}
 }

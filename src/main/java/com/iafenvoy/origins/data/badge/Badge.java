@@ -16,20 +16,20 @@ import java.util.List;
 import java.util.function.Function;
 
 public interface Badge {
-    Codec<Badge> CODEC = DefaultedCodec.registryDispatch(BadgeRegistries.BADGE_TYPE, Badge::codec, Function.identity(), EmptyBadge::new);
+	Codec<Badge> CODEC = DefaultedCodec.registryDispatch(BadgeRegistries.BADGE_TYPE, Badge::codec, Function.identity(), EmptyBadge::new);
 
-    @NotNull
-    MapCodec<? extends Badge> codec();
+	@NotNull
+	MapCodec<? extends Badge> codec();
 
-    void execute(@NotNull LivingEntity living, @NotNull Level level, @NotNull RegistryAccess access);
+	void execute(@NotNull LivingEntity living, @NotNull Level level, @NotNull RegistryAccess access);
 
-    ResourceLocation spriteId();
+	ResourceLocation spriteId();
 
-    default List<ClientTooltipComponent> getTooltipComponents(Power power, Font textRenderer, int widthLimit, float delta) {
-        return List.of();
-    }
+	default List<ClientTooltipComponent> getTooltipComponents(Power power, Font textRenderer, int widthLimit, float delta) {
+		return List.of();
+	}
 
-    default boolean hasTooltip() {
-        return false;
-    }
+	default boolean hasTooltip() {
+		return false;
+	}
 }

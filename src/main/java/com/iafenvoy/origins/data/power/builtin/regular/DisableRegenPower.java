@@ -11,17 +11,17 @@ import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber
 public enum DisableRegenPower implements Power {
-    INSTANCE;
-    public static final MapCodec<DisableRegenPower> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<DisableRegenPower> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @SubscribeEvent
-    public static void disableNaturalRegen(CanNaturalRegenEvent event) {
-        if (!OriginDataHolder.get(event.getEntity()).getPowers(RegularPowers.DISABLE_REGEN, DisableRegenPower.class).isEmpty())
-            event.deny();
-    }
+	@SubscribeEvent
+	public static void disableNaturalRegen(CanNaturalRegenEvent event) {
+		if (!OriginDataHolder.get(event.getEntity()).getPowers(RegularPowers.DISABLE_REGEN, DisableRegenPower.class).isEmpty())
+			event.deny();
+	}
 }

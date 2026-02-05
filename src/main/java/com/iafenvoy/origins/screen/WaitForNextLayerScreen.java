@@ -16,52 +16,52 @@ import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class WaitForNextLayerScreen extends Screen {
-    private final List<Holder<Layer>> layerList;
-    private final int currentLayerIndex;
-    private final boolean showDirtBackground;
-    private final int maxSelection;
+	private final List<Holder<Layer>> layerList;
+	private final int currentLayerIndex;
+	private final boolean showDirtBackground;
+	private final int maxSelection;
 
-    public WaitForNextLayerScreen(List<Holder<Layer>> layers, int currentLayerIndex, boolean showDirtBackground) {
-        super(Component.empty());
-        this.layerList = layers;
-        this.currentLayerIndex = currentLayerIndex;
-        this.showDirtBackground = showDirtBackground;
-        Player player = Minecraft.getInstance().player;
-        assert player != null;
-        Holder<Layer> currentLayer = layers.get(currentLayerIndex);
-        this.maxSelection = currentLayer.value().getOriginOptionCount(player.registryAccess());
-    }
+	public WaitForNextLayerScreen(List<Holder<Layer>> layers, int currentLayerIndex, boolean showDirtBackground) {
+		super(Component.empty());
+		this.layerList = layers;
+		this.currentLayerIndex = currentLayerIndex;
+		this.showDirtBackground = showDirtBackground;
+		Player player = Minecraft.getInstance().player;
+		assert player != null;
+		Holder<Layer> currentLayer = layers.get(currentLayerIndex);
+		this.maxSelection = currentLayer.value().getOriginOptionCount(player.registryAccess());
+	}
 
-    public void openSelection() {
-        Minecraft client = Minecraft.getInstance();
-        if (client.player != null) {
-            OriginDataHolder holder = OriginDataHolder.get(client.player);
-            Holder<Layer> layer;
-            for (int index = this.currentLayerIndex + 1; index < this.layerList.size(); index++) {
-                layer = this.layerList.get(index);
-                if (!holder.hasOrigin(layer) && layer.value().collectOrigins(client.player.registryAccess()).findAny().isPresent()) {
-                    client.setScreen(new ChooseOriginScreen(this.layerList, index, this.showDirtBackground));
-                    return;
-                }
-            }
-        }
-        client.setScreen(null);
-    }
+	public void openSelection() {
+		Minecraft client = Minecraft.getInstance();
+		if (client.player != null) {
+			OriginDataHolder holder = OriginDataHolder.get(client.player);
+			Holder<Layer> layer;
+			for (int index = this.currentLayerIndex + 1; index < this.layerList.size(); index++) {
+				layer = this.layerList.get(index);
+				if (!holder.hasOrigin(layer) && layer.value().collectOrigins(client.player.registryAccess()).findAny().isPresent()) {
+					client.setScreen(new ChooseOriginScreen(this.layerList, index, this.showDirtBackground));
+					return;
+				}
+			}
+		}
+		client.setScreen(null);
+	}
 
-    @Override
-    public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        if (this.maxSelection == 0) this.openSelection();
-        else this.renderBackground(graphics, mouseX, mouseY, delta);
-    }
+	@Override
+	public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+		if (this.maxSelection == 0) this.openSelection();
+		else this.renderBackground(graphics, mouseX, mouseY, delta);
+	}
 
-    @Override
-    public void renderBackground(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        if (this.showDirtBackground) super.renderMenuBackground(graphics);
-        else super.renderBackground(graphics, mouseX, mouseY, delta);
-    }
+	@Override
+	public void renderBackground(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+		if (this.showDirtBackground) super.renderMenuBackground(graphics);
+		else super.renderBackground(graphics, mouseX, mouseY, delta);
+	}
 
-    @Override
-    public boolean shouldCloseOnEsc() {
-        return false;
-    }
+	@Override
+	public boolean shouldCloseOnEsc() {
+		return false;
+	}
 }

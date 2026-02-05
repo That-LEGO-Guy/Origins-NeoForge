@@ -19,28 +19,28 @@ import java.util.List;
 
 @EventBusSubscriber
 public record EffectImmunityPower(List<Holder<MobEffect>> effect, boolean inverted) implements Power {
-    public static final MapCodec<EffectImmunityPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            CombinedCodecs.MOB_EFFECT.fieldOf("effect").forGetter(EffectImmunityPower::effect),
-            Codec.BOOL.optionalFieldOf("inverted", false).forGetter(EffectImmunityPower::inverted)
-    ).apply(i, EffectImmunityPower::new));
+	public static final MapCodec<EffectImmunityPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			CombinedCodecs.MOB_EFFECT.fieldOf("effect").forGetter(EffectImmunityPower::effect),
+			Codec.BOOL.optionalFieldOf("inverted", false).forGetter(EffectImmunityPower::inverted)
+	).apply(i, EffectImmunityPower::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    public boolean canApply(MobEffectInstance effectInstance) {
-        return this.canApply(effectInstance.getEffect());
-    }
+	public boolean canApply(MobEffectInstance effectInstance) {
+		return this.canApply(effectInstance.getEffect());
+	}
 
-    public boolean canApply(Holder<MobEffect> effect) {
-        return !this.effect.contains(effect) ^ this.inverted;
-    }
+	public boolean canApply(Holder<MobEffect> effect) {
+		return !this.effect.contains(effect) ^ this.inverted;
+	}
 
-    @SubscribeEvent
-    public static void disableEffectApply(MobEffectEvent.Applicable event) {
-        for (EffectImmunityPower power : OriginDataHolder.get(event.getEntity()).getPowers(RegularPowers.EFFECT_IMMUNITY, EffectImmunityPower.class))
-            if (!power.canApply(event.getEffectInstance()))
-                event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
-    }
+	@SubscribeEvent
+	public static void disableEffectApply(MobEffectEvent.Applicable event) {
+		for (EffectImmunityPower power : OriginDataHolder.get(event.getEntity()).getPowers(RegularPowers.EFFECT_IMMUNITY, EffectImmunityPower.class))
+			if (!power.canApply(event.getEffectInstance()))
+				event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+	}
 }

@@ -10,17 +10,17 @@ import net.minecraft.world.level.biome.Biome;
 import org.jetbrains.annotations.NotNull;
 
 public record ChanceCondition(double chance) implements BiomeCondition {
-    public static final MapCodec<ChanceCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.doubleRange(0, 1).fieldOf("chance").forGetter(ChanceCondition::chance)
-    ).apply(i, ChanceCondition::new));
+	public static final MapCodec<ChanceCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.doubleRange(0, 1).fieldOf("chance").forGetter(ChanceCondition::chance)
+	).apply(i, ChanceCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiomeCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiomeCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
-        return Math.random() < this.chance;
-    }
+	@Override
+	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
+		return Math.random() < this.chance;
+	}
 }

@@ -11,20 +11,20 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record DamageAction(int amount, boolean ignoreUnbreaking) implements ItemAction {
-    public static final MapCodec<DamageAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.INT.optionalFieldOf("amount", 1).forGetter(DamageAction::amount),
-            Codec.BOOL.optionalFieldOf("ignore_unbreaking", false).forGetter(DamageAction::ignoreUnbreaking)
-    ).apply(i, DamageAction::new));
+	public static final MapCodec<DamageAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.INT.optionalFieldOf("amount", 1).forGetter(DamageAction::amount),
+			Codec.BOOL.optionalFieldOf("ignore_unbreaking", false).forGetter(DamageAction::ignoreUnbreaking)
+	).apply(i, DamageAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
-        if (this.ignoreUnbreaking) stack.setDamageValue(stack.getDamageValue() - this.amount);
-        else if (level instanceof ServerLevel serverLevel) stack.hurtAndBreak(this.amount, serverLevel, null, item -> {
-        });
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
+		if (this.ignoreUnbreaking) stack.setDamageValue(stack.getDamageValue() - this.amount);
+		else if (level instanceof ServerLevel serverLevel) stack.hurtAndBreak(this.amount, serverLevel, null, item -> {
+		});
+	}
 }

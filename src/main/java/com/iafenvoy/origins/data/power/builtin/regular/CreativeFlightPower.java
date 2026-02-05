@@ -8,21 +8,21 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public enum CreativeFlightPower implements Power {
-    INSTANCE;
-    public static final MapCodec<CreativeFlightPower> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<CreativeFlightPower> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void grant(@NotNull Entity entity) {
-        if (entity instanceof Player player) player.getAbilities().mayfly = true;
-    }
+	@Override
+	public void grant(@NotNull Entity entity) {
+		if (entity instanceof Player player) player.getAbilities().mayfly = true;
+	}
 
-    @Override
-    public void revoke(@NotNull Entity entity) {
-        if (entity instanceof Player player) player.getAbilities().mayfly = false;
-    }
+	@Override
+	public void revoke(@NotNull Entity entity) {
+		if (entity instanceof Player player) player.getAbilities().mayfly = false;
+	}
 }

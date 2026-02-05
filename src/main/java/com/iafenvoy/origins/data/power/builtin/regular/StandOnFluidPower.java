@@ -18,24 +18,24 @@ import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber
 public record StandOnFluidPower(TagKey<Fluid> fluid, EntityCondition condition) implements Power {
-    public static final MapCodec<StandOnFluidPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            TagKey.codec(Registries.FLUID).fieldOf("fluid").forGetter(StandOnFluidPower::fluid),
-            EntityCondition.optionalCodec("condition").forGetter(StandOnFluidPower::condition)
-    ).apply(i, StandOnFluidPower::new));
+	public static final MapCodec<StandOnFluidPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			TagKey.codec(Registries.FLUID).fieldOf("fluid").forGetter(StandOnFluidPower::fluid),
+			EntityCondition.optionalCodec("condition").forGetter(StandOnFluidPower::condition)
+	).apply(i, StandOnFluidPower::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @SubscribeEvent
-    public static void handleStandOnFluid(CanStandOnFluidEvent event) {
-        LivingEntity living = event.getEntity();
-        FluidState fluid = event.getFluid();
-        for (StandOnFluidPower power : OriginDataHolder.get(living).getPowers(RegularPowers.STAND_ON_FLUID, StandOnFluidPower.class))
-            if (fluid.is(power.fluid()) && power.condition().test(living)) {
-                event.allow();
-                return;
-            }
-    }
+	@SubscribeEvent
+	public static void handleStandOnFluid(CanStandOnFluidEvent event) {
+		LivingEntity living = event.getEntity();
+		FluidState fluid = event.getFluid();
+		for (StandOnFluidPower power : OriginDataHolder.get(living).getPowers(RegularPowers.STAND_ON_FLUID, StandOnFluidPower.class))
+			if (fluid.is(power.fluid()) && power.condition().test(living)) {
+				event.allow();
+				return;
+			}
+	}
 }

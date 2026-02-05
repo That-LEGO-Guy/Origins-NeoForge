@@ -7,16 +7,16 @@ import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 public enum LivingCondition implements EntityCondition {
-    INSTANCE;
-    public static final MapCodec<LivingCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<LivingCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        return entity instanceof LivingEntity;
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		return entity instanceof LivingEntity;
+	}
 }

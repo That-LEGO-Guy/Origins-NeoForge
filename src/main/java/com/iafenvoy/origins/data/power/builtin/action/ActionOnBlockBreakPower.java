@@ -11,15 +11,15 @@ import org.jetbrains.annotations.NotNull;
 
 public record ActionOnBlockBreakPower(BlockCondition blockCondition,EntityAction entityAction,BlockAction blockAction,boolean onlyWhenHarvested)implements Power {
 
-    public static final MapCodec<ActionOnBlockBreakPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockCondition.optionalCodec("block_condition").forGetter(ActionOnBlockBreakPower::blockCondition),
-            EntityAction.optionalCodec("entity_action").forGetter(ActionOnBlockBreakPower::entityAction),
-            BlockAction.optionalCodec("block_action").forGetter(ActionOnBlockBreakPower::blockAction),
-            Codec.BOOL.optionalFieldOf("only_when_harvested", true).forGetter(ActionOnBlockBreakPower::onlyWhenHarvested)
-    ).apply(i, ActionOnBlockBreakPower::new));
+	public static final MapCodec<ActionOnBlockBreakPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockCondition.optionalCodec("block_condition").forGetter(ActionOnBlockBreakPower::blockCondition),
+			EntityAction.optionalCodec("entity_action").forGetter(ActionOnBlockBreakPower::entityAction),
+			BlockAction.optionalCodec("block_action").forGetter(ActionOnBlockBreakPower::blockAction),
+			Codec.BOOL.optionalFieldOf("only_when_harvested", true).forGetter(ActionOnBlockBreakPower::onlyWhenHarvested)
+	).apply(i, ActionOnBlockBreakPower::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 }

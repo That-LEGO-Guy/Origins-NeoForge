@@ -8,17 +8,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record TargetActionAction(EntityAction action) implements BiEntityAction {
-    public static final MapCodec<TargetActionAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EntityAction.CODEC.fieldOf("action").forGetter(TargetActionAction::action)
-    ).apply(i, TargetActionAction::new));
+	public static final MapCodec<TargetActionAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EntityAction.CODEC.fieldOf("action").forGetter(TargetActionAction::action)
+	).apply(i, TargetActionAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source, @NotNull Entity target) {
-        this.action.execute(target);
-    }
+	@Override
+	public void execute(@NotNull Entity source, @NotNull Entity target) {
+		this.action.execute(target);
+	}
 }

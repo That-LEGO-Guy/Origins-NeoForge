@@ -9,16 +9,16 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public enum InThunderstormCondition implements EntityCondition {
-    INSTANCE;
-    public static final MapCodec<InThunderstormCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<InThunderstormCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        return LevelUtil.inThunderstorm(entity.level(), BlockPos.containing(MiscUtil.getPoseDependentEyePos(entity)), entity.blockPosition());
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		return LevelUtil.inThunderstorm(entity.level(), BlockPos.containing(MiscUtil.getPoseDependentEyePos(entity)), entity.blockPosition());
+	}
 }

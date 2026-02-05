@@ -12,18 +12,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record ApplyEffectAction(List<MobEffectInstance> effect) implements EntityAction {
-    public static final MapCodec<ApplyEffectAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            CombinedCodecs.MOB_EFFECT_INSTANCE.fieldOf("effect").forGetter(ApplyEffectAction::effect)
-    ).apply(i, ApplyEffectAction::new));
+	public static final MapCodec<ApplyEffectAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			CombinedCodecs.MOB_EFFECT_INSTANCE.fieldOf("effect").forGetter(ApplyEffectAction::effect)
+	).apply(i, ApplyEffectAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof LivingEntity living)
-            this.effect.stream().map(MobEffectInstance::new).forEach(living::addEffect);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof LivingEntity living)
+			this.effect.stream().map(MobEffectInstance::new).forEach(living::addEffect);
+	}
 }

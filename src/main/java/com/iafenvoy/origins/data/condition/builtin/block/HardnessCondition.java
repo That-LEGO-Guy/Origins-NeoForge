@@ -10,18 +10,18 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record HardnessCondition(Comparison comparison, double compareTo) implements BlockCondition {
-    public static final MapCodec<HardnessCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Comparison.CODEC.fieldOf("comparison").forGetter(HardnessCondition::comparison),
-            Codec.DOUBLE.fieldOf("compare_to").forGetter(HardnessCondition::compareTo)
-    ).apply(i, HardnessCondition::new));
+	public static final MapCodec<HardnessCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Comparison.CODEC.fieldOf("comparison").forGetter(HardnessCondition::comparison),
+			Codec.DOUBLE.fieldOf("compare_to").forGetter(HardnessCondition::compareTo)
+	).apply(i, HardnessCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-        return this.comparison.compare(level.getBlockState(pos).getDestroySpeed(level, pos), this.compareTo);
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
+		return this.comparison.compare(level.getBlockState(pos).getDestroySpeed(level, pos), this.compareTo);
+	}
 }

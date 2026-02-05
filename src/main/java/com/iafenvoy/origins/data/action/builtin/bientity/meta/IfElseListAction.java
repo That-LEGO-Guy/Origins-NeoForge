@@ -11,28 +11,28 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record IfElseListAction(List<ConditionedActionHolder> actions) implements BiEntityAction {
-    public static final MapCodec<IfElseListAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ConditionedActionHolder.CODEC.listOf().fieldOf("actions").forGetter(IfElseListAction::actions)
-    ).apply(i, IfElseListAction::new));
+	public static final MapCodec<IfElseListAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ConditionedActionHolder.CODEC.listOf().fieldOf("actions").forGetter(IfElseListAction::actions)
+	).apply(i, IfElseListAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source, @NotNull Entity target) {
-        for (ConditionedActionHolder holder : this.actions)
-            if (holder.condition.test(source, target)) {
-                holder.action.execute(source, target);
-                break;
-            }
-    }
+	@Override
+	public void execute(@NotNull Entity source, @NotNull Entity target) {
+		for (ConditionedActionHolder holder : this.actions)
+			if (holder.condition.test(source, target)) {
+				holder.action.execute(source, target);
+				break;
+			}
+	}
 
-    private record ConditionedActionHolder(BiEntityCondition condition, BiEntityAction action) {
-        public static final Codec<ConditionedActionHolder> CODEC = RecordCodecBuilder.create(i -> i.group(
-                BiEntityCondition.CODEC.fieldOf("condition").forGetter(ConditionedActionHolder::condition),
-                BiEntityAction.CODEC.fieldOf("action").forGetter(ConditionedActionHolder::action)
-        ).apply(i, ConditionedActionHolder::new));
-    }
+	private record ConditionedActionHolder(BiEntityCondition condition, BiEntityAction action) {
+		public static final Codec<ConditionedActionHolder> CODEC = RecordCodecBuilder.create(i -> i.group(
+				BiEntityCondition.CODEC.fieldOf("condition").forGetter(ConditionedActionHolder::condition),
+				BiEntityAction.CODEC.fieldOf("action").forGetter(ConditionedActionHolder::action)
+		).apply(i, ConditionedActionHolder::new));
+	}
 }

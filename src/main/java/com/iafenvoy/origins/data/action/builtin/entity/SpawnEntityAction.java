@@ -15,26 +15,26 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public record SpawnEntityAction(EntityType<?> entityType, Optional<CompoundTag> tag, EntityAction entityAction,
-                                BiEntityAction biEntityAction) implements EntityAction {
-    public static final MapCodec<SpawnEntityAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BuiltInRegistries.ENTITY_TYPE.byNameCodec().fieldOf("entity_type").forGetter(SpawnEntityAction::entityType),
-            CompoundTag.CODEC.optionalFieldOf("tag").forGetter(SpawnEntityAction::tag),
-            EntityAction.optionalCodec("entity_action").forGetter(SpawnEntityAction::entityAction),
-            BiEntityAction.optionalCodec("bientity_action").forGetter(SpawnEntityAction::biEntityAction)
-    ).apply(i, SpawnEntityAction::new));
+								BiEntityAction biEntityAction) implements EntityAction {
+	public static final MapCodec<SpawnEntityAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BuiltInRegistries.ENTITY_TYPE.byNameCodec().fieldOf("entity_type").forGetter(SpawnEntityAction::entityType),
+			CompoundTag.CODEC.optionalFieldOf("tag").forGetter(SpawnEntityAction::tag),
+			EntityAction.optionalCodec("entity_action").forGetter(SpawnEntityAction::entityAction),
+			BiEntityAction.optionalCodec("bientity_action").forGetter(SpawnEntityAction::biEntityAction)
+	).apply(i, SpawnEntityAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source.level() instanceof ServerLevel serverLevel)
-            this.entityType.spawn(serverLevel, c -> {
-                this.tag.ifPresent(c::load);
-                this.entityAction.execute(c);
-                this.biEntityAction.execute(source, c);
-            }, source.blockPosition(), MobSpawnType.MOB_SUMMONED, false, false);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source.level() instanceof ServerLevel serverLevel)
+			this.entityType.spawn(serverLevel, c -> {
+				this.tag.ifPresent(c::load);
+				this.entityAction.execute(c);
+				this.biEntityAction.execute(source, c);
+			}, source.blockPosition(), MobSpawnType.MOB_SUMMONED, false, false);
+	}
 }

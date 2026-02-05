@@ -10,18 +10,18 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record PowerTypeCondition(ResourceLocation powerType) implements EntityCondition {
-    public static final MapCodec<PowerTypeCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ResourceLocation.CODEC.fieldOf("power_type").forGetter(PowerTypeCondition::powerType)
-    ).apply(i, PowerTypeCondition::new));
+	public static final MapCodec<PowerTypeCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ResourceLocation.CODEC.fieldOf("power_type").forGetter(PowerTypeCondition::powerType)
+	).apply(i, PowerTypeCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        OriginDataHolder holder = OriginDataHolder.get(entity);
-        return !holder.getPowers(this.powerType, Power.class).isEmpty();
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		OriginDataHolder holder = OriginDataHolder.get(entity);
+		return !holder.getPowers(this.powerType, Power.class).isEmpty();
+	}
 }

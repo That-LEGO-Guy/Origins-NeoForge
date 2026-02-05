@@ -9,17 +9,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record AndAction(List<EntityAction> actions) implements EntityAction {
-    public static final MapCodec<AndAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EntityAction.CODEC.listOf().fieldOf("actions").forGetter(AndAction::actions)
-    ).apply(i, AndAction::new));
+	public static final MapCodec<AndAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EntityAction.CODEC.listOf().fieldOf("actions").forGetter(AndAction::actions)
+	).apply(i, AndAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        this.actions.forEach(x -> x.execute(source));
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		this.actions.forEach(x -> x.execute(source));
+	}
 }

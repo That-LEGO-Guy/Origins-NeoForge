@@ -6,16 +6,16 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public enum ExtinguishAction implements EntityAction {
-    INSTANCE;
-    public static final MapCodec<ExtinguishAction> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<ExtinguishAction> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        source.extinguishFire();
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		source.extinguishFire();
+	}
 }

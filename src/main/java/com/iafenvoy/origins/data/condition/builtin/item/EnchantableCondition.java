@@ -7,16 +7,16 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public enum EnchantableCondition implements ItemCondition {
-    INSTANCE;
-    public static final MapCodec<EnchantableCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<EnchantableCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends ItemCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-        return stack.isEnchantable();
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
+		return stack.isEnchantable();
+	}
 }

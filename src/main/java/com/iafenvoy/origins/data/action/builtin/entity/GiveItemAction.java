@@ -13,27 +13,27 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public record GiveItemAction(ItemStack stack, ItemAction itemAction,
-                             Optional<EquipmentSlot> preferredSlot) implements EntityAction {
-    public static final MapCodec<GiveItemAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ItemStack.CODEC.fieldOf("stack").forGetter(GiveItemAction::stack),
-            ItemAction.optionalCodec("item_action").forGetter(GiveItemAction::itemAction),
-            EquipmentSlot.CODEC.optionalFieldOf("preferred_slot").forGetter(GiveItemAction::preferredSlot)
-    ).apply(i, GiveItemAction::new));
+							 Optional<EquipmentSlot> preferredSlot) implements EntityAction {
+	public static final MapCodec<GiveItemAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ItemStack.CODEC.fieldOf("stack").forGetter(GiveItemAction::stack),
+			ItemAction.optionalCodec("item_action").forGetter(GiveItemAction::itemAction),
+			EquipmentSlot.CODEC.optionalFieldOf("preferred_slot").forGetter(GiveItemAction::preferredSlot)
+	).apply(i, GiveItemAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof Player player) {
-            ItemStack stack = this.stack.copy();
-            this.itemAction.execute(player.level(), source, stack);
-            if (this.preferredSlot.isPresent() && player.getItemBySlot(this.preferredSlot.get()).isEmpty())
-                player.setItemSlot(this.preferredSlot.get(), stack);
-            else player.getInventory().placeItemBackInInventory(stack);
-        }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof Player player) {
+			ItemStack stack = this.stack.copy();
+			this.itemAction.execute(player.level(), source, stack);
+			if (this.preferredSlot.isPresent() && player.getItemBySlot(this.preferredSlot.get()).isEmpty())
+				player.setItemSlot(this.preferredSlot.get(), stack);
+			else player.getInventory().placeItemBackInInventory(stack);
+		}
 
-    }
+	}
 }

@@ -6,16 +6,16 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public enum MountAction implements BiEntityAction {
-    INSTANCE;
-    public static final MapCodec<MountAction> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<MountAction> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source, @NotNull Entity target) {
-        source.startRiding(target);
-    }
+	@Override
+	public void execute(@NotNull Entity source, @NotNull Entity target) {
+		source.startRiding(target);
+	}
 }

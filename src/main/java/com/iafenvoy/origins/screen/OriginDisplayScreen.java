@@ -36,345 +36,345 @@ import java.util.function.Predicate;
 
 @OnlyIn(Dist.CLIENT)
 public class OriginDisplayScreen extends Screen {
-    private static final ResourceLocation WINDOW_BACKGROUND = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/background");
-    private static final ResourceLocation WINDOW_BORDER = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/border");
-    private static final ResourceLocation WINDOW_NAME_PLATE = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/name_plate");
-    private static final ResourceLocation WINDOW_SCROLL_BAR = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/scroll_bar");
-    private static final ResourceLocation WINDOW_SCROLL_BAR_PRESSED = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/scroll_bar/pressed");
-    private static final ResourceLocation WINDOW_SCROLL_BAR_SLOT = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/scroll_bar/slot");
+	private static final ResourceLocation WINDOW_BACKGROUND = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/background");
+	private static final ResourceLocation WINDOW_BORDER = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/border");
+	private static final ResourceLocation WINDOW_NAME_PLATE = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/name_plate");
+	private static final ResourceLocation WINDOW_SCROLL_BAR = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/scroll_bar");
+	private static final ResourceLocation WINDOW_SCROLL_BAR_PRESSED = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/scroll_bar/pressed");
+	private static final ResourceLocation WINDOW_SCROLL_BAR_SLOT = ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "choose_origin/scroll_bar/slot");
 
-    protected static final int WINDOW_WIDTH = 176;
-    protected static final int WINDOW_HEIGHT = 182;
+	protected static final int WINDOW_WIDTH = 176;
+	protected static final int WINDOW_HEIGHT = 182;
 
-    private final LinkedList<RenderedBadge> renderedBadges = new LinkedList<>();
+	private final LinkedList<RenderedBadge> renderedBadges = new LinkedList<>();
 
-    protected final boolean showDirtBackground;
+	protected final boolean showDirtBackground;
 
-    private Holder<Origin> origin, prevOrigin;
-    private Holder<Layer> layer, prevLayer;
-    private Component randomOriginText;
-    private ScrollingTextWidget originNameWidget;
+	private Holder<Origin> origin, prevOrigin;
+	private Holder<Layer> layer, prevLayer;
+	private Component randomOriginText;
+	private ScrollingTextWidget originNameWidget;
 
-    private boolean refreshOriginNameWidget = false;
+	private boolean refreshOriginNameWidget = false;
 
-    private boolean isOriginRandom;
-    private boolean dragScrolling = false;
+	private boolean isOriginRandom;
+	private boolean dragScrolling = false;
 
-    private double mouseDragStart = 0;
+	private double mouseDragStart = 0;
 
-    private int currentMaxScroll = 0;
-    private int scrollDragStart = 0;
+	private int currentMaxScroll = 0;
+	private int scrollDragStart = 0;
 
-    protected int guiTop, guiLeft;
-    protected int scrollPos = 0;
+	protected int guiTop, guiLeft;
+	protected int scrollPos = 0;
 
-    public OriginDisplayScreen(Component title, boolean showDirtBackground) {
-        super(title);
-        this.showDirtBackground = showDirtBackground;
-    }
+	public OriginDisplayScreen(Component title, boolean showDirtBackground) {
+		super(title);
+		this.showDirtBackground = showDirtBackground;
+	}
 
-    public void showOrigin(Holder<Origin> origin, Holder<Layer> layer, boolean isRandom) {
-        this.origin = origin;
-        this.layer = layer;
-        this.isOriginRandom = isRandom;
-        this.scrollPos = 0;
-    }
+	public void showOrigin(Holder<Origin> origin, Holder<Layer> layer, boolean isRandom) {
+		this.origin = origin;
+		this.layer = layer;
+		this.isOriginRandom = isRandom;
+		this.scrollPos = 0;
+	}
 
-    public void setRandomOriginText(Component text) {
-        this.randomOriginText = text;
-    }
+	public void setRandomOriginText(Component text) {
+		this.randomOriginText = text;
+	}
 
-    @Override
-    protected void init() {
-        super.init();
+	@Override
+	protected void init() {
+		super.init();
 
-        this.guiLeft = (this.width - WINDOW_WIDTH) / 2;
-        this.guiTop = (this.height - WINDOW_HEIGHT) / 2;
+		this.guiLeft = (this.width - WINDOW_WIDTH) / 2;
+		this.guiTop = (this.height - WINDOW_HEIGHT) / 2;
 
-        this.originNameWidget = new ScrollingTextWidget(this.guiLeft + 38, this.guiTop + 18, WINDOW_WIDTH - (62 + 3 * 8), 9, Component.empty(), true, this.font);
-        this.refreshOriginNameWidget = true;
+		this.originNameWidget = new ScrollingTextWidget(this.guiLeft + 38, this.guiTop + 18, WINDOW_WIDTH - (62 + 3 * 8), 9, Component.empty(), true, this.font);
+		this.refreshOriginNameWidget = true;
 
-    }
+	}
 
-    @Override
-    public void renderBackground(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        if (this.showDirtBackground) super.renderBackground(graphics, mouseX, mouseY, delta);
-        else this.renderTransparentBackground(graphics);
-    }
+	@Override
+	public void renderBackground(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+		if (this.showDirtBackground) super.renderBackground(graphics, mouseX, mouseY, delta);
+		else this.renderTransparentBackground(graphics);
+	}
 
-    @Override
-    public void renderTransparentBackground(GuiGraphics graphics) {
-        graphics.fillGradient(0, 0, this.width, this.height, -5, 1678774288, -2112876528);
-    }
+	@Override
+	public void renderTransparentBackground(GuiGraphics graphics) {
+		graphics.fillGradient(0, 0, this.width, this.height, -5, 1678774288, -2112876528);
+	}
 
-    @Override
-    public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        this.renderedBadges.clear();
-        super.render(graphics, mouseX, mouseY, delta);
-        this.renderOriginWindow(graphics, mouseX, mouseY, delta);
+	@Override
+	public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+		this.renderedBadges.clear();
+		super.render(graphics, mouseX, mouseY, delta);
+		this.renderOriginWindow(graphics, mouseX, mouseY, delta);
 
-    }
+	}
 
-    @Override
-    public boolean mouseReleased(double mouseX, double mouseY, int button) {
-        this.dragScrolling = false;
-        return super.mouseReleased(mouseX, mouseY, button);
-    }
+	@Override
+	public boolean mouseReleased(double mouseX, double mouseY, int button) {
+		this.dragScrolling = false;
+		return super.mouseReleased(mouseX, mouseY, button);
+	}
 
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        boolean mouseClicked = super.mouseClicked(mouseX, mouseY, button);
-        if (this.cannotScroll()) return mouseClicked;
+	@Override
+	public boolean mouseClicked(double mouseX, double mouseY, int button) {
+		boolean mouseClicked = super.mouseClicked(mouseX, mouseY, button);
+		if (this.cannotScroll()) return mouseClicked;
 
-        this.dragScrolling = false;
+		this.dragScrolling = false;
 
-        int scrollBarY = 36;
-        int maxScrollBarOffset = 141;
+		int scrollBarY = 36;
+		int maxScrollBarOffset = 141;
 
-        scrollBarY += (int) ((maxScrollBarOffset - scrollBarY) * (this.scrollPos / (float) this.currentMaxScroll));
-        if (!this.canDragScroll(mouseX, mouseY, scrollBarY)) return mouseClicked;
+		scrollBarY += (int) ((maxScrollBarOffset - scrollBarY) * (this.scrollPos / (float) this.currentMaxScroll));
+		if (!this.canDragScroll(mouseX, mouseY, scrollBarY)) return mouseClicked;
 
-        this.dragScrolling = true;
-        this.scrollDragStart = scrollBarY;
-        this.mouseDragStart = mouseY;
+		this.dragScrolling = true;
+		this.scrollDragStart = scrollBarY;
+		this.mouseDragStart = mouseY;
 
-        return true;
+		return true;
 
-    }
+	}
 
-    @Override
-    public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        boolean mouseDragged = super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
-        if (!this.dragScrolling) return mouseDragged;
+	@Override
+	public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
+		boolean mouseDragged = super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
+		if (!this.dragScrolling) return mouseDragged;
 
-        int delta = (int) (mouseY - this.mouseDragStart);
-        int newScrollPos = Math.max(36, Math.min(141, this.scrollDragStart + delta));
+		int delta = (int) (mouseY - this.mouseDragStart);
+		int newScrollPos = Math.max(36, Math.min(141, this.scrollDragStart + delta));
 
-        float part = (newScrollPos - 36) / (float) (141 - 36);
-        this.scrollPos = (int) (part * this.currentMaxScroll);
+		float part = (newScrollPos - 36) / (float) (141 - 36);
+		this.scrollPos = (int) (part * this.currentMaxScroll);
 
-        return mouseDragged;
+		return mouseDragged;
 
-    }
+	}
 
-    @Override
-    public boolean mouseScrolled(double x, double y, double horizontal, double vertical) {
-        int newScrollPos = this.scrollPos - (int) vertical * 4;
-        this.scrollPos = Mth.clamp(newScrollPos, 0, this.currentMaxScroll);
+	@Override
+	public boolean mouseScrolled(double x, double y, double horizontal, double vertical) {
+		int newScrollPos = this.scrollPos - (int) vertical * 4;
+		this.scrollPos = Mth.clamp(newScrollPos, 0, this.currentMaxScroll);
 
-        return super.mouseScrolled(x, y, horizontal, vertical);
+		return super.mouseScrolled(x, y, horizontal, vertical);
 
-    }
+	}
 
-    public Holder<Origin> getCurrentOrigin() {
-        return this.origin;
-    }
+	public Holder<Origin> getCurrentOrigin() {
+		return this.origin;
+	}
 
-    public Holder<Layer> getCurrentLayer() {
-        return this.layer;
-    }
+	public Holder<Layer> getCurrentLayer() {
+		return this.layer;
+	}
 
-    public ResourceLocation getCurrentOriginId() {
-        return this.getCurrentOrigin().unwrapKey().map(ResourceKey::location).orElse(ResourceLocation.withDefaultNamespace(""));
-    }
+	public ResourceLocation getCurrentOriginId() {
+		return this.getCurrentOrigin().unwrapKey().map(ResourceKey::location).orElse(ResourceLocation.withDefaultNamespace(""));
+	}
 
-    protected void renderScrollbar(GuiGraphics graphics, int mouseX, int mouseY) {
-        if (this.cannotScroll()) return;
+	protected void renderScrollbar(GuiGraphics graphics, int mouseX, int mouseY) {
+		if (this.cannotScroll()) return;
 
-        graphics.blitSprite(WINDOW_SCROLL_BAR_SLOT, this.guiLeft + 155, this.guiTop + 35, 8, 134);
+		graphics.blitSprite(WINDOW_SCROLL_BAR_SLOT, this.guiLeft + 155, this.guiTop + 35, 8, 134);
 
-        int scrollbarY = 36;
-        int maxScrollbarOffset = 141;
+		int scrollbarY = 36;
+		int maxScrollbarOffset = 141;
 
-        scrollbarY += (int) ((maxScrollbarOffset - scrollbarY) * (this.scrollPos / (float) this.currentMaxScroll));
+		scrollbarY += (int) ((maxScrollbarOffset - scrollbarY) * (this.scrollPos / (float) this.currentMaxScroll));
 
-        ResourceLocation scrollBarTexture = this.dragScrolling || this.canDragScroll(mouseX, mouseY, scrollbarY) ? WINDOW_SCROLL_BAR_PRESSED : WINDOW_SCROLL_BAR;
-        graphics.blitSprite(scrollBarTexture, this.guiLeft + 156, this.guiTop + scrollbarY, 6, 27);
+		ResourceLocation scrollBarTexture = this.dragScrolling || this.canDragScroll(mouseX, mouseY, scrollbarY) ? WINDOW_SCROLL_BAR_PRESSED : WINDOW_SCROLL_BAR;
+		graphics.blitSprite(scrollBarTexture, this.guiLeft + 156, this.guiTop + scrollbarY, 6, 27);
 
-    }
+	}
 
-    protected boolean cannotScroll() {
-        return this.origin == null || this.currentMaxScroll <= 0;
-    }
+	protected boolean cannotScroll() {
+		return this.origin == null || this.currentMaxScroll <= 0;
+	}
 
-    protected boolean canDragScroll(double mouseX, double mouseY, int scrollBarY) {
-        return (mouseX >= this.guiLeft + 156 && mouseX < this.guiLeft + 156 + 6) && (mouseY >= this.guiTop + scrollBarY && mouseY < this.guiTop + scrollBarY + 27);
-    }
+	protected boolean canDragScroll(double mouseX, double mouseY, int scrollBarY) {
+		return (mouseX >= this.guiLeft + 156 && mouseX < this.guiLeft + 156 + 6) && (mouseY >= this.guiTop + scrollBarY && mouseY < this.guiTop + scrollBarY + 27);
+	}
 
-    protected void renderBadgeTooltips(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        int widthLimit = this.width - mouseX - 24;
-        if (this.isWithinWindowBoundaries(mouseX, mouseY))
-            this.renderedBadges.stream().filter(RenderedBadge::hasTooltip).filter(renderedBadge -> this.isWithinBadgeBoundaries(renderedBadge, mouseX, mouseY)).map(renderedBadge -> renderedBadge.getTooltipComponents(this.font, widthLimit, delta)).forEach(tooltipComponents -> graphics.renderTooltipInternal(this.font, tooltipComponents, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE));
-    }
+	protected void renderBadgeTooltips(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+		int widthLimit = this.width - mouseX - 24;
+		if (this.isWithinWindowBoundaries(mouseX, mouseY))
+			this.renderedBadges.stream().filter(RenderedBadge::hasTooltip).filter(renderedBadge -> this.isWithinBadgeBoundaries(renderedBadge, mouseX, mouseY)).map(renderedBadge -> renderedBadge.getTooltipComponents(this.font, widthLimit, delta)).forEach(tooltipComponents -> graphics.renderTooltipInternal(this.font, tooltipComponents, mouseX, mouseY, DefaultTooltipPositioner.INSTANCE));
+	}
 
-    protected boolean isWithinWindowBoundaries(int mouseX, int mouseY) {
-        return (mouseX >= this.guiLeft && mouseX < this.guiLeft + WINDOW_WIDTH) && (mouseY >= this.guiTop && mouseY < this.guiTop + WINDOW_HEIGHT);
-    }
+	protected boolean isWithinWindowBoundaries(int mouseX, int mouseY) {
+		return (mouseX >= this.guiLeft && mouseX < this.guiLeft + WINDOW_WIDTH) && (mouseY >= this.guiTop && mouseY < this.guiTop + WINDOW_HEIGHT);
+	}
 
-    protected boolean isWithinBadgeBoundaries(RenderedBadge renderedBadge, int mouseX, int mouseY) {
-        return (mouseX >= renderedBadge.x && mouseX < renderedBadge.x + 9) && (mouseY >= renderedBadge.y && mouseY < renderedBadge.y + 9);
-    }
+	protected boolean isWithinBadgeBoundaries(RenderedBadge renderedBadge, int mouseX, int mouseY) {
+		return (mouseX >= renderedBadge.x && mouseX < renderedBadge.x + 9) && (mouseY >= renderedBadge.y && mouseY < renderedBadge.y + 9);
+	}
 
-    protected void renderOriginWindow(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        graphics.blitSprite(WINDOW_BACKGROUND, this.guiLeft, this.guiTop, -4, WINDOW_WIDTH, WINDOW_HEIGHT);
+	protected void renderOriginWindow(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+		graphics.blitSprite(WINDOW_BACKGROUND, this.guiLeft, this.guiTop, -4, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        if (this.origin != null) {
-            graphics.enableScissor(this.guiLeft, this.guiTop, this.guiLeft + WINDOW_WIDTH, this.guiTop + WINDOW_HEIGHT);
-            this.renderOriginContent(graphics);
-            graphics.disableScissor();
-        }
+		if (this.origin != null) {
+			graphics.enableScissor(this.guiLeft, this.guiTop, this.guiLeft + WINDOW_WIDTH, this.guiTop + WINDOW_HEIGHT);
+			this.renderOriginContent(graphics);
+			graphics.disableScissor();
+		}
 
-        graphics.blitSprite(WINDOW_BORDER, this.guiLeft, this.guiTop, 2, WINDOW_WIDTH, WINDOW_HEIGHT);
-        graphics.blitSprite(WINDOW_NAME_PLATE, this.guiLeft + 10, this.guiTop + 10, 2, 150, 26);
+		graphics.blitSprite(WINDOW_BORDER, this.guiLeft, this.guiTop, 2, WINDOW_WIDTH, WINDOW_HEIGHT);
+		graphics.blitSprite(WINDOW_NAME_PLATE, this.guiLeft + 10, this.guiTop + 10, 2, 150, 26);
 
-        if (this.origin != null) {
-            graphics.pose().pushPose();
-            graphics.pose().translate(0, 0, 5);
+		if (this.origin != null) {
+			graphics.pose().pushPose();
+			graphics.pose().translate(0, 0, 5);
 
-            this.renderOriginName(graphics, mouseX, mouseY, delta);
-            this.renderOriginImpact(graphics, mouseX, mouseY);
+			this.renderOriginName(graphics, mouseX, mouseY, delta);
+			this.renderOriginImpact(graphics, mouseX, mouseY);
 
-            graphics.pose().popPose();
-            graphics.drawCenteredString(this.font, this.getTitle(), this.width / 2, this.guiTop - 15, 0xFFFFFF);
+			graphics.pose().popPose();
+			graphics.drawCenteredString(this.font, this.getTitle(), this.width / 2, this.guiTop - 15, 0xFFFFFF);
 
-            this.renderScrollbar(graphics, mouseX, mouseY);
-            this.renderBadgeTooltips(graphics, mouseX, mouseY, delta);
+			this.renderScrollbar(graphics, mouseX, mouseY);
+			this.renderBadgeTooltips(graphics, mouseX, mouseY, delta);
 
-        }
+		}
 
-    }
+	}
 
-    protected void renderOriginImpact(GuiGraphics graphics, int mouseX, int mouseY) {
-        Impact impact = this.origin.value().impact();
-        graphics.blitSprite(impact.getSpriteId(), this.guiLeft + 128, this.guiTop + 19, 2, 28, 8);
+	protected void renderOriginImpact(GuiGraphics graphics, int mouseX, int mouseY) {
+		Impact impact = this.origin.value().impact();
+		graphics.blitSprite(impact.getSpriteId(), this.guiLeft + 128, this.guiTop + 19, 2, 28, 8);
 
-        if (this.isWithinWindowBoundaries(mouseX, mouseY) && this.isWithinImpactBoundaries(mouseX, mouseY)) {
-            MutableComponent impactHoverTooltip = Component.translatable(Origins.MOD_ID + ".gui.impact.impact").append(": ").append(impact.getTextComponent());
-            graphics.renderTooltip(this.font, impactHoverTooltip, mouseX, mouseY);
-        }
+		if (this.isWithinWindowBoundaries(mouseX, mouseY) && this.isWithinImpactBoundaries(mouseX, mouseY)) {
+			MutableComponent impactHoverTooltip = Component.translatable(Origins.MOD_ID + ".gui.impact.impact").append(": ").append(impact.getTextComponent());
+			graphics.renderTooltip(this.font, impactHoverTooltip, mouseX, mouseY);
+		}
 
-    }
+	}
 
-    protected boolean isWithinImpactBoundaries(int mouseX, int mouseY) {
-        int impactStartX = this.guiLeft + 128;
-        int impactStartY = this.guiTop + 19;
+	protected boolean isWithinImpactBoundaries(int mouseX, int mouseY) {
+		int impactStartX = this.guiLeft + 128;
+		int impactStartY = this.guiTop + 19;
 
-        return (mouseX >= impactStartX && mouseX < impactStartX + 28) && (mouseY >= impactStartY && mouseY < impactStartY + 8);
+		return (mouseX >= impactStartX && mouseX < impactStartX + 28) && (mouseY >= impactStartY && mouseY < impactStartY + 8);
 
-    }
+	}
 
-    protected void renderOriginName(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        if (this.refreshOriginNameWidget || (this.origin != this.prevOrigin || this.layer != this.prevLayer)) {
-            this.originNameWidget = new ScrollingTextWidget(this.guiLeft + 38, this.guiTop + 18, WINDOW_WIDTH - (62 + 3 * 8), 9, Origin.getName(this.getCurrentOriginId()), true, this.font);
-            this.originNameWidget.setAlignment(TextAlignment.LEFT);
+	protected void renderOriginName(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+		if (this.refreshOriginNameWidget || (this.origin != this.prevOrigin || this.layer != this.prevLayer)) {
+			this.originNameWidget = new ScrollingTextWidget(this.guiLeft + 38, this.guiTop + 18, WINDOW_WIDTH - (62 + 3 * 8), 9, Origin.getName(this.getCurrentOriginId()), true, this.font);
+			this.originNameWidget.setAlignment(TextAlignment.LEFT);
 
-            this.refreshOriginNameWidget = false;
+			this.refreshOriginNameWidget = false;
 
-            this.prevOrigin = this.origin;
-            this.prevLayer = this.layer;
-        }
+			this.prevOrigin = this.origin;
+			this.prevLayer = this.layer;
+		}
 
-        this.originNameWidget.render(graphics, mouseX, mouseY, delta);
+		this.originNameWidget.render(graphics, mouseX, mouseY, delta);
 
-        ItemStack iconStack = this.getCurrentOrigin().value().icon().orElse(ItemStack.EMPTY);
-        graphics.renderItem(iconStack, this.guiLeft + 15, this.guiTop + 15);
+		ItemStack iconStack = this.getCurrentOrigin().value().icon().orElse(ItemStack.EMPTY);
+		graphics.renderItem(iconStack, this.guiLeft + 15, this.guiTop + 15);
 
-    }
+	}
 
-    protected void renderOriginContent(GuiGraphics graphics) {
-        RegistryAccess access = Minecraft.getInstance().level.registryAccess();
-        int textWidthLimit = WINDOW_WIDTH - 48;
-        int x = this.guiLeft + 18;
-        int y = this.guiTop + 45;
+	protected void renderOriginContent(GuiGraphics graphics) {
+		RegistryAccess access = Minecraft.getInstance().level.registryAccess();
+		int textWidthLimit = WINDOW_WIDTH - 48;
+		int x = this.guiLeft + 18;
+		int y = this.guiTop + 45;
 
-        y -= this.scrollPos;
+		y -= this.scrollPos;
 
-        for (FormattedCharSequence descriptionLine : this.font.split(Origin.getDescription(this.getCurrentOriginId()), textWidthLimit)) {
-            graphics.drawString(this.font, descriptionLine, x + 2, y, 0xCCCCCC);
-            y += 12;
-        }
+		for (FormattedCharSequence descriptionLine : this.font.split(Origin.getDescription(this.getCurrentOriginId()), textWidthLimit)) {
+			graphics.drawString(this.font, descriptionLine, x + 2, y, 0xCCCCCC);
+			y += 12;
+		}
 
-        y += 12;
-        if (this.isOriginRandom) {
-            for (FormattedCharSequence randomOriginLine : this.font.split(this.randomOriginText, textWidthLimit)) {
-                y += 12;
-                graphics.drawString(this.font, randomOriginLine, x + 2, y, 0xCCCCCC);
-            }
-            y += 14;
-        } else {
-            for (Holder<Power> power : this.origin.value().powers()) {
-                if (power.value().hidden()) continue;
-                LinkedList<FormattedCharSequence> powerName = new LinkedList<>(this.font.split(power.value().getName(access).withStyle(ChatFormatting.UNDERLINE), textWidthLimit));
-                int powerNameWidth = this.font.width(powerName.getLast());
+		y += 12;
+		if (this.isOriginRandom) {
+			for (FormattedCharSequence randomOriginLine : this.font.split(this.randomOriginText, textWidthLimit)) {
+				y += 12;
+				graphics.drawString(this.font, randomOriginLine, x + 2, y, 0xCCCCCC);
+			}
+			y += 14;
+		} else {
+			for (Holder<Power> power : this.origin.value().powers()) {
+				if (power.value().hidden()) continue;
+				LinkedList<FormattedCharSequence> powerName = new LinkedList<>(this.font.split(power.value().getName(access).withStyle(ChatFormatting.UNDERLINE), textWidthLimit));
+				int powerNameWidth = this.font.width(powerName.getLast());
 
-                for (FormattedCharSequence powerNameLine : powerName) {
-                    graphics.drawString(this.font, powerNameLine, x, y, 0xFFFFFF);
-                    y += 12;
-                }
+				for (FormattedCharSequence powerNameLine : powerName) {
+					graphics.drawString(this.font, powerNameLine, x, y, 0xFFFFFF);
+					y += 12;
+				}
 
-                y -= 12;
+				y -= 12;
 
-                int badgeStartX = x + powerNameWidth + 4;
-                int badgeEndX = x + 135;
+				int badgeStartX = x + powerNameWidth + 4;
+				int badgeEndX = x + 135;
 
-                int badgeOffsetX = 0;
-                int badgeOffsetY = 0;
+				int badgeOffsetX = 0;
+				int badgeOffsetY = 0;
 
-                for (Power selfOrSubPower : this.getSelfOrSubPowers(power.value(), BadgeManager::has)) {
-                    for (Badge badge : BadgeManager.get(selfOrSubPower.getId(access))) {
-                        int badgeX = badgeStartX + 10 * badgeOffsetX;
-                        int badgeY = (y - 1) + 10 * badgeOffsetY;
+				for (Power selfOrSubPower : this.getSelfOrSubPowers(power.value(), BadgeManager::has)) {
+					for (Badge badge : BadgeManager.get(selfOrSubPower.getId(access))) {
+						int badgeX = badgeStartX + 10 * badgeOffsetX;
+						int badgeY = (y - 1) + 10 * badgeOffsetY;
 
-                        if (badgeX >= badgeEndX) {
+						if (badgeX >= badgeEndX) {
 
-                            badgeOffsetX = 0;
-                            badgeOffsetY++;
+							badgeOffsetX = 0;
+							badgeOffsetY++;
 
-                            badgeX = badgeStartX = x;
-                            badgeY = (y - 1) + 10 * badgeOffsetY;
+							badgeX = badgeStartX = x;
+							badgeY = (y - 1) + 10 * badgeOffsetY;
 
-                        }
+						}
 
-                        RenderedBadge renderedBadge = new RenderedBadge(selfOrSubPower, badge, badgeX, badgeY);
-                        this.renderedBadges.add(renderedBadge);
+						RenderedBadge renderedBadge = new RenderedBadge(selfOrSubPower, badge, badgeX, badgeY);
+						this.renderedBadges.add(renderedBadge);
 
-                        graphics.blitSprite(badge.spriteId(), renderedBadge.x, renderedBadge.y, -2, 0, 0, 9, 9, 9, 9);
-                        badgeOffsetX++;
-                    }
-                }
+						graphics.blitSprite(badge.spriteId(), renderedBadge.x, renderedBadge.y, -2, 0, 0, 9, 9, 9, 9);
+						badgeOffsetX++;
+					}
+				}
 
-                y += badgeOffsetY * 10;
+				y += badgeOffsetY * 10;
 
-                for (FormattedCharSequence powerDescriptionLine : this.font.split(power.value().getDescription(access), textWidthLimit)) {
-                    y += 12;
-                    graphics.drawString(this.font, powerDescriptionLine, x + 2, y, 0xCCCCCC);
-                }
+				for (FormattedCharSequence powerDescriptionLine : this.font.split(power.value().getDescription(access), textWidthLimit)) {
+					y += 12;
+					graphics.drawString(this.font, powerDescriptionLine, x + 2, y, 0xCCCCCC);
+				}
 
-                y += 20;
-            }
-        }
+				y += 20;
+			}
+		}
 
-        y += this.scrollPos;
-        this.currentMaxScroll = Math.max(0, y - 14 - (this.guiTop + 158));
+		y += this.scrollPos;
+		this.currentMaxScroll = Math.max(0, y - 14 - (this.guiTop + 158));
 
-    }
+	}
 
-    protected final Collection<? extends Power> getSelfOrSubPowers(Power power, Predicate<ResourceLocation> selfPredicate) {
-        //TODO
-//        if (!selfPredicate.test(power) && power instanceof MultiplePower multiplePower) {
-//            return multiplePower.getSubPowers();
-//        } else {
-        return Set.of(power);
-//        }
-    }
+	protected final Collection<? extends Power> getSelfOrSubPowers(Power power, Predicate<ResourceLocation> selfPredicate) {
+		//TODO
+//		if (!selfPredicate.test(power) && power instanceof MultiplePower multiplePower) {
+//			return multiplePower.getSubPowers();
+//		} else {
+		return Set.of(power);
+//		}
+	}
 
-    protected record RenderedBadge(Power power, Badge badge, int x, int y) {
-        public List<ClientTooltipComponent> getTooltipComponents(Font textRenderer, int widthLimit, float delta) {
-            return this.badge.getTooltipComponents(this.power, textRenderer, widthLimit, delta);
-        }
+	protected record RenderedBadge(Power power, Badge badge, int x, int y) {
+		public List<ClientTooltipComponent> getTooltipComponents(Font textRenderer, int widthLimit, float delta) {
+			return this.badge.getTooltipComponents(this.power, textRenderer, widthLimit, delta);
+		}
 
-        public boolean hasTooltip() {
-            return this.badge.hasTooltip();
-        }
-    }
+		public boolean hasTooltip() {
+			return this.badge.hasTooltip();
+		}
+	}
 }

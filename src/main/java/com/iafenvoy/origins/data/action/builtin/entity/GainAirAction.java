@@ -9,17 +9,17 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public record GainAirAction(int amount) implements EntityAction {
-    public static final MapCodec<GainAirAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.INT.fieldOf("amount").forGetter(GainAirAction::amount)
-    ).apply(i, GainAirAction::new));
+	public static final MapCodec<GainAirAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.INT.fieldOf("amount").forGetter(GainAirAction::amount)
+	).apply(i, GainAirAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof Player player) player.setAirSupply(player.getAirSupply() + this.amount);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof Player player) player.setAirSupply(player.getAirSupply() + this.amount);
+	}
 }

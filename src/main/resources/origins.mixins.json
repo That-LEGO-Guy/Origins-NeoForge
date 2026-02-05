@@ -3,20 +3,20 @@
   "package": "com.iafenvoy.origins.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "power.FoodDataMixin",
-    "power.LivingEntityMixin",
-    "power.PlayerMixin"
+	"power.FoodDataMixin",
+	"power.LivingEntityMixin",
+	"power.PlayerMixin"
   ],
   "client": [
-    "power.EntityMixin",
-    "power.FogRendererMixin",
-    "power.GameRendererMixin",
-    "power.PlayerRendererMixin"
+	"power.EntityMixin",
+	"power.FogRendererMixin",
+	"power.GameRendererMixin",
+	"power.PlayerRendererMixin"
   ],
   "injectors": {
-    "defaultRequire": 1
+	"defaultRequire": 1
   },
   "overwrites": {
-    "requireAnnotations": true
+	"requireAnnotations": true
   }
 }

@@ -9,17 +9,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record AndCondition(List<BiEntityCondition> conditions) implements BiEntityCondition {
-    public static final MapCodec<AndCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BiEntityCondition.CODEC.listOf().fieldOf("conditions").forGetter(AndCondition::conditions)
-    ).apply(i, AndCondition::new));
+	public static final MapCodec<AndCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BiEntityCondition.CODEC.listOf().fieldOf("conditions").forGetter(AndCondition::conditions)
+	).apply(i, AndCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity source, @NotNull Entity target) {
-        return this.conditions.stream().allMatch(x -> x.test(source, target));
-    }
+	@Override
+	public boolean test(@NotNull Entity source, @NotNull Entity target) {
+		return this.conditions.stream().allMatch(x -> x.test(source, target));
+	}
 }

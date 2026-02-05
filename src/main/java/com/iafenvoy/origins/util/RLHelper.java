@@ -5,13 +5,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
 public final class RLHelper {
-    public static final ResourceLocation EMPTY = ResourceLocation.withDefaultNamespace("");
+	public static final ResourceLocation EMPTY = ResourceLocation.withDefaultNamespace("");
 
-    public static ResourceLocation id(Holder<?> holder) {
-        return holder.unwrapKey().map(ResourceKey::location).orElse(EMPTY);
-    }
+	public static ResourceLocation id(Holder<?> holder) {
+		return holder.unwrapKey().map(ResourceKey::location).orElse(EMPTY);
+	}
 
-    public static String string(Holder<?> holder) {
-        return id(holder).toString();
-    }
+	public static String string(Holder<?> holder) {
+		return id(holder).toString();
+	}
 }

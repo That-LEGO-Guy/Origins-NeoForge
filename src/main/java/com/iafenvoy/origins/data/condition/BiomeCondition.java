@@ -11,14 +11,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 public interface BiomeCondition {
-    Codec<BiomeCondition> CODEC = DefaultedCodec.registryDispatch(ConditionRegistries.BIOME_CONDITION, BiomeCondition::codec, Function.identity(), () -> AlwaysTrueCondition.INSTANCE);
+	Codec<BiomeCondition> CODEC = DefaultedCodec.registryDispatch(ConditionRegistries.BIOME_CONDITION, BiomeCondition::codec, Function.identity(), () -> AlwaysTrueCondition.INSTANCE);
 
-    static MapCodec<BiomeCondition> optionalCodec(String name) {
-        return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE);
-    }
+	static MapCodec<BiomeCondition> optionalCodec(String name) {
+		return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE);
+	}
 
-    @NotNull
-    MapCodec<? extends BiomeCondition> codec();
+	@NotNull
+	MapCodec<? extends BiomeCondition> codec();
 
-    boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos);
+	boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos);
 }

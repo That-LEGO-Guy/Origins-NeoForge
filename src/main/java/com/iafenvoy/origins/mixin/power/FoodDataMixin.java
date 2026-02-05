@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(FoodData.class)
 public class FoodDataMixin {
-    @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/GameRules;getBoolean(Lnet/minecraft/world/level/GameRules$Key;)Z"))
-    private boolean checkNaturalSpawn(boolean original, @Local(argsOnly = true) Player player) {
-        return original && NeoForge.EVENT_BUS.post(new CanNaturalRegenEvent(player)).getResult().allow();
-    }
+	@ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/GameRules;getBoolean(Lnet/minecraft/world/level/GameRules$Key;)Z"))
+	private boolean checkNaturalSpawn(boolean original, @Local(argsOnly = true) Player player) {
+		return original && NeoForge.EVENT_BUS.post(new CanNaturalRegenEvent(player)).getResult().allow();
+	}
 }

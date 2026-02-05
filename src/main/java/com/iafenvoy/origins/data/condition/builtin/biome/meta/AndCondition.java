@@ -11,17 +11,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record AndCondition(List<BiomeCondition> conditions) implements BiomeCondition {
-    public static final MapCodec<AndCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BiomeCondition.CODEC.listOf().fieldOf("conditions").forGetter(AndCondition::conditions)
-    ).apply(i, AndCondition::new));
+	public static final MapCodec<AndCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BiomeCondition.CODEC.listOf().fieldOf("conditions").forGetter(AndCondition::conditions)
+	).apply(i, AndCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiomeCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiomeCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
-        return this.conditions.stream().allMatch(x -> x.test(biome, pos));
-    }
+	@Override
+	public boolean test(@NotNull Holder<Biome> biome, @NotNull BlockPos pos) {
+		return this.conditions.stream().allMatch(x -> x.test(biome, pos));
+	}
 }

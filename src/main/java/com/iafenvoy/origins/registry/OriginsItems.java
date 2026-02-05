@@ -11,12 +11,12 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 @EventBusSubscriber
 public final class OriginsItems {
-    public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(Origins.MOD_ID);
+	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(Origins.MOD_ID);
 
-    public static final DeferredItem<OrbOfOriginItem> ORB_OF_ORIGIN = REGISTRY.register("orb_of_origin", OrbOfOriginItem::new);
+	public static final DeferredItem<OrbOfOriginItem> ORB_OF_ORIGIN = REGISTRY.register("orb_of_origin", OrbOfOriginItem::new);
 
-    @SubscribeEvent
-    public static void appendToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) event.accept(ORB_OF_ORIGIN);
-    }
+	@SubscribeEvent
+	public static void appendToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
+		if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) event.accept(ORB_OF_ORIGIN);
+	}
 }

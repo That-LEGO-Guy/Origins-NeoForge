@@ -7,16 +7,16 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public enum ReplaceableCondition implements BlockCondition {
-    INSTANCE;
-    public static final MapCodec<ReplaceableCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<ReplaceableCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BlockCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-        return level.getBlockState(pos).canBeReplaced();
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
+		return level.getBlockState(pos).canBeReplaced();
+	}
 }

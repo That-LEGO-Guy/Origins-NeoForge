@@ -29,40 +29,40 @@ import java.util.Optional;
 
 @EventBusSubscriber
 public record ActionOnBeingUsedPower(BiEntityAction biEntityAction, ItemAction heldItemAction,
-                                     ItemAction resultItemAction, BiEntityCondition biEntityCondition,
-                                     ItemCondition itemCondition, List<InteractionHand> hands,
-                                     Optional<ItemStack> resultStack, InteractionResult interactionResult,
-                                     int priority) implements Power, Prioritized {
-    public static final MapCodec<ActionOnBeingUsedPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BiEntityAction.optionalCodec("bientity_action").forGetter(ActionOnBeingUsedPower::biEntityAction),
-            ItemAction.optionalCodec("held_item_action").forGetter(ActionOnBeingUsedPower::heldItemAction),
-            ItemAction.optionalCodec("result_item_action").forGetter(ActionOnBeingUsedPower::resultItemAction),
-            BiEntityCondition.optionalCodec("bientity_condition").forGetter(ActionOnBeingUsedPower::biEntityCondition),
-            ItemCondition.optionalCodec("item_condition").forGetter(ActionOnBeingUsedPower::itemCondition),
-            CombinedCodecs.HAND.optionalFieldOf("hands", List.of(InteractionHand.values())).forGetter(ActionOnBeingUsedPower::hands),
-            ItemStack.CODEC.optionalFieldOf("result_stack").forGetter(ActionOnBeingUsedPower::resultStack),
-            ExtraEnumCodecs.INTERACTION_RESULT.optionalFieldOf("interaction_result", InteractionResult.SUCCESS).forGetter(ActionOnBeingUsedPower::interactionResult),
-            Codec.INT.optionalFieldOf("priority", 0).forGetter(ActionOnBeingUsedPower::priority)
-    ).apply(i, ActionOnBeingUsedPower::new));
+									 ItemAction resultItemAction, BiEntityCondition biEntityCondition,
+									 ItemCondition itemCondition, List<InteractionHand> hands,
+									 Optional<ItemStack> resultStack, InteractionResult interactionResult,
+									 int priority) implements Power, Prioritized {
+	public static final MapCodec<ActionOnBeingUsedPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BiEntityAction.optionalCodec("bientity_action").forGetter(ActionOnBeingUsedPower::biEntityAction),
+			ItemAction.optionalCodec("held_item_action").forGetter(ActionOnBeingUsedPower::heldItemAction),
+			ItemAction.optionalCodec("result_item_action").forGetter(ActionOnBeingUsedPower::resultItemAction),
+			BiEntityCondition.optionalCodec("bientity_condition").forGetter(ActionOnBeingUsedPower::biEntityCondition),
+			ItemCondition.optionalCodec("item_condition").forGetter(ActionOnBeingUsedPower::itemCondition),
+			CombinedCodecs.HAND.optionalFieldOf("hands", List.of(InteractionHand.values())).forGetter(ActionOnBeingUsedPower::hands),
+			ItemStack.CODEC.optionalFieldOf("result_stack").forGetter(ActionOnBeingUsedPower::resultStack),
+			ExtraEnumCodecs.INTERACTION_RESULT.optionalFieldOf("interaction_result", InteractionResult.SUCCESS).forGetter(ActionOnBeingUsedPower::interactionResult),
+			Codec.INT.optionalFieldOf("priority", 0).forGetter(ActionOnBeingUsedPower::priority)
+	).apply(i, ActionOnBeingUsedPower::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @SubscribeEvent
-    public static void onBeingUsed(PlayerInteractEvent.EntityInteractSpecific event) {
-        Player player = event.getEntity();
-        Entity entity = event.getTarget();
-        Level level = player.level();
-        InteractionHand hand = event.getHand();
-        ItemStack stack = player.getItemInHand(hand);
-        for (ActionOnBeingUsedPower power : OriginDataHolder.get(player).getPowers(ActionPowers.ACTION_ON_BEING_USED, ActionOnBeingUsedPower.class)) {
-            if (power.hands.contains(hand) && power.biEntityCondition.test(player, entity) && power.itemCondition.test(level, stack)) {
-                power.biEntityAction.execute(player, entity);
-                power.heldItemAction.execute(level, player, stack);
-                //TODO::Incomplete
-            }
-        }
-    }
+	@SubscribeEvent
+	public static void onBeingUsed(PlayerInteractEvent.EntityInteractSpecific event) {
+		Player player = event.getEntity();
+		Entity entity = event.getTarget();
+		Level level = player.level();
+		InteractionHand hand = event.getHand();
+		ItemStack stack = player.getItemInHand(hand);
+		for (ActionOnBeingUsedPower power : OriginDataHolder.get(player).getPowers(ActionPowers.ACTION_ON_BEING_USED, ActionOnBeingUsedPower.class)) {
+			if (power.hands.contains(hand) && power.biEntityCondition.test(player, entity) && power.itemCondition.test(level, stack)) {
+				power.biEntityAction.execute(player, entity);
+				power.heldItemAction.execute(level, player, stack);
+				//TODO::Incomplete
+			}
+		}
+	}
 }

@@ -7,17 +7,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record NotCondition(EntityCondition condition) implements EntityCondition {
-    public static final MapCodec<NotCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EntityCondition.CODEC.fieldOf("condition").forGetter(NotCondition::new)
-    ).apply(i, NotCondition::new));
+	public static final MapCodec<NotCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EntityCondition.CODEC.fieldOf("condition").forGetter(NotCondition::new)
+	).apply(i, NotCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        return !this.condition.test(entity);
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		return !this.condition.test(entity);
+	}
 }

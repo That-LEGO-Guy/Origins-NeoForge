@@ -9,17 +9,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record BlockActionAction(BlockAction action) implements EntityAction {
-    public static final MapCodec<BlockActionAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockAction.CODEC.fieldOf("action").forGetter(BlockActionAction::action)
-    ).apply(i, BlockActionAction::new));
+	public static final MapCodec<BlockActionAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockAction.CODEC.fieldOf("action").forGetter(BlockActionAction::action)
+	).apply(i, BlockActionAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        this.action.execute(source.level(), source.blockPosition(), Direction.DOWN);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		this.action.execute(source.level(), source.blockPosition(), Direction.DOWN);
+	}
 }

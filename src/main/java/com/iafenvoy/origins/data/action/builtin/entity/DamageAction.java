@@ -12,18 +12,18 @@ import org.jetbrains.annotations.NotNull;
 
 //TODO::Modifiers
 public record DamageAction(Holder<DamageType> damageType, float amount) implements EntityAction {
-    public static final MapCodec<DamageAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            DamageType.CODEC.fieldOf("damage_type").forGetter(DamageAction::damageType),
-            Codec.FLOAT.fieldOf("amount").forGetter(DamageAction::amount)
-    ).apply(i, DamageAction::new));
+	public static final MapCodec<DamageAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			DamageType.CODEC.fieldOf("damage_type").forGetter(DamageAction::damageType),
+			Codec.FLOAT.fieldOf("amount").forGetter(DamageAction::amount)
+	).apply(i, DamageAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        source.hurt(new DamageSource(this.damageType), this.amount);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		source.hurt(new DamageSource(this.damageType), this.amount);
+	}
 }

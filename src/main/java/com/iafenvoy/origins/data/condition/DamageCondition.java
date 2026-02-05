@@ -9,14 +9,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 public interface DamageCondition {
-    Codec<DamageCondition> CODEC = DefaultedCodec.registryDispatch(ConditionRegistries.DAMAGE_CONDITION, DamageCondition::codec, Function.identity(), () -> AlwaysTrueCondition.INSTANCE);
+	Codec<DamageCondition> CODEC = DefaultedCodec.registryDispatch(ConditionRegistries.DAMAGE_CONDITION, DamageCondition::codec, Function.identity(), () -> AlwaysTrueCondition.INSTANCE);
 
-    static MapCodec<DamageCondition> optionalCodec(String name) {
-        return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE);
-    }
+	static MapCodec<DamageCondition> optionalCodec(String name) {
+		return CODEC.optionalFieldOf(name, AlwaysTrueCondition.INSTANCE);
+	}
 
-    @NotNull
-    MapCodec<? extends DamageCondition> codec();
+	@NotNull
+	MapCodec<? extends DamageCondition> codec();
 
-    boolean test(@NotNull DamageSource source, float amount);
+	boolean test(@NotNull DamageSource source, float amount);
 }

@@ -9,16 +9,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public enum OwnerCondition implements BiEntityCondition {
-    INSTANCE;
-    public static final MapCodec<OwnerCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<OwnerCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity source, @NotNull Entity target) {
-        return target instanceof OwnableEntity ownable && Objects.equals(ownable.getOwnerUUID(), source.getUUID());
-    }
+	@Override
+	public boolean test(@NotNull Entity source, @NotNull Entity target) {
+		return target instanceof OwnableEntity ownable && Objects.equals(ownable.getOwnerUUID(), source.getUUID());
+	}
 }

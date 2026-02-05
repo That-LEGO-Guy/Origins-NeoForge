@@ -20,23 +20,23 @@ import java.util.List;
 
 @EventBusSubscriber(Dist.CLIENT)
 public record TooltipPower(ItemCondition itemCondition, List<Component> text, int order) implements Power {
-    public static final MapCodec<TooltipPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ItemCondition.optionalCodec("item_condition").forGetter(TooltipPower::itemCondition),
-            CombinedCodecs.TEXT.fieldOf("text").forGetter(TooltipPower::text),
-            Codec.INT.optionalFieldOf("order", 0).forGetter(TooltipPower::order)
-    ).apply(i, TooltipPower::new));
+	public static final MapCodec<TooltipPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ItemCondition.optionalCodec("item_condition").forGetter(TooltipPower::itemCondition),
+			CombinedCodecs.TEXT.fieldOf("text").forGetter(TooltipPower::text),
+			Codec.INT.optionalFieldOf("order", 0).forGetter(TooltipPower::order)
+	).apply(i, TooltipPower::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @SubscribeEvent
-    public static void appendTooltips(ItemTooltipEvent event) {
-        Player player = event.getEntity();
-        if (player != null)
-            for (TooltipPower power : OriginDataHolder.get(player).getPowers(RegularPowers.TOOLTIP, TooltipPower.class))
-                if (power.itemCondition.test(player.level(), event.getItemStack()))
-                    event.getToolTip().addAll(power.order, power.text);
-    }
+	@SubscribeEvent
+	public static void appendTooltips(ItemTooltipEvent event) {
+		Player player = event.getEntity();
+		if (player != null)
+			for (TooltipPower power : OriginDataHolder.get(player).getPowers(RegularPowers.TOOLTIP, TooltipPower.class))
+				if (power.itemCondition.test(player.level(), event.getItemStack()))
+					event.getToolTip().addAll(power.order, power.text);
+	}
 }

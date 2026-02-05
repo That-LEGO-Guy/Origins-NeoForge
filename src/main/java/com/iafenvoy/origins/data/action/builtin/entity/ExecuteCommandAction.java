@@ -10,18 +10,18 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record ExecuteCommandAction(String command) implements EntityAction {
-    public static final MapCodec<ExecuteCommandAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.STRING.fieldOf("command").forGetter(ExecuteCommandAction::command)
-    ).apply(i, ExecuteCommandAction::new));
+	public static final MapCodec<ExecuteCommandAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.STRING.fieldOf("command").forGetter(ExecuteCommandAction::command)
+	).apply(i, ExecuteCommandAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source.level() instanceof ServerLevel serverLevel)
-            CommandHelper.executeCommand(serverLevel.getServer(), this.command);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source.level() instanceof ServerLevel serverLevel)
+			CommandHelper.executeCommand(serverLevel.getServer(), this.command);
+	}
 }

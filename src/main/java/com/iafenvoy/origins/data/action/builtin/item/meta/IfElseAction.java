@@ -10,21 +10,21 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record IfElseAction(ItemCondition condition, ItemAction ifAction,
-                           ItemAction elseAction) implements ItemAction {
-    public static final MapCodec<IfElseAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ItemCondition.CODEC.fieldOf("condition").forGetter(IfElseAction::condition),
-            ItemAction.CODEC.fieldOf("if_action").forGetter(IfElseAction::ifAction),
-            ItemAction.optionalCodec("else_action").forGetter(IfElseAction::elseAction)
-    ).apply(i, IfElseAction::new));
+						   ItemAction elseAction) implements ItemAction {
+	public static final MapCodec<IfElseAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ItemCondition.CODEC.fieldOf("condition").forGetter(IfElseAction::condition),
+			ItemAction.CODEC.fieldOf("if_action").forGetter(IfElseAction::ifAction),
+			ItemAction.optionalCodec("else_action").forGetter(IfElseAction::elseAction)
+	).apply(i, IfElseAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
-        if (this.condition.test(level, stack)) this.ifAction.execute(level, source, stack);
-        else this.elseAction.execute(level, source, stack);
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
+		if (this.condition.test(level, stack)) this.ifAction.execute(level, source, stack);
+		else this.elseAction.execute(level, source, stack);
+	}
 }

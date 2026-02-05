@@ -11,14 +11,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Function;
 
 public interface ItemAction {
-    Codec<ItemAction> CODEC = DefaultedCodec.registryDispatch(ActionRegistries.ITEM_ACTION, ItemAction::codec, Function.identity(), () -> NoOpAction.INSTANCE);
+	Codec<ItemAction> CODEC = DefaultedCodec.registryDispatch(ActionRegistries.ITEM_ACTION, ItemAction::codec, Function.identity(), () -> NoOpAction.INSTANCE);
 
-    static MapCodec<ItemAction> optionalCodec(String name) {
-        return CODEC.optionalFieldOf(name, NoOpAction.INSTANCE);
-    }
+	static MapCodec<ItemAction> optionalCodec(String name) {
+		return CODEC.optionalFieldOf(name, NoOpAction.INSTANCE);
+	}
 
-    @NotNull
-    MapCodec<? extends ItemAction> codec();
+	@NotNull
+	MapCodec<? extends ItemAction> codec();
 
-    void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack);
+	void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack);
 }

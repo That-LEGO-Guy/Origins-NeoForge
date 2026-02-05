@@ -9,17 +9,17 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record ChanceCondition(double chance) implements ItemCondition {
-    public static final MapCodec<ChanceCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.doubleRange(0, 1).fieldOf("chance").forGetter(ChanceCondition::chance)
-    ).apply(i, ChanceCondition::new));
+	public static final MapCodec<ChanceCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.doubleRange(0, 1).fieldOf("chance").forGetter(ChanceCondition::chance)
+	).apply(i, ChanceCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-        return Math.random() < this.chance;
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
+		return Math.random() < this.chance;
+	}
 }

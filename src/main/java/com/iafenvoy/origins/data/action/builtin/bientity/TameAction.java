@@ -8,17 +8,17 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public enum TameAction implements BiEntityAction {
-    INSTANCE;
-    public static final MapCodec<TameAction> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<TameAction> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source, @NotNull Entity target) {
-        if (source instanceof Player player && target instanceof TamableAnimal ownable)
-            ownable.tame(player);
-    }
+	@Override
+	public void execute(@NotNull Entity source, @NotNull Entity target) {
+		if (source instanceof Player player && target instanceof TamableAnimal ownable)
+			ownable.tame(player);
+	}
 }

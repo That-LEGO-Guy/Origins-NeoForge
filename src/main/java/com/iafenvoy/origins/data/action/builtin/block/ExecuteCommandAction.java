@@ -12,18 +12,18 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record ExecuteCommandAction(String command) implements BlockAction {
-    public static final MapCodec<ExecuteCommandAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.STRING.fieldOf("command").forGetter(ExecuteCommandAction::command)
-    ).apply(i, ExecuteCommandAction::new));
+	public static final MapCodec<ExecuteCommandAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.STRING.fieldOf("command").forGetter(ExecuteCommandAction::command)
+	).apply(i, ExecuteCommandAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-        if (level instanceof ServerLevel serverLevel)
-            CommandHelper.executeCommand(serverLevel.getServer(), this.command);
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		if (level instanceof ServerLevel serverLevel)
+			CommandHelper.executeCommand(serverLevel.getServer(), this.command);
+	}
 }

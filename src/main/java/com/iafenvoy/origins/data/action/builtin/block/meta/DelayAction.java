@@ -11,18 +11,18 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record DelayAction(BlockAction action, int ticks) implements BlockAction {
-    public static final MapCodec<DelayAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockAction.CODEC.fieldOf("action").forGetter(DelayAction::action),
-            Codec.INT.fieldOf("ticks").forGetter(DelayAction::ticks)
-    ).apply(i, DelayAction::new));
+	public static final MapCodec<DelayAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockAction.CODEC.fieldOf("action").forGetter(DelayAction::action),
+			Codec.INT.fieldOf("ticks").forGetter(DelayAction::ticks)
+	).apply(i, DelayAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-        Timeout.create(this.ticks, () -> this.action.execute(level, pos, direction));
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		Timeout.create(this.ticks, () -> this.action.execute(level, pos, direction));
+	}
 }

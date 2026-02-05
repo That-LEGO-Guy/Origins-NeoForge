@@ -8,16 +8,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public enum RidingCondition implements BiEntityCondition {
-    INSTANCE;
-    public static final MapCodec<RidingCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<RidingCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity source, @NotNull Entity target) {
-        return Objects.equals(source.getVehicle(), target);
-    }
+	@Override
+	public boolean test(@NotNull Entity source, @NotNull Entity target) {
+		return Objects.equals(source.getVehicle(), target);
+	}
 }

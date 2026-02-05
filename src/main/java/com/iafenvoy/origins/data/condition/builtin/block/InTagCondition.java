@@ -11,17 +11,17 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 public record InTagCondition(TagKey<Block> tag) implements BlockCondition {
-    public static final MapCodec<InTagCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            TagKey.codec(Registries.BLOCK).fieldOf("tag").forGetter(InTagCondition::tag)
-    ).apply(i, InTagCondition::new));
+	public static final MapCodec<InTagCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			TagKey.codec(Registries.BLOCK).fieldOf("tag").forGetter(InTagCondition::tag)
+	).apply(i, InTagCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-        return level.getBlockState(pos).is(this.tag);
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
+		return level.getBlockState(pos).is(this.tag);
+	}
 }

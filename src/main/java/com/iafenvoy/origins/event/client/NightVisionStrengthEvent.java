@@ -7,21 +7,21 @@ import java.util.Optional;
 
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class NightVisionStrengthEvent extends LivingEvent {
-    private Optional<Float> strength = Optional.empty();
+	private Optional<Float> strength = Optional.empty();
 
-    public NightVisionStrengthEvent(LivingEntity entity) {
-        super(entity);
-    }
+	public NightVisionStrengthEvent(LivingEntity entity) {
+		super(entity);
+	}
 
-    public void setStrength(float color) {
-        this.strength = Optional.of(color);
-    }
+	public void setStrength(float color) {
+		this.strength = Optional.of(color);
+	}
 
-    public void clearStrength() {
-        this.strength = Optional.empty();
-    }
+	public void clearStrength() {
+		this.strength = Optional.empty();
+	}
 
-    public Optional<Float> getStrength() {
-        return this.strength;
-    }
+	public Optional<Float> getStrength() {
+		return this.strength;
+	}
 }

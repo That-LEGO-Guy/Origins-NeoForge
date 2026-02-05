@@ -11,39 +11,39 @@ import org.jetbrains.annotations.NotNull;
 
 public record ModifyHarvestPower(BlockCondition blockCondition,boolean allow) implements Power {
 
-    public static final MapCodec<ModifyHarvestPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockCondition.optionalCodec("block_condition").forGetter(ModifyHarvestPower::blockCondition),
-            Codec.BOOL.fieldOf("allow").forGetter(ModifyHarvestPower::allow)
-    ).apply(i, ModifyHarvestPower::new));
+	public static final MapCodec<ModifyHarvestPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockCondition.optionalCodec("block_condition").forGetter(ModifyHarvestPower::blockCondition),
+			Codec.BOOL.fieldOf("allow").forGetter(ModifyHarvestPower::allow)
+	).apply(i, ModifyHarvestPower::new));
 
 // TODO ListConfiguration
 
 //public static final Codec<ModifyHarvestConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-//        ListConfiguration.MODIFIER_CODEC.forGetter(ModifyHarvestConfiguration::modifiers),
-//        ConfiguredBlockCondition.optional("block_condition").forGetter(ModifyHarvestConfiguration::condition),
-//        CalioCodecHelper.BOOL.fieldOf("allow").forGetter(ModifyHarvestConfiguration::allow)
+//		ListConfiguration.MODIFIER_CODEC.forGetter(ModifyHarvestConfiguration::modifiers),
+//		ConfiguredBlockCondition.optional("block_condition").forGetter(ModifyHarvestConfiguration::condition),
+//		CalioCodecHelper.BOOL.fieldOf("allow").forGetter(ModifyHarvestConfiguration::allow)
 //).apply(instance, ModifyHarvestConfiguration::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    // TODO
+	// TODO
 //
-//    public static Optional<Boolean> isHarvestAllowed(Player player, LevelReader reader, BlockPos pos) {
-//        return PowerContainer.getPowers(player, ApoliPowers.MODIFY_HARVEST.get()).stream()
-//                .filter(x -> x.value().getFactory().doesApply(x.value(), reader, pos))
-//                .map(x -> x.value().getFactory().isHarvestAllowed(x.value()))
-//                .reduce((x, y) -> x || y);
-//    }
+//	public static Optional<Boolean> isHarvestAllowed(Player player, LevelReader reader, BlockPos pos) {
+//		return PowerContainer.getPowers(player, ApoliPowers.MODIFY_HARVEST.get()).stream()
+//				.filter(x -> x.value().getFactory().doesApply(x.value(), reader, pos))
+//				.map(x -> x.value().getFactory().isHarvestAllowed(x.value()))
+//				.reduce((x, y) -> x || y);
+//	}
 
 
-    public boolean doesApply(Level level, BlockPos pos) {
-        return blockCondition().test(level, pos);
-    }
+	public boolean doesApply(Level level, BlockPos pos) {
+		return blockCondition().test(level, pos);
+	}
 
-    public boolean isHarvestAllowed() {
-        return allow();
-    }
+	public boolean isHarvestAllowed() {
+		return allow();
+	}
 }

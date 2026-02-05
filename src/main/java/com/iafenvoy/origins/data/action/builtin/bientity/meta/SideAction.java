@@ -10,18 +10,18 @@ import net.neoforged.neoforgespi.Environment;
 import org.jetbrains.annotations.NotNull;
 
 public record SideAction(BiEntityAction action, Dist side) implements BiEntityAction {
-    public static final MapCodec<SideAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BiEntityAction.CODEC.fieldOf("action").forGetter(SideAction::action),
-            ExtraEnumCodecs.DIST.fieldOf("side").forGetter(SideAction::side)
-    ).apply(i, SideAction::new));
+	public static final MapCodec<SideAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BiEntityAction.CODEC.fieldOf("action").forGetter(SideAction::action),
+			ExtraEnumCodecs.DIST.fieldOf("side").forGetter(SideAction::side)
+	).apply(i, SideAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source, @NotNull Entity target) {
-        if (Environment.get().getDist() == this.side) this.action.execute(source, target);
-    }
+	@Override
+	public void execute(@NotNull Entity source, @NotNull Entity target) {
+		if (Environment.get().getDist() == this.side) this.action.execute(source, target);
+	}
 }

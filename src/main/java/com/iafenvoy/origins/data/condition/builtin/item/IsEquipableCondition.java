@@ -13,19 +13,19 @@ import java.util.Objects;
 import java.util.Optional;
 
 public record IsEquipableCondition(Optional<EquipmentSlot> slot) implements ItemCondition {
-    public static final MapCodec<IsEquipableCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EquipmentSlot.CODEC.optionalFieldOf("slot").forGetter(IsEquipableCondition::slot)
-    ).apply(i, IsEquipableCondition::new));
+	public static final MapCodec<IsEquipableCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EquipmentSlot.CODEC.optionalFieldOf("slot").forGetter(IsEquipableCondition::slot)
+	).apply(i, IsEquipableCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-        Equipable equipable = Equipable.get(stack);
-        if (equipable == null) return false;
-        return this.slot.map(x -> Objects.equals(x, equipable.getEquipmentSlot())).orElse(true);
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
+		Equipable equipable = Equipable.get(stack);
+		if (equipable == null) return false;
+		return this.slot.map(x -> Objects.equals(x, equipable.getEquipmentSlot())).orElse(true);
+	}
 }

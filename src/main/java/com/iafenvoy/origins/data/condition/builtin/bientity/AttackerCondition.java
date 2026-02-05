@@ -9,16 +9,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public enum AttackerCondition implements BiEntityCondition {
-    INSTANCE;
-    public static final MapCodec<AttackerCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<AttackerCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity source, @NotNull Entity target) {
-        return target instanceof LivingEntity living && Objects.equals(source, living.getLastHurtByMob());
-    }
+	@Override
+	public boolean test(@NotNull Entity source, @NotNull Entity target) {
+		return target instanceof LivingEntity living && Objects.equals(source, living.getLastHurtByMob());
+	}
 }

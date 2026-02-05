@@ -13,26 +13,26 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record SelectorApplyAction(String selector, BiEntityAction biEntityAction,
-                                  BiEntityCondition biEntityCondition) implements EntityAction {
-    public static final MapCodec<SelectorApplyAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.STRING.fieldOf("selector").forGetter(SelectorApplyAction::selector),
-            BiEntityAction.optionalCodec("bientity_action").forGetter(SelectorApplyAction::biEntityAction),
-            BiEntityCondition.optionalCodec("bientity_condition").forGetter(SelectorApplyAction::biEntityCondition)
-    ).apply(i, SelectorApplyAction::new));
+								  BiEntityCondition biEntityCondition) implements EntityAction {
+	public static final MapCodec<SelectorApplyAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.STRING.fieldOf("selector").forGetter(SelectorApplyAction::selector),
+			BiEntityAction.optionalCodec("bientity_action").forGetter(SelectorApplyAction::biEntityAction),
+			BiEntityCondition.optionalCodec("bientity_condition").forGetter(SelectorApplyAction::biEntityCondition)
+	).apply(i, SelectorApplyAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        try {
-            for (Entity entity : new EntitySelectorParser(new StringReader(this.selector), true).getSelector().findEntities(source.createCommandSourceStack()))
-                if (this.biEntityCondition.test(source, entity))
-                    this.biEntityAction.execute(source, entity);
-        } catch (Exception e) {
-            Origins.LOGGER.error("Failed to execute selector.", e);
-        }
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		try {
+			for (Entity entity : new EntitySelectorParser(new StringReader(this.selector), true).getSelector().findEntities(source.createCommandSourceStack()))
+				if (this.biEntityCondition.test(source, entity))
+					this.biEntityAction.execute(source, entity);
+		} catch (Exception e) {
+			Origins.LOGGER.error("Failed to execute selector.", e);
+		}
+	}
 }

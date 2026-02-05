@@ -13,28 +13,28 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record IfElseListAction(List<ConditionedActionHolder> actions) implements BlockAction {
-    public static final MapCodec<IfElseListAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ConditionedActionHolder.CODEC.listOf().fieldOf("actions").forGetter(IfElseListAction::actions)
-    ).apply(i, IfElseListAction::new));
+	public static final MapCodec<IfElseListAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ConditionedActionHolder.CODEC.listOf().fieldOf("actions").forGetter(IfElseListAction::actions)
+	).apply(i, IfElseListAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-        for (ConditionedActionHolder holder : this.actions)
-            if (holder.condition.test(level, pos)) {
-                holder.action.execute(level, pos, direction);
-                break;
-            }
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		for (ConditionedActionHolder holder : this.actions)
+			if (holder.condition.test(level, pos)) {
+				holder.action.execute(level, pos, direction);
+				break;
+			}
+	}
 
-    private record ConditionedActionHolder(BlockCondition condition, BlockAction action) {
-        public static final Codec<ConditionedActionHolder> CODEC = RecordCodecBuilder.create(i -> i.group(
-                BlockCondition.CODEC.fieldOf("condition").forGetter(ConditionedActionHolder::condition),
-                BlockAction.CODEC.fieldOf("action").forGetter(ConditionedActionHolder::action)
-        ).apply(i, ConditionedActionHolder::new));
-    }
+	private record ConditionedActionHolder(BlockCondition condition, BlockAction action) {
+		public static final Codec<ConditionedActionHolder> CODEC = RecordCodecBuilder.create(i -> i.group(
+				BlockCondition.CODEC.fieldOf("condition").forGetter(ConditionedActionHolder::condition),
+				BlockAction.CODEC.fieldOf("action").forGetter(ConditionedActionHolder::action)
+		).apply(i, ConditionedActionHolder::new));
+	}
 }

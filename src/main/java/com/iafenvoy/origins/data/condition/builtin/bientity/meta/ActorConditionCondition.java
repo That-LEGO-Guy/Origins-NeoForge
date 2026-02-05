@@ -8,17 +8,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record ActorConditionCondition(EntityCondition condition) implements BiEntityCondition {
-    public static final MapCodec<ActorConditionCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EntityCondition.CODEC.fieldOf("condition").forGetter(ActorConditionCondition::condition)
-    ).apply(i, ActorConditionCondition::new));
+	public static final MapCodec<ActorConditionCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EntityCondition.CODEC.fieldOf("condition").forGetter(ActorConditionCondition::condition)
+	).apply(i, ActorConditionCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity source, @NotNull Entity target) {
-        return this.condition.test(source);
-    }
+	@Override
+	public boolean test(@NotNull Entity source, @NotNull Entity target) {
+		return this.condition.test(source);
+	}
 }

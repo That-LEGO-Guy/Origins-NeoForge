@@ -7,17 +7,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record InvertAction(BiEntityAction action) implements BiEntityAction {
-    public static final MapCodec<InvertAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BiEntityAction.CODEC.fieldOf("action").forGetter(InvertAction::action)
-    ).apply(i, InvertAction::new));
+	public static final MapCodec<InvertAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BiEntityAction.CODEC.fieldOf("action").forGetter(InvertAction::action)
+	).apply(i, InvertAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source, @NotNull Entity target) {
-        this.action.execute(target, source);
-    }
+	@Override
+	public void execute(@NotNull Entity source, @NotNull Entity target) {
+		this.action.execute(target, source);
+	}
 }

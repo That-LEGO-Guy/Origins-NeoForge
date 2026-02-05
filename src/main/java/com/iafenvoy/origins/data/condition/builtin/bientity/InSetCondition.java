@@ -9,17 +9,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record InSetCondition(ResourceLocation set) implements BiEntityCondition {
-    public static final MapCodec<InSetCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ResourceLocation.CODEC.fieldOf("set").forGetter(InSetCondition::set)
-    ).apply(i, InSetCondition::new));
+	public static final MapCodec<InSetCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ResourceLocation.CODEC.fieldOf("set").forGetter(InSetCondition::set)
+	).apply(i, InSetCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity source, @NotNull Entity target) {
-        return EntitySetAttachment.get(source).containEntity(this.set, target);
-    }
+	@Override
+	public boolean test(@NotNull Entity source, @NotNull Entity target) {
+		return EntitySetAttachment.get(source).containEntity(this.set, target);
+	}
 }

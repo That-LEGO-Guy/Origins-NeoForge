@@ -11,21 +11,21 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public record AddExperienceAction(Optional<Integer> points, Optional<Integer> levels) implements EntityAction {
-    public static final MapCodec<AddExperienceAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.INT.optionalFieldOf("points").forGetter(AddExperienceAction::points),
-            Codec.INT.optionalFieldOf("levels").forGetter(AddExperienceAction::levels)
-    ).apply(i, AddExperienceAction::new));
+	public static final MapCodec<AddExperienceAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.INT.optionalFieldOf("points").forGetter(AddExperienceAction::points),
+			Codec.INT.optionalFieldOf("levels").forGetter(AddExperienceAction::levels)
+	).apply(i, AddExperienceAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof Player player) {
-            this.points.ifPresent(player::giveExperiencePoints);
-            this.levels.ifPresent(player::giveExperienceLevels);
-        }
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof Player player) {
+			this.points.ifPresent(player::giveExperiencePoints);
+			this.levels.ifPresent(player::giveExperienceLevels);
+		}
+	}
 }

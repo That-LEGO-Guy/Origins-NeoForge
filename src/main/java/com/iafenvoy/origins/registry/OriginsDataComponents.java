@@ -11,7 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.List;
 
 public final class OriginsDataComponents {
-    public static final DeferredRegister<DataComponentType<?>> REGISTRY = DeferredRegister.create(BuiltInRegistries.DATA_COMPONENT_TYPE, Origins.MOD_ID);
+	public static final DeferredRegister<DataComponentType<?>> REGISTRY = DeferredRegister.create(BuiltInRegistries.DATA_COMPONENT_TYPE, Origins.MOD_ID);
 
-    public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<Holder<Layer>>>> ORB_LAYERS = REGISTRY.register("orb_layers", () -> DataComponentType.<List<Holder<Layer>>>builder().persistent(Layer.CODEC.listOf()).build());
+	public static final DeferredHolder<DataComponentType<?>, DataComponentType<List<Holder<Layer>>>> ORB_LAYERS = REGISTRY.register("orb_layers", () -> DataComponentType.<List<Holder<Layer>>>builder().persistent(Layer.CODEC.listOf()).build());
 }

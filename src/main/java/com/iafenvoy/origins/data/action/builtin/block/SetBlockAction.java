@@ -11,17 +11,17 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 public record SetBlockAction(Block block) implements BlockAction {
-    public static final MapCodec<SetBlockAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("block").forGetter(SetBlockAction::block)
-    ).apply(i, SetBlockAction::new));
+	public static final MapCodec<SetBlockAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BuiltInRegistries.BLOCK.byNameCodec().fieldOf("block").forGetter(SetBlockAction::block)
+	).apply(i, SetBlockAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-        level.setBlock(pos, this.block.defaultBlockState(), Block.UPDATE_ALL);
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		level.setBlock(pos, this.block.defaultBlockState(), Block.UPDATE_ALL);
+	}
 }

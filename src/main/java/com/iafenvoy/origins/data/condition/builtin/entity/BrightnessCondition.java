@@ -12,21 +12,21 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record BrightnessCondition(Comparison comparison, double compareTo) implements EntityCondition {
-    public static final MapCodec<BrightnessCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Comparison.CODEC.fieldOf("comparison").forGetter(BrightnessCondition::comparison),
-            Codec.DOUBLE.fieldOf("compare_to").forGetter(BrightnessCondition::compareTo)
-    ).apply(i, BrightnessCondition::new));
+	public static final MapCodec<BrightnessCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Comparison.CODEC.fieldOf("comparison").forGetter(BrightnessCondition::comparison),
+			Codec.DOUBLE.fieldOf("compare_to").forGetter(BrightnessCondition::compareTo)
+	).apply(i, BrightnessCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        //FIXME::Is this right?
-        Level world = entity.level();
-        return this.comparison.compare(world.getLightLevelDependentMagicValue(BlockPos.containing(MiscUtil.getPoseDependentEyePos(entity))), this.compareTo)
-                || this.comparison.compare(world.getLightLevelDependentMagicValue(entity.blockPosition()), this.compareTo);
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		//FIXME::Is this right?
+		Level world = entity.level();
+		return this.comparison.compare(world.getLightLevelDependentMagicValue(BlockPos.containing(MiscUtil.getPoseDependentEyePos(entity))), this.compareTo)
+				|| this.comparison.compare(world.getLightLevelDependentMagicValue(entity.blockPosition()), this.compareTo);
+	}
 }

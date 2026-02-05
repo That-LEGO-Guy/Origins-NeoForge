@@ -10,19 +10,19 @@ import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 public record EquippedItemActionAction(EquipmentSlot slot, ItemAction action) implements EntityAction {
-    public static final MapCodec<EquippedItemActionAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EquipmentSlot.CODEC.fieldOf("slot").forGetter(EquippedItemActionAction::slot),
-            ItemAction.CODEC.fieldOf("action").forGetter(EquippedItemActionAction::action)
-    ).apply(i, EquippedItemActionAction::new));
+	public static final MapCodec<EquippedItemActionAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EquipmentSlot.CODEC.fieldOf("slot").forGetter(EquippedItemActionAction::slot),
+			ItemAction.CODEC.fieldOf("action").forGetter(EquippedItemActionAction::action)
+	).apply(i, EquippedItemActionAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof LivingEntity living)
-            this.action.execute(living.level(), source, living.getItemBySlot(this.slot));
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof LivingEntity living)
+			this.action.execute(living.level(), source, living.getItemBySlot(this.slot));
+	}
 }

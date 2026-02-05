@@ -14,18 +14,18 @@ import net.neoforged.neoforge.registries.NewRegistryEvent;
 
 @EventBusSubscriber
 public final class BadgeRegistries {
-    public static final ResourceKey<Registry<MapCodec<? extends Badge>>> BADGE_TYPE_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "badge_type"));
-    public static final Registry<MapCodec<? extends Badge>> BADGE_TYPE = new MappedRegistry<>(BADGE_TYPE_KEY, Lifecycle.stable());
+	public static final ResourceKey<Registry<MapCodec<? extends Badge>>> BADGE_TYPE_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "badge_type"));
+	public static final Registry<MapCodec<? extends Badge>> BADGE_TYPE = new MappedRegistry<>(BADGE_TYPE_KEY, Lifecycle.stable());
 
-    public static final ResourceKey<Registry<Badge>> BADGE_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "badge"));
+	public static final ResourceKey<Registry<Badge>> BADGE_KEY = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(Origins.MOD_ID, "badge"));
 
-    @SubscribeEvent
-    public static void newRegistries(NewRegistryEvent event) {
-        event.register(BADGE_TYPE);
-    }
+	@SubscribeEvent
+	public static void newRegistries(NewRegistryEvent event) {
+		event.register(BADGE_TYPE);
+	}
 
-    @SubscribeEvent
-    public static void newDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(BADGE_KEY, Badge.CODEC, Badge.CODEC);
-    }
+	@SubscribeEvent
+	public static void newDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
+		event.dataPackRegistry(BADGE_KEY, Badge.CODEC, Badge.CODEC);
+	}
 }

@@ -14,23 +14,23 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public record LightLevelCondition(Optional<LightLayer> lightType, Comparison comparison,
-                                  double compareTo) implements BlockCondition {
-    public static final MapCodec<LightLevelCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ExtraEnumCodecs.LIGHT_LAYER.optionalFieldOf("light_type").forGetter(LightLevelCondition::lightType),
-            Comparison.CODEC.fieldOf("comparison").forGetter(LightLevelCondition::comparison),
-            Codec.DOUBLE.fieldOf("compare_to").forGetter(LightLevelCondition::compareTo)
-    ).apply(i, LightLevelCondition::new));
+								  double compareTo) implements BlockCondition {
+	public static final MapCodec<LightLevelCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ExtraEnumCodecs.LIGHT_LAYER.optionalFieldOf("light_type").forGetter(LightLevelCondition::lightType),
+			Comparison.CODEC.fieldOf("comparison").forGetter(LightLevelCondition::comparison),
+			Codec.DOUBLE.fieldOf("compare_to").forGetter(LightLevelCondition::compareTo)
+	).apply(i, LightLevelCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-        int lightLevel = this.lightType
-                .map(lt -> level.getBrightness(lt, pos))
-                .orElseGet(() -> level.getMaxLocalRawBrightness(pos));
-        return this.comparison.compare(lightLevel, this.compareTo);
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
+		int lightLevel = this.lightType
+				.map(lt -> level.getBrightness(lt, pos))
+				.orElseGet(() -> level.getMaxLocalRawBrightness(pos));
+		return this.comparison.compare(lightLevel, this.compareTo);
+	}
 }

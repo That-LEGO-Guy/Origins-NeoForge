@@ -12,19 +12,19 @@ import java.util.List;
 
 public record ModifyValueBlockPower(BlockCondition condition) implements Power {
 
-    public static final MapCodec<ModifyValueBlockPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockCondition.optionalCodec("block_condition").forGetter(ModifyValueBlockPower::condition)
-    ).apply(i, ModifyValueBlockPower::new));
+	public static final MapCodec<ModifyValueBlockPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockCondition.optionalCodec("block_condition").forGetter(ModifyValueBlockPower::condition)
+	).apply(i, ModifyValueBlockPower::new));
 
 // TODO ListConfiguration
 
-//    public static final Codec<ModifyValueBlockConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-//            ListConfiguration.MODIFIER_CODEC.forGetter(ModifyValueBlockConfiguration::modifiers),
-//            ConfiguredBlockCondition.optional("block_condition").forGetter(ModifyValueBlockConfiguration::condition)
-//    ).apply(instance, ModifyValueBlockConfiguration::new));
+//	public static final Codec<ModifyValueBlockConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+//			ListConfiguration.MODIFIER_CODEC.forGetter(ModifyValueBlockConfiguration::modifiers),
+//			ConfiguredBlockCondition.optional("block_condition").forGetter(ModifyValueBlockConfiguration::condition)
+//	).apply(instance, ModifyValueBlockConfiguration::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 }

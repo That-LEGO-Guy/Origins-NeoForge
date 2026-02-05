@@ -13,25 +13,25 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record ChoiceAction(List<WeightedActionHolder> actions) implements ItemAction {
-    public static final MapCodec<ChoiceAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            WeightedActionHolder.CODEC.listOf().fieldOf("actions").forGetter(ChoiceAction::actions)
-    ).apply(i, ChoiceAction::new));
+	public static final MapCodec<ChoiceAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			WeightedActionHolder.CODEC.listOf().fieldOf("actions").forGetter(ChoiceAction::actions)
+	).apply(i, ChoiceAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
-        WeightedActionHolder holder = WeightedRandomSelector.selectRandomByWeight(this.actions);
-        if (holder != null) holder.element.execute(level, source, stack);
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
+		WeightedActionHolder holder = WeightedRandomSelector.selectRandomByWeight(this.actions);
+		if (holder != null) holder.element.execute(level, source, stack);
+	}
 
-    private record WeightedActionHolder(ItemAction element, int weight) implements WeightedRandomSelector.WeightGetter {
-        public static final Codec<WeightedActionHolder> CODEC = RecordCodecBuilder.create(i -> i.group(
-                ItemAction.CODEC.fieldOf("element").forGetter(WeightedActionHolder::element),
-                Codec.INT.optionalFieldOf("weight", 0).forGetter(WeightedActionHolder::weight)
-        ).apply(i, WeightedActionHolder::new));
-    }
+	private record WeightedActionHolder(ItemAction element, int weight) implements WeightedRandomSelector.WeightGetter {
+		public static final Codec<WeightedActionHolder> CODEC = RecordCodecBuilder.create(i -> i.group(
+				ItemAction.CODEC.fieldOf("element").forGetter(WeightedActionHolder::element),
+				Codec.INT.optionalFieldOf("weight", 0).forGetter(WeightedActionHolder::weight)
+		).apply(i, WeightedActionHolder::new));
+	}
 }

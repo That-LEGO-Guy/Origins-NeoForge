@@ -14,20 +14,20 @@ import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber
 public record FreezePower(EntityCondition condition) implements Power {
-    public static final MapCodec<FreezePower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EntityCondition.optionalCodec("condition").forGetter(FreezePower::condition)
-    ).apply(i, FreezePower::new));
+	public static final MapCodec<FreezePower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EntityCondition.optionalCodec("condition").forGetter(FreezePower::condition)
+	).apply(i, FreezePower::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @SubscribeEvent
-    public static void enableFrozen(EntityFrozenEvent event) {
-        Entity entity = event.getEntity();
-        for (FreezePower power : OriginDataHolder.get(entity).getPowers(RegularPowers.FREEZE, FreezePower.class))
-            if (power.condition.test(entity))
-                event.allow();
-    }
+	@SubscribeEvent
+	public static void enableFrozen(EntityFrozenEvent event) {
+		Entity entity = event.getEntity();
+		for (FreezePower power : OriginDataHolder.get(entity).getPowers(RegularPowers.FREEZE, FreezePower.class))
+			if (power.condition.test(entity))
+				event.allow();
+	}
 }

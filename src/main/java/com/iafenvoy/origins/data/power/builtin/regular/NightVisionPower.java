@@ -16,23 +16,23 @@ import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber(Dist.CLIENT)
 public record NightVisionPower(float strength, EntityCondition condition) implements Power {
-    public static final MapCodec<NightVisionPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.floatRange(0, 1).optionalFieldOf("strength", 1F).forGetter(NightVisionPower::strength),
-            EntityCondition.optionalCodec("condition").forGetter(NightVisionPower::condition)
-    ).apply(i, NightVisionPower::new));
+	public static final MapCodec<NightVisionPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.floatRange(0, 1).optionalFieldOf("strength", 1F).forGetter(NightVisionPower::strength),
+			EntityCondition.optionalCodec("condition").forGetter(NightVisionPower::condition)
+	).apply(i, NightVisionPower::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @SubscribeEvent
-    public static void handleNightVisionStrength(NightVisionStrengthEvent event) {
-        Entity entity = event.getEntity();
-        for (NightVisionPower power : OriginDataHolder.get(entity).getPowers(RegularPowers.NIGHT_VISION, NightVisionPower.class))
-            if (power.condition.test(entity)) {
-                event.setStrength(power.strength);
-                break;
-            }
-    }
+	@SubscribeEvent
+	public static void handleNightVisionStrength(NightVisionStrengthEvent event) {
+		Entity entity = event.getEntity();
+		for (NightVisionPower power : OriginDataHolder.get(entity).getPowers(RegularPowers.NIGHT_VISION, NightVisionPower.class))
+			if (power.condition.test(entity)) {
+				event.setStrength(power.strength);
+				break;
+			}
+	}
 }

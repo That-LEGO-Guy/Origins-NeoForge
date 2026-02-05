@@ -10,18 +10,18 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record RelativeOffsetAction(BlockAction action, int distance) implements BlockAction {
-    public static final MapCodec<RelativeOffsetAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockAction.CODEC.fieldOf("action").forGetter(RelativeOffsetAction::action),
-            Codec.INT.fieldOf("distance").forGetter(RelativeOffsetAction::distance)
-    ).apply(i, RelativeOffsetAction::new));
+	public static final MapCodec<RelativeOffsetAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockAction.CODEC.fieldOf("action").forGetter(RelativeOffsetAction::action),
+			Codec.INT.fieldOf("distance").forGetter(RelativeOffsetAction::distance)
+	).apply(i, RelativeOffsetAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends BlockAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
-        this.action.execute(level, pos.relative(direction, this.distance), direction);
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull BlockPos pos, @NotNull Direction direction) {
+		this.action.execute(level, pos.relative(direction, this.distance), direction);
+	}
 }

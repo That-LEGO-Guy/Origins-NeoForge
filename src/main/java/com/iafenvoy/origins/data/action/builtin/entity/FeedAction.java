@@ -9,18 +9,18 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
 public record FeedAction(int food, float saturation) implements EntityAction {
-    public static final MapCodec<FeedAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.INT.fieldOf("food").forGetter(FeedAction::food),
-            Codec.FLOAT.fieldOf("saturation").forGetter(FeedAction::saturation)
-    ).apply(i, FeedAction::new));
+	public static final MapCodec<FeedAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.INT.fieldOf("food").forGetter(FeedAction::food),
+			Codec.FLOAT.fieldOf("saturation").forGetter(FeedAction::saturation)
+	).apply(i, FeedAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof Player player) player.getFoodData().eat(this.food, this.saturation);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof Player player) player.getFoodData().eat(this.food, this.saturation);
+	}
 }

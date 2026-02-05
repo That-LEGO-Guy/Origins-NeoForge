@@ -11,21 +11,21 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public record UsingItemCondition(ItemCondition itemCondition) implements EntityCondition {
-    public static final MapCodec<UsingItemCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ItemCondition.CODEC.fieldOf("item_condition").forGetter(UsingItemCondition::itemCondition)
-    ).apply(i, UsingItemCondition::new));
+	public static final MapCodec<UsingItemCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ItemCondition.CODEC.fieldOf("item_condition").forGetter(UsingItemCondition::itemCondition)
+	).apply(i, UsingItemCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        if (entity instanceof LivingEntity living && living.isUsingItem()) {
-            InteractionHand hand = living.getUsedItemHand();
-            ItemStack stack = living.getItemInHand(hand);
-            return this.itemCondition.test(living.level(), stack);
-        } else return false;
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		if (entity instanceof LivingEntity living && living.isUsingItem()) {
+			InteractionHand hand = living.getUsedItemHand();
+			ItemStack stack = living.getItemInHand(hand);
+			return this.itemCondition.test(living.level(), stack);
+		} else return false;
+	}
 }

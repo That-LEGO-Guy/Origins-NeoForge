@@ -11,29 +11,29 @@ import org.jetbrains.annotations.NotNull;
 
 public record ModifyJumpPower(EntityAction entityAction) implements Power {
 
-    public static final MapCodec<ModifyJumpPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            EntityAction.optionalCodec("entity_action").forGetter(ModifyJumpPower::entityAction)
-    ).apply(i, ModifyJumpPower::new));
+	public static final MapCodec<ModifyJumpPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			EntityAction.optionalCodec("entity_action").forGetter(ModifyJumpPower::entityAction)
+	).apply(i, ModifyJumpPower::new));
 
 // TODO ListConfiguration
 
-//    public static final Codec<ModifyJumpConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-//            ListConfiguration.MODIFIER_CODEC.forGetter(ModifyJumpConfiguration::modifiers),
-//            ConfiguredEntityAction.optional("entity_action").forGetter(ModifyJumpConfiguration::condition)
-//    ).apply(instance, ModifyJumpConfiguration::new));
+//	public static final Codec<ModifyJumpConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+//			ListConfiguration.MODIFIER_CODEC.forGetter(ModifyJumpConfiguration::modifiers),
+//			ConfiguredEntityAction.optional("entity_action").forGetter(ModifyJumpConfiguration::condition)
+//	).apply(instance, ModifyJumpConfiguration::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
 
-//    public static double apply(Entity player, double baseValue) {
-//        return PowerContainer.modify(player, ApoliPowers.MODIFY_JUMP.get(), baseValue, x -> true, x -> x.value().getFactory().execute(x.value(), player));
-//    }
+//	public static double apply(Entity player, double baseValue) {
+//		return PowerContainer.modify(player, ApoliPowers.MODIFY_JUMP.get(), baseValue, x -> true, x -> x.value().getFactory().execute(x.value(), player));
+//	}
 
-    public void execute(Entity player) {
-        entityAction().execute(player);
-    }
+	public void execute(Entity player) {
+		entityAction().execute(player);
+	}
 
 }

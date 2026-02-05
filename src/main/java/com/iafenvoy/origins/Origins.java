@@ -18,28 +18,28 @@ import org.slf4j.Logger;
 
 @Mod(Origins.MOD_ID)
 public final class Origins {
-    public static final String MOD_ID = "origins";
-    public static final Logger LOGGER = LogUtils.getLogger();
+	public static final String MOD_ID = "origins";
+	public static final Logger LOGGER = LogUtils.getLogger();
 
-    public Origins(ModContainer container, IEventBus bus) {
-        OriginsAttachments.REGISTRY.register(bus);
-        OriginsDataComponents.REGISTRY.register(bus);
-        OriginsItems.REGISTRY.register(bus);
-        //Action
-        BiEntityActions.REGISTRY.register(bus);
-        BlockActions.REGISTRY.register(bus);
-        EntityActions.REGISTRY.register(bus);
-        ItemActions.REGISTRY.register(bus);
-        //Condition
-        BiEntityConditions.REGISTRY.register(bus);
-        BiomeConditions.REGISTRY.register(bus);
-        BlockConditions.REGISTRY.register(bus);
-        DamageConditions.REGISTRY.register(bus);
-        EntityConditions.REGISTRY.register(bus);
-        FluidConditions.REGISTRY.register(bus);
-        ItemConditions.REGISTRY.register(bus);
-        //Powers
-        ActionPowers.REGISTRY.register(bus);
-        RegularPowers.REGISTRY.register(bus);
-    }
+	public Origins(ModContainer container, IEventBus bus) {
+		OriginsAttachments.REGISTRY.register(bus);
+		OriginsDataComponents.REGISTRY.register(bus);
+		OriginsItems.REGISTRY.register(bus);
+		//Action
+		BiEntityActions.REGISTRY.register(bus);
+		BlockActions.REGISTRY.register(bus);
+		EntityActions.REGISTRY.register(bus);
+		ItemActions.REGISTRY.register(bus);
+		//Condition
+		BiEntityConditions.REGISTRY.register(bus);
+		BiomeConditions.REGISTRY.register(bus);
+		BlockConditions.REGISTRY.register(bus);
+		DamageConditions.REGISTRY.register(bus);
+		EntityConditions.REGISTRY.register(bus);
+		FluidConditions.REGISTRY.register(bus);
+		ItemConditions.REGISTRY.register(bus);
+		//Powers
+		ActionPowers.REGISTRY.register(bus);
+		RegularPowers.REGISTRY.register(bus);
+	}
 }

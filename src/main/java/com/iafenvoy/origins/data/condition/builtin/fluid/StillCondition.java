@@ -6,16 +6,16 @@ import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.NotNull;
 
 public enum StillCondition implements FluidCondition {
-    INSTANCE;
-    public static final MapCodec<StillCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<StillCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends FluidCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends FluidCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull FluidState state) {
-        return state.isSource();
-    }
+	@Override
+	public boolean test(@NotNull FluidState state) {
+		return state.isSource();
+	}
 }

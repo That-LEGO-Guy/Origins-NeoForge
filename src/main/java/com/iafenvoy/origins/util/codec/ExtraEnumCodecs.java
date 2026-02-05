@@ -14,17 +14,17 @@ import java.util.Locale;
 import java.util.function.Function;
 
 public final class ExtraEnumCodecs {
-    public static final Codec<Dist> DIST = enumCodec(Dist::valueOf);
-    public static final Codec<SoundSource> SOUND_SOURCE = enumCodec(SoundSource::valueOf);
-    public static final Codec<ClipContext.Block> CLIP_CONTEXT_BLOCK = enumCodec(ClipContext.Block::valueOf);
-    public static final Codec<ClipContext.Fluid> CLIP_CONTEXT_FLUID = enumCodec(ClipContext.Fluid::valueOf);
-    public static final Codec<LightLayer> LIGHT_LAYER = enumCodec(LightLayer::valueOf);
-    public static final Codec<InteractionHand> HAND = enumCodec(InteractionHand::valueOf);
-    public static final Codec<InteractionResult> INTERACTION_RESULT = enumCodec(InteractionResult::valueOf);
-    public static final Codec<FogType> FOG_TYPE = enumCodec(FogType::valueOf);
-    public static final Codec<Direction.AxisDirection> AXIS = enumCodec(Direction.AxisDirection::valueOf);
+	public static final Codec<Dist> DIST = enumCodec(Dist::valueOf);
+	public static final Codec<SoundSource> SOUND_SOURCE = enumCodec(SoundSource::valueOf);
+	public static final Codec<ClipContext.Block> CLIP_CONTEXT_BLOCK = enumCodec(ClipContext.Block::valueOf);
+	public static final Codec<ClipContext.Fluid> CLIP_CONTEXT_FLUID = enumCodec(ClipContext.Fluid::valueOf);
+	public static final Codec<LightLayer> LIGHT_LAYER = enumCodec(LightLayer::valueOf);
+	public static final Codec<InteractionHand> HAND = enumCodec(InteractionHand::valueOf);
+	public static final Codec<InteractionResult> INTERACTION_RESULT = enumCodec(InteractionResult::valueOf);
+	public static final Codec<FogType> FOG_TYPE = enumCodec(FogType::valueOf);
+	public static final Codec<Direction.AxisDirection> AXIS = enumCodec(Direction.AxisDirection::valueOf);
 
-    public static <T extends Enum<T>> Codec<T> enumCodec(Function<String, T> stringSolver) {
-        return Codec.stringResolver(x -> x.name().toLowerCase(Locale.ROOT), x -> stringSolver.apply(x.toUpperCase(Locale.ROOT)));
-    }
+	public static <T extends Enum<T>> Codec<T> enumCodec(Function<String, T> stringSolver) {
+		return Codec.stringResolver(x -> x.name().toLowerCase(Locale.ROOT), x -> stringSolver.apply(x.toUpperCase(Locale.ROOT)));
+	}
 }

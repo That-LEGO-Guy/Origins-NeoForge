@@ -8,17 +8,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 public enum MovementBlockingCondition implements BlockCondition {
-    INSTANCE;
-    public static final MapCodec<MovementBlockingCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<MovementBlockingCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BlockCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BlockCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
-        BlockState state = level.getBlockState(pos);
-        return state.blocksMotion() && !state.getCollisionShape(level, pos).isEmpty();
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull BlockPos pos) {
+		BlockState state = level.getBlockState(pos);
+		return state.blocksMotion() && !state.getCollisionShape(level, pos).isEmpty();
+	}
 }

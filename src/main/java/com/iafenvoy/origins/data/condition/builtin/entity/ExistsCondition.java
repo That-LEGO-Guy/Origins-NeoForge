@@ -6,16 +6,16 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public enum ExistsCondition implements EntityCondition {
-    INSTANCE;
-    public static final MapCodec<ExistsCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<ExistsCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        return !entity.isRemoved();
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		return !entity.isRemoved();
+	}
 }

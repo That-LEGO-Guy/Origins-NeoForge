@@ -10,17 +10,17 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record ConsumeAction(int amount) implements ItemAction {
-    public static final MapCodec<ConsumeAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.INT.optionalFieldOf("amount", 1).forGetter(ConsumeAction::amount)
-    ).apply(i, ConsumeAction::new));
+	public static final MapCodec<ConsumeAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.INT.optionalFieldOf("amount", 1).forGetter(ConsumeAction::amount)
+	).apply(i, ConsumeAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
-        stack.shrink(this.amount);
-    }
+	@Override
+	public void execute(@NotNull Level level, @NotNull Entity source, @NotNull ItemStack stack) {
+		stack.shrink(this.amount);
+	}
 }

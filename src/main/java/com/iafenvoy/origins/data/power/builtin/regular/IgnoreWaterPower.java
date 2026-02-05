@@ -11,17 +11,17 @@ import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber
 public enum IgnoreWaterPower implements Power {
-    INSTANCE;
-    public static final MapCodec<IgnoreWaterPower> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<IgnoreWaterPower> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 
-    @SubscribeEvent
-    public static void ignoreWater(IgnoreWaterEvent event) {
-        if (!OriginDataHolder.get(event.getEntity()).getPowers(RegularPowers.IGNORE_WATER, IgnoreWaterPower.class).isEmpty())
-            event.allow();
-    }
+	@SubscribeEvent
+	public static void ignoreWater(IgnoreWaterEvent event) {
+		if (!OriginDataHolder.get(event.getEntity()).getPowers(RegularPowers.IGNORE_WATER, IgnoreWaterPower.class).isEmpty())
+			event.allow();
+	}
 }

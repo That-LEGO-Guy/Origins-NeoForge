@@ -11,17 +11,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public record SubmergedInCondition(Fluid fluid) implements EntityCondition {
-    public static final MapCodec<SubmergedInCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BuiltInRegistries.FLUID.byNameCodec().fieldOf("fluid").forGetter(SubmergedInCondition::fluid)
-    ).apply(i, SubmergedInCondition::new));
+	public static final MapCodec<SubmergedInCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BuiltInRegistries.FLUID.byNameCodec().fieldOf("fluid").forGetter(SubmergedInCondition::fluid)
+	).apply(i, SubmergedInCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        return Objects.equals(entity.getEyeInFluidType(), this.fluid.getFluidType());
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		return Objects.equals(entity.getEyeInFluidType(), this.fluid.getFluidType());
+	}
 }

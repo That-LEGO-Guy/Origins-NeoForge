@@ -6,16 +6,16 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public enum DismountAction implements EntityAction {
-    INSTANCE;
-    public static final MapCodec<DismountAction> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<DismountAction> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        source.stopRiding();
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		source.stopRiding();
+	}
 }

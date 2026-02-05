@@ -10,17 +10,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record AndCondition(List<ItemCondition> conditions) implements ItemCondition {
-    public static final MapCodec<AndCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            ItemCondition.CODEC.listOf().fieldOf("conditions").forGetter(AndCondition::conditions)
-    ).apply(i, AndCondition::new));
+	public static final MapCodec<AndCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ItemCondition.CODEC.listOf().fieldOf("conditions").forGetter(AndCondition::conditions)
+	).apply(i, AndCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-        return this.conditions.stream().allMatch(x -> x.test(level, stack));
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
+		return this.conditions.stream().allMatch(x -> x.test(level, stack));
+	}
 }

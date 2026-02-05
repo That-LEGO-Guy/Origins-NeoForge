@@ -12,20 +12,20 @@ import net.minecraft.world.inventory.CraftingMenu;
 import org.jetbrains.annotations.NotNull;
 
 public enum CraftingTableAction implements EntityAction {
-    INSTANCE;
-    public static final MapCodec<CraftingTableAction> CODEC = MapCodec.unit(INSTANCE);
-    private static final Component TITLE = Component.translatable("container.crafting");
+	INSTANCE;
+	public static final MapCodec<CraftingTableAction> CODEC = MapCodec.unit(INSTANCE);
+	private static final Component TITLE = Component.translatable("container.crafting");
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof Player player) {
-            player.openMenu(new SimpleMenuProvider((syncId, inventory, p) -> new CraftingMenu(syncId, inventory, ContainerLevelAccess.create(p.level(), p.blockPosition())), TITLE));
-            player.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
-        }
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof Player player) {
+			player.openMenu(new SimpleMenuProvider((syncId, inventory, p) -> new CraftingMenu(syncId, inventory, ContainerLevelAccess.create(p.level(), p.blockPosition())), TITLE));
+			player.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
+		}
+	}
 }

@@ -14,21 +14,21 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public record PlaySoundAction(SoundEvent sound, Optional<SoundSource> category, float volume,
-                              float pitch) implements EntityAction {
-    public static final MapCodec<PlaySoundAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BuiltInRegistries.SOUND_EVENT.byNameCodec().fieldOf("sound").forGetter(PlaySoundAction::sound),
-            ExtraEnumCodecs.SOUND_SOURCE.optionalFieldOf("category").forGetter(PlaySoundAction::category),
-            Codec.FLOAT.optionalFieldOf("volume", 1F).forGetter(PlaySoundAction::volume),
-            Codec.FLOAT.optionalFieldOf("pitch", 1F).forGetter(PlaySoundAction::pitch)
-    ).apply(i, PlaySoundAction::new));
+							  float pitch) implements EntityAction {
+	public static final MapCodec<PlaySoundAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BuiltInRegistries.SOUND_EVENT.byNameCodec().fieldOf("sound").forGetter(PlaySoundAction::sound),
+			ExtraEnumCodecs.SOUND_SOURCE.optionalFieldOf("category").forGetter(PlaySoundAction::category),
+			Codec.FLOAT.optionalFieldOf("volume", 1F).forGetter(PlaySoundAction::volume),
+			Codec.FLOAT.optionalFieldOf("pitch", 1F).forGetter(PlaySoundAction::pitch)
+	).apply(i, PlaySoundAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        source.level().playSound(null, source.getX(), source.getY(), source.getZ(), this.sound, this.category.orElse(source.getSoundSource()), this.volume, this.pitch);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		source.level().playSound(null, source.getX(), source.getY(), source.getZ(), this.sound, this.category.orElse(source.getSoundSource()), this.volume, this.pitch);
+	}
 }

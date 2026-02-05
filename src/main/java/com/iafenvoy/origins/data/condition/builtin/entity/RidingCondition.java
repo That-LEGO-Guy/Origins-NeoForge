@@ -8,18 +8,18 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record RidingCondition(BiEntityCondition biEntityCondition) implements EntityCondition {
-    public static final MapCodec<RidingCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BiEntityCondition.optionalCodec("bientity_condition").forGetter(RidingCondition::biEntityCondition)
-    ).apply(i, RidingCondition::new));
+	public static final MapCodec<RidingCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BiEntityCondition.optionalCodec("bientity_condition").forGetter(RidingCondition::biEntityCondition)
+	).apply(i, RidingCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        Entity vehicle = entity.getVehicle();
-        return vehicle != null && this.biEntityCondition.test(entity, vehicle);
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		Entity vehicle = entity.getVehicle();
+		return vehicle != null && this.biEntityCondition.test(entity, vehicle);
+	}
 }

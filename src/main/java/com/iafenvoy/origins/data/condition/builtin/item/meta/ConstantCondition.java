@@ -9,17 +9,17 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public record ConstantCondition(boolean value) implements ItemCondition {
-    public static final MapCodec<ConstantCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Codec.BOOL.fieldOf("value").forGetter(ConstantCondition::value)
-    ).apply(i, ConstantCondition::new));
+	public static final MapCodec<ConstantCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Codec.BOOL.fieldOf("value").forGetter(ConstantCondition::value)
+	).apply(i, ConstantCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends ItemCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends ItemCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
-        return this.value;
-    }
+	@Override
+	public boolean test(@NotNull Level level, @NotNull ItemStack stack) {
+		return this.value;
+	}
 }

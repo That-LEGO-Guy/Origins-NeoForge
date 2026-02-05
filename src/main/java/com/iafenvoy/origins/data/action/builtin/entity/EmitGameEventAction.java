@@ -9,17 +9,17 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
 
 public record EmitGameEventAction(Holder<GameEvent> event) implements EntityAction {
-    public static final MapCodec<EmitGameEventAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            GameEvent.CODEC.fieldOf("action").forGetter(EmitGameEventAction::event)
-    ).apply(i, EmitGameEventAction::new));
+	public static final MapCodec<EmitGameEventAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			GameEvent.CODEC.fieldOf("action").forGetter(EmitGameEventAction::event)
+	).apply(i, EmitGameEventAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        source.gameEvent(this.event);
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		source.gameEvent(this.event);
+	}
 }

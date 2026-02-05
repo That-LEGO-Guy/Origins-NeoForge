@@ -9,17 +9,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record AndCondition(List<FluidCondition> conditions) implements FluidCondition {
-    public static final MapCodec<AndCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            FluidCondition.CODEC.listOf().fieldOf("conditions").forGetter(AndCondition::conditions)
-    ).apply(i, AndCondition::new));
+	public static final MapCodec<AndCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			FluidCondition.CODEC.listOf().fieldOf("conditions").forGetter(AndCondition::conditions)
+	).apply(i, AndCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends FluidCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends FluidCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull FluidState state) {
-        return this.conditions.stream().allMatch(x -> x.test(state));
-    }
+	@Override
+	public boolean test(@NotNull FluidState state) {
+		return this.conditions.stream().allMatch(x -> x.test(state));
+	}
 }

@@ -13,19 +13,19 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record BiomeInCondition(List<Holder<Biome>> biome, BiomeCondition condition) implements EntityCondition {
-    public static final MapCodec<BiomeInCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            CombinedCodecs.BIOME.optionalFieldOf("biome", List.of()).forGetter(BiomeInCondition::biome),
-            BiomeCondition.optionalCodec("condition").forGetter(BiomeInCondition::condition)
-    ).apply(i, BiomeInCondition::new));
+	public static final MapCodec<BiomeInCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			CombinedCodecs.BIOME.optionalFieldOf("biome", List.of()).forGetter(BiomeInCondition::biome),
+			BiomeCondition.optionalCodec("condition").forGetter(BiomeInCondition::condition)
+	).apply(i, BiomeInCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        Holder<Biome> biome = entity.level().getBiome(entity.blockPosition());
-        return (this.biome.isEmpty() || this.biome.contains(biome)) & this.condition.test(biome, entity.blockPosition());
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		Holder<Biome> biome = entity.level().getBiome(entity.blockPosition());
+		return (this.biome.isEmpty() || this.biome.contains(biome)) & this.condition.test(biome, entity.blockPosition());
+	}
 }

@@ -8,17 +8,17 @@ import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 public record InBlockCondition(BlockCondition blockCondition) implements EntityCondition {
-    public static final MapCodec<InBlockCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            BlockCondition.CODEC.fieldOf("block_condition").forGetter(InBlockCondition::blockCondition)
-    ).apply(i, InBlockCondition::new));
+	public static final MapCodec<InBlockCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BlockCondition.CODEC.fieldOf("block_condition").forGetter(InBlockCondition::blockCondition)
+	).apply(i, InBlockCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        return this.blockCondition.test(entity.level(), entity.blockPosition());
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		return this.blockCondition.test(entity.level(), entity.blockPosition());
+	}
 }

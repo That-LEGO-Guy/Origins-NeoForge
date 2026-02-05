@@ -13,20 +13,20 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record RemoveEffectAction(List<Holder<MobEffect>> effect) implements EntityAction {
-    public static final MapCodec<RemoveEffectAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            CombinedCodecs.MOB_EFFECT.optionalFieldOf("effect", List.of()).forGetter(RemoveEffectAction::effect)
-    ).apply(i, RemoveEffectAction::new));
+	public static final MapCodec<RemoveEffectAction> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			CombinedCodecs.MOB_EFFECT.optionalFieldOf("effect", List.of()).forGetter(RemoveEffectAction::effect)
+	).apply(i, RemoveEffectAction::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityAction> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityAction> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public void execute(@NotNull Entity source) {
-        if (source instanceof LivingEntity living) {
-            if (this.effect.isEmpty()) living.removeAllEffects();
-            else this.effect.forEach(living::removeEffect);
-        }
-    }
+	@Override
+	public void execute(@NotNull Entity source) {
+		if (source instanceof LivingEntity living) {
+			if (this.effect.isEmpty()) living.removeAllEffects();
+			else this.effect.forEach(living::removeEffect);
+		}
+	}
 }

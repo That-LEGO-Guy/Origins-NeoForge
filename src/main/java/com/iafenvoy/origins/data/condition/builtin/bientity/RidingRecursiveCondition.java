@@ -8,20 +8,20 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public enum RidingRecursiveCondition implements BiEntityCondition {
-    INSTANCE;
-    public static final MapCodec<RidingRecursiveCondition> CODEC = MapCodec.unit(INSTANCE);
+	INSTANCE;
+	public static final MapCodec<RidingRecursiveCondition> CODEC = MapCodec.unit(INSTANCE);
 
-    @Override
-    public @NotNull MapCodec<? extends BiEntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends BiEntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity source, @NotNull Entity target) {
-        if (source.getVehicle() == null) return false;
-        Entity vehicle = source.getVehicle();
-        while (vehicle != target && vehicle != null)
-            vehicle = vehicle.getVehicle();
-        return Objects.equals(vehicle, target);
-    }
+	@Override
+	public boolean test(@NotNull Entity source, @NotNull Entity target) {
+		if (source.getVehicle() == null) return false;
+		Entity vehicle = source.getVehicle();
+		while (vehicle != target && vehicle != null)
+			vehicle = vehicle.getVehicle();
+		return Objects.equals(vehicle, target);
+	}
 }

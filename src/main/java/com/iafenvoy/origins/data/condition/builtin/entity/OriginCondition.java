@@ -14,20 +14,20 @@ import java.util.Map;
 import java.util.Optional;
 
 public record OriginCondition(Holder<Origin> origin, Optional<Holder<Layer>> layer) implements EntityCondition {
-    public static final MapCodec<OriginCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            Origin.CODEC.fieldOf("origin").forGetter(OriginCondition::origin),
-            Layer.CODEC.optionalFieldOf("layer").forGetter(OriginCondition::layer)
-    ).apply(i, OriginCondition::new));
+	public static final MapCodec<OriginCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			Origin.CODEC.fieldOf("origin").forGetter(OriginCondition::origin),
+			Layer.CODEC.optionalFieldOf("layer").forGetter(OriginCondition::layer)
+	).apply(i, OriginCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends EntityCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends EntityCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull Entity entity) {
-        //TODO::More APIs in attachment?
-        Map<Holder<Layer>, Holder<Origin>> map = OriginDataHolder.get(entity).getOrigins();
-        return map.containsValue(this.origin) && this.layer.map(map::containsKey).orElse(true);
-    }
+	@Override
+	public boolean test(@NotNull Entity entity) {
+		//TODO::More APIs in attachment?
+		Map<Holder<Layer>, Holder<Origin>> map = OriginDataHolder.get(entity).getOrigins();
+		return map.containsValue(this.origin) && this.layer.map(map::containsKey).orElse(true);
+	}
 }

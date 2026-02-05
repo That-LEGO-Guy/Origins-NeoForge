@@ -10,22 +10,22 @@ import org.jetbrains.annotations.NotNull;
 public record ActionWhenHitPower(DamageCondition damageCondition,EntityAction entityAction) implements Power {
 
 
-    public static final MapCodec<ActionWhenHitPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            DamageCondition.optionalCodec("damage_condition").forGetter(ActionWhenHitPower::damageCondition),
-            EntityAction.optionalCodec("entity_action").forGetter(ActionWhenHitPower::entityAction)
-    ).apply(i, ActionWhenHitPower::new));
+	public static final MapCodec<ActionWhenHitPower> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			DamageCondition.optionalCodec("damage_condition").forGetter(ActionWhenHitPower::damageCondition),
+			EntityAction.optionalCodec("entity_action").forGetter(ActionWhenHitPower::entityAction)
+	).apply(i, ActionWhenHitPower::new));
 
 // TODO implement ICooldownPowerConfiguration
 
-//    public static final Codec<ActionWhenHitConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-//            ICooldownPowerConfiguration.MAP_CODEC.forGetter(ActionWhenHitConfiguration::cooldown),
-//            ConfiguredDamageCondition.optional("damage_condition").forGetter(ActionWhenHitConfiguration::damageCondition),
-//            ConfiguredEntityAction.required("entity_action").forGetter(ActionWhenHitConfiguration::entityAction)
-//    ).apply(instance, ActionWhenHitConfiguration::new));
+//	public static final Codec<ActionWhenHitConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+//			ICooldownPowerConfiguration.MAP_CODEC.forGetter(ActionWhenHitConfiguration::cooldown),
+//			ConfiguredDamageCondition.optional("damage_condition").forGetter(ActionWhenHitConfiguration::damageCondition),
+//			ConfiguredEntityAction.required("entity_action").forGetter(ActionWhenHitConfiguration::entityAction)
+//	).apply(instance, ActionWhenHitConfiguration::new));
 
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return CODEC;
+	}
 }

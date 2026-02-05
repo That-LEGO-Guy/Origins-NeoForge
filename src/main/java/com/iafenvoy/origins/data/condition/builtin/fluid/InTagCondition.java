@@ -10,17 +10,17 @@ import net.minecraft.world.level.material.FluidState;
 import org.jetbrains.annotations.NotNull;
 
 public record InTagCondition(TagKey<Fluid> tag) implements FluidCondition {
-    public static final MapCodec<InTagCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-            TagKey.codec(Registries.FLUID).fieldOf("tag").forGetter(InTagCondition::tag)
-    ).apply(i, InTagCondition::new));
+	public static final MapCodec<InTagCondition> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			TagKey.codec(Registries.FLUID).fieldOf("tag").forGetter(InTagCondition::tag)
+	).apply(i, InTagCondition::new));
 
-    @Override
-    public @NotNull MapCodec<? extends FluidCondition> codec() {
-        return CODEC;
-    }
+	@Override
+	public @NotNull MapCodec<? extends FluidCondition> codec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean test(@NotNull FluidState state) {
-        return state.is(this.tag);
-    }
+	@Override
+	public boolean test(@NotNull FluidState state) {
+		return state.is(this.tag);
+	}
 }

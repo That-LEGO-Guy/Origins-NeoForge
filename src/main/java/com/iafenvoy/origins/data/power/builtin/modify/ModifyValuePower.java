@@ -13,18 +13,18 @@ import java.util.Set;
 
 public record ModifyValuePower() implements Power {
 
-//    public static MapCodec<ModifyValuePower> CODEC = ListConfiguration.MODIFIER_CODEC
-//            .xmap(ModifyValuePower::new, ModifyValuePower::modifiers).codec();
+//	public static MapCodec<ModifyValuePower> CODEC = ListConfiguration.MODIFIER_CODEC
+//			.xmap(ModifyValuePower::new, ModifyValuePower::modifiers).codec();
 
 // TODO ListConfiguration
 
-//    public static final Codec<ModifyVelocityConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-//            ListConfiguration.MODIFIER_CODEC.forGetter(ModifyVelocityConfiguration::modifiers),
-//            ExtraCodecs.strictOptionalField(SerializableDataTypes.AXIS_SET, "axes", EnumSet.allOf(Direction.Axis.class)).forGetter(ModifyVelocityConfiguration::axes)
-//    ).apply(instance, ModifyVelocityConfiguration::new));
+//	public static final Codec<ModifyVelocityConfiguration> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+//			ListConfiguration.MODIFIER_CODEC.forGetter(ModifyVelocityConfiguration::modifiers),
+//			ExtraCodecs.strictOptionalField(SerializableDataTypes.AXIS_SET, "axes", EnumSet.allOf(Direction.Axis.class)).forGetter(ModifyVelocityConfiguration::axes)
+//	).apply(instance, ModifyVelocityConfiguration::new));
 
-    @Override
-    public @NotNull MapCodec<? extends Power> codec() {
-        return null;
-    }
+	@Override
+	public @NotNull MapCodec<? extends Power> codec() {
+		return null;
+	}
 }
